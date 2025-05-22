@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Chronicles of Hope  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=3f530b75" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=e16e6d28" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <p>$ doas sysrc sddm_enable=yes
+sddm_enable:  -&gt; yes
+$ pciconf -lv|grep -B4 VGA
+<a class="reference external" href="mailto:vgapci0&#37;&#52;&#48;pci0">vgapci0<span>&#64;</span>pci0</a>:1:0:0:     class=0x030000 rev=0xa1 hdr=0x00 vendor=0x10de device=0x2504 subvendor=0x1458 subdevice=0x4074</p>
+<blockquote>
+<div><p>vendor     = ‘NVIDIA Corporation’
+device     = ‘GA106 [GeForce RTX 3060 Lite Hash Rate]’
+class      = display
+subclass   = VGA</p>
+</div></blockquote>
+<p>sysctl machdep.bootmethod                                      Sat May 17 18:15:08 2025
+machdep.bootmethod: UEFI</p>
+<p>pciconf -lv | grep -B3 display
+<a class="reference external" href="mailto:vgapci0&#37;&#52;&#48;pci0">vgapci0<span>&#64;</span>pci0</a>:1:0:0:     class=0x030000 rev=0xa1 hdr=0x00 vendor=0x10de device=0x2504 subvendor=0x1458 subdevice=0x4074</p>
+<blockquote>
+<div><p>vendor     = ‘NVIDIA Corporation’
+device     = ‘GA106 [GeForce RTX 3060 Lite Hash Rate]’
+class      = display</p>
+</div></blockquote>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Chronicles of Hope</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">How Great is the darkness</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">FreeBSD Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Gentoo/index.html">Notes for Gentoo</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Ronverbs, LLC.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/source/FreeBSD/kde_config_beast.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

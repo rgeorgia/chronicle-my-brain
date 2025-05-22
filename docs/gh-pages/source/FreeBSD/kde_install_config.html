@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>etc… &#8212; Chronicles of Hope  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=3f530b75" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=e16e6d28" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <p>Message from fusefs-libs3-3.17.1:</p>
+<p>–
+Install the FUSE kernel module (kldload fusefs) to use this port.
+=====
+Message from ocl-icd-2.3.2:</p>
+<p>–
+Check your environment variable</p>
+<blockquote>
+<div><p>OLC_ICD_VENODRDIR</p>
+</div></blockquote>
+<p>On FreeBSD, this is set to</p>
+<blockquote>
+<div><p>OCL_ICD_VENDORDIR=/usr/local/etc/OpenCL/vendors</p>
+</div></blockquote>
+<p>The OCL_ICD_VENDORDIR
+(ICD = Installable Client Driver) holds the platform
+specific driver configuration files (i.e Intel,
+nVidia, AMD, other OpenCL capable devices).</p>
+<p>It could be set globally from your system’s shell environemt
+setting, for</p>
+<dl class="simple">
+<dt>csh in /etc/csh.cshrc:</dt><dd><p>setenv OCL_ICD_VENDORDIR  /usr/local/etc/OpenCL/vendors</p>
+</dd>
+<dt>or for sh/bash/ksh and derivatives, /etc/profile:</dt><dd><p>export OCL_ICD_VENDORDIR=/usr/local/etc/OpenCL/vendors</p>
+</dd>
+</dl>
+<p>–
+Please, consider installing backends for Phonon:
+- multimedia/phonon-vlc         VLC backend
+=====
+Message from postgresql17-client-17.5:</p>
+<p>–
+The PostgreSQL port has a collection of “side orders”:</p>
+<dl class="simple">
+<dt>postgresql-docs</dt><dd><p>For all of the html documentation</p>
+</dd>
+<dt>p5-Pg</dt><dd><p>A perl5 API for client access to PostgreSQL databases.</p>
+</dd>
+<dt>postgresql-tcltk</dt><dd><p>If you want tcl/tk client support.</p>
+</dd>
+<dt>postgresql-jdbc</dt><dd><p>For Java JDBC support.</p>
+</dd>
+<dt>postgresql-odbc</dt><dd><p>For client access from unix applications using ODBC as access
+method. Not needed to access unix PostgreSQL servers from Win32
+using ODBC. See below.</p>
+</dd>
+<dt>ruby-postgres, py-psycopg</dt><dd><p>For client access to PostgreSQL databases using the ruby &amp; python
+languages.</p>
+</dd>
+<dt>postgresql-plperl, postgresql-pltcl &amp; postgresql-plruby</dt><dd><p>For using perl5, tcl &amp; ruby as procedural languages.</p>
+</dd>
+<dt>postgresql-contrib</dt><dd><p>Lots of contributed utilities, postgresql functions and
+datatypes. There you find pg_standby, pgcrypto and many other cool
+things.</p>
+</dd>
+</dl>
+<section id="etc">
+<h1>etc…<a class="headerlink" href="#etc" title="Link to this heading">¶</a></h1>
+<p>Message from py311-pycryptodomex-3.21.0:</p>
+<p>–
+Install the math/gmp port to enable accelerated processing with the GNU
+Multiple Precision Arithmetic Library. PyCryptodome will use the
+optional enhancement at runtime automatically if the library is
+available.
+=====
+Message from kf5-kglobalaccel-5.116.0_1:</p>
+<p>–
+===&gt;   NOTICE:</p>
+<p>This port is deprecated; you may wish to reconsider installing it:</p>
+</section>
+<section id="has-its-functionality-stripped-compared-to-a-kf6-variant">
+<h1>has its functionality stripped compared to a kf6 variant.<a class="headerlink" href="#has-its-functionality-stripped-compared-to-a-kf6-variant" title="Link to this heading">¶</a></h1>
+<p>Message from kf5-kguiaddons-5.116.0_2:</p>
+<p>–
+===&gt;   NOTICE:</p>
+<p>This port is deprecated; you may wish to reconsider installing it:</p>
+</section>
+<section id="id1">
+<h1>has its functionality stripped compared to a kf6 variant.<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>Message from kf5-kwallet-5.116.0_3:</p>
+<p>–
+===&gt;   NOTICE:</p>
+<p>This port is deprecated; you may wish to reconsider installing it:</p>
+</section>
+<section id="id2">
+<h1>has its functionality stripped compared to a kf6 variant.<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h1>
+<p>Message from kf5-kio-5.116.0_1:</p>
+<p>–
+===&gt;   NOTICE:</p>
+<p>This port is deprecated; you may wish to reconsider installing it:</p>
+</section>
+<section id="id3">
+<h1>has its functionality stripped compared to a kf6 variant.<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h1>
+<p>Message from kio-fuse-5.1.0_2:</p>
+<p>–
+To fully use KIO-fuse, you will need FUSE and usermount enabled, e.g.</p>
+<blockquote>
+<div><p>kldload fusefs
+sysctl vfs.usermount=1</p>
+</div></blockquote>
+</section>
+<section id="to-make-these-changes-permanent-see-loader-conf-5-and-sysctl-conf-5">
+<h1>to make these changes permanent, see loader.conf(5) and sysctl.conf(5).<a class="headerlink" href="#to-make-these-changes-permanent-see-loader-conf-5-and-sysctl-conf-5" title="Link to this heading">¶</a></h1>
+<p>Message from konqueror-25.04.1:</p>
+<p>–
+If you get wrong colors when watching html5 videos, this is probably because
+your system does not support hardware acceleration (see bug 237277): you can
+disable it by starting the browser from command line with the –disable-gpu
+option.
+=====
+Message from smartmontools-7.5:</p>
+<p>–
+smartmontools has been installed</p>
+<p>To check the status of drives, use the following:</p>
+<blockquote>
+<div><p>/usr/local/sbin/smartctl -a /dev/ad0    for first ATA/SATA drive
+/usr/local/sbin/smartctl -a /dev/da0    for first SCSI drive
+/usr/local/sbin/smartctl -a /dev/ada0   for first SATA drive</p>
+</div></blockquote>
+<p>To include drive health information in your daily status reports,
+add a line like the following to /etc/periodic.conf:</p>
+<blockquote>
+<div><p>daily_status_smart_devices=”/dev/ad0 /dev/da0”</p>
+</div></blockquote>
+<p>substituting the appropriate device names for your SMART-capable disks.</p>
+<p>To enable drive monitoring, you can use /usr/local/sbin/smartd.
+A sample configuration file has been installed as
+/usr/local/etc/smartd.conf.sample
+Copy this file to /usr/local/etc/smartd.conf and edit appropriately</p>
+<dl class="simple">
+<dt>To have smartd start at boot</dt><dd><p>echo ‘smartd_enable=”YES”’ &gt;&gt; /etc/rc.conf</p>
+</dd>
+</dl>
+<p>To enable verification of the drivedb updates, install the “security/gnupg”
+package.
+=====
+Message from webcamd-5.17.1.2_2:</p>
+<p>–
+1) To start webcamd(8) automatically at system startup:</p>
+<blockquote>
+<div><p># sysrc webcamd_enable=YES</p>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p>Please restart devd(8) to start webcamd(8):</p>
+<blockquote>
+<div><p># service devd restart</p>
+</div></blockquote>
+</li>
+<li><p>Users requiring webcamd must be members of the “webcamd” group:</p>
+<blockquote>
+<div><p># pw groupmod webcamd -m &lt;username&gt;</p>
+</div></blockquote>
+</li>
+</ol>
+<p>4) If webcamd still did not start, consult the installed webcamd rc.d
+script for more help and instructions on how to start webcamd.
+–
+===&gt;   NOTICE:</p>
+<p>The webcamd port currently does not have a maintainer. As a result, it is
+more likely to have unresolved issues, not be up-to-date, or even be removed in
+the future. To volunteer to maintain this port, please create an issue at:</p>
+<p><a class="reference external" href="https://bugs.freebsd.org/bugzilla">https://bugs.freebsd.org/bugzilla</a></p>
+<p>More information about port maintainership is available at:</p>
+<p><a class="reference external" href="https://docs.freebsd.org/en/articles/contributing/#ports-contributing">https://docs.freebsd.org/en/articles/contributing/#ports-contributing</a></p>
+<section id="install-sddm">
+<h2>Install sddm<a class="headerlink" href="#install-sddm" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>New packages to be INSTALLED:</dt><dd><p>sddm: 0.21.0.36</p>
+</dd>
+<dt>Installed packages to be REINSTALLED:</dt><dd><p>lightdm-1.32.0_6
+pkg-2.1.2</p>
+</dd>
+</dl>
+<p>Number of packages to be installed: 1
+Number of packages to be reinstalled: 2</p>
+<p>The process will require 5 MiB more space.
+255 KiB to be downloaded.</p>
+<p>Proceed with this action? [y/N]: y
+[1/1] Fetching lightdm-1.32.0_6.pkg: 100%  255 KiB 261.0kB/s    00:01
+Checking integrity… done (1 conflicting)</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>lightdm-1.32.0_6 conflicts with sddm-0.21.0.36 on /usr/local/share/dbus-1/system.d/org.freedesktop.DisplayManager.conf</p></li>
+</ul>
+</div></blockquote>
+<p>Checking integrity… done (0 conflicting)
+Conflicts with the existing packages have been found.
+One more solver iteration is needed to resolve them.
+The following 5 package(s) will be affected (of 0 checked):</p>
+<dl class="simple">
+<dt>New packages to be INSTALLED:</dt><dd><p>sddm: 0.21.0.36</p>
+</dd>
+<dt>Installed packages to be REINSTALLED:</dt><dd><p>pkg-2.1.2</p>
+</dd>
+<dt>Installed packages to be REMOVED:</dt><dd><p>lightdm: 1.32.0_6
+lightdm-gtk-greeter: 2.0.9
+lightdm-gtk-greeter-settings: 1.2.2_4</p>
+</dd>
+</dl>
+<p>Number of packages to be removed: 3
+Number of packages to be installed: 1
+Number of packages to be reinstalled: 1</p>
+<p>The process will require 2 MiB more space.</p>
+<p>Proceed with this action? [y/N]: y
+Checking integrity… done (0 conflicting)
+[1/5] Deinstalling lightdm-gtk-greeter-2.0.9…
+:: Removing greeter configuration in /usr/local/etc/lightdm/lightdm.conf
+:: Configure another greeter if you plan to keep using lightdm.
+:: #greeter-session=example-gtk-gnome
+==&gt; You should manually remove the “lightdm” user
+==&gt; You should manually remove the “lightdm” group
+==&gt; You should manually remove the “video” group
+===&gt; Creating groups
+Creating group ‘sddm’ with gid ‘219’
+===&gt; Creating users
+Creating user ‘sddm’ with uid ‘219’
+===&gt; Creating homedir(s)
+[5/5] Extracting sddm-0.21.0.36: 100%
+==&gt; Running trigger: gtk-update-icon-cache.ucl
+Generating GTK icon cache for /usr/local/share/icons/hicolor
+==&gt; Running trigger: desktop-file-utils.ucl
+Building cache database of MIME types
+You may need to manually remove /usr/local/etc/lightdm/lightdm-gtk-greeter.conf if it is no longer needed.
+=====
+Message from sddm-0.21.0.36:</p>
+<p>–
+SDDM lists a “user session” which needs either an .xinitrc in the user’s
+home directory, or as a fallback, xterm. In order to use the “user session”
+feature, a ~/.xinitrc is recommended.</p>
+</section>
+<section id="configuring-sddm">
+<h2>Configuring SDDM<a class="headerlink" href="#configuring-sddm" title="Link to this heading">¶</a></h2>
+<p>Configuring SDDM by using plasma[5|6]-sddm-kcm</p>
+<p>If you installed sddm by binary package you have to set this rule in order to get this module functional:</p>
+<p>Create this file /usr/local/etc/polkit-1/rules-d/40-wheel-group.rules with this content:</p>
+<dl>
+<dt>polkit.addRule(function(action, subject) {</dt><dd><dl class="simple">
+<dt>if (subject.isInGroup(“wheel”)) {</dt><dd><p>return polkit.Result.YES;</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+<p>});</p>
+<p>and restart the session.
+Configuring SDDM by using the configuration file</p>
+<blockquote>
+<div><p>diff /usr/local/etc/sddm.conf.sample /usr/local/etc/sddm.conf
+$EDITOR /usr/local/etc/sddm.conf</p>
+</div></blockquote>
+<p>Likewise, if you installed sddm using binary packets perhaps you cannot find sddm.conf and sddm.conf.sample files. You can get one by launching</p>
+<blockquote>
+<div><p># sddm –example-config /usr/local/etc/sddm.conf</p>
+</div></blockquote>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Chronicles of Hope</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">How Great is the darkness</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">FreeBSD Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Gentoo/index.html">Notes for Gentoo</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Ronverbs, LLC.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../../_sources/source/FreeBSD/kde_install_config.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
