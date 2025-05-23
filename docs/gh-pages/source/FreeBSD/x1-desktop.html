@@ -44,7 +44,7 @@
 <h2>Bootloader Tunables<a class="headerlink" href="#bootloader-tunables" title="Link to this heading">¶</a></h2>
 <p>First, open up <code class="docutils literal notranslate"><span class="pre">/boot/loader.conf</span></code> and consider adding the following:</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="963b04ce-1dc0-432e-9ec5-80ec48ea59a6" name="963b04ce-1dc0-432e-9ec5-80ec48ea59a6" type="checkbox"><label class="sphinx_collapse__label" for="963b04ce-1dc0-432e-9ec5-80ec48ea59a6"><i class="sphinx_collapse__icon"></i>Suggested loader.conf</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="7d5233ed-7cba-41ad-9100-c8a6f68ec0ee" name="7d5233ed-7cba-41ad-9100-c8a6f68ec0ee" type="checkbox"><label class="sphinx_collapse__label" for="7d5233ed-7cba-41ad-9100-c8a6f68ec0ee"><i class="sphinx_collapse__icon"></i>Suggested loader.conf</label><div class="sphinx_collapse__content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># /boot/loader.conf</span>
 
 <span class="c1"># Faster boot time.</span>
@@ -113,7 +113,7 @@ compat.linuxkpi.i915_enable_dc<span class="o">=</span><span class="s2">&quot;2&q
 <h2>Sysctl Tweaks<a class="headerlink" href="#sysctl-tweaks" title="Link to this heading">¶</a></h2>
 <p>Next, open up /etc/sysctl.conf and consider setting the following sysctls. Note that you can view the description of any sysctl by running sysctl -d.</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="8938a473-ac14-4a7c-81e3-a14929dea53c" name="8938a473-ac14-4a7c-81e3-a14929dea53c" type="checkbox"><label class="sphinx_collapse__label" for="8938a473-ac14-4a7c-81e3-a14929dea53c"><i class="sphinx_collapse__icon"></i>Sample sysctl.conf</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="dfe10321-f1cb-4064-a955-2587e24ad894" name="dfe10321-f1cb-4064-a955-2587e24ad894" type="checkbox"><label class="sphinx_collapse__label" for="dfe10321-f1cb-4064-a955-2587e24ad894"><i class="sphinx_collapse__icon"></i>Sample sysctl.conf</label><div class="sphinx_collapse__content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/sysctl.conf</span>
 
 <span class="c1">####################</span>
@@ -468,7 +468,7 @@ service<span class="w"> </span>pf<span class="w"> </span>start
 <h2>Disable Periodic Scripts<a class="headerlink" href="#disable-periodic-scripts" title="Link to this heading">¶</a></h2>
 <p>Out of the box, FreeBSD includes a bunch of periodic(8) scripts that churn through your hard disk, reach out to the internet, and send emails. I disable most of these. You can check <code class="docutils literal notranslate"><span class="pre">/etc/defaults/periodic.conf</span></code> for a full list.</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="999012e9-aa73-42e3-bce6-3d14a5e3e98c" name="999012e9-aa73-42e3-bce6-3d14a5e3e98c" type="checkbox"><label class="sphinx_collapse__label" for="999012e9-aa73-42e3-bce6-3d14a5e3e98c"><i class="sphinx_collapse__icon"></i>Sample periodic.conf</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="35a95fa0-4763-448e-a287-c1026e4975d9" name="35a95fa0-4763-448e-a287-c1026e4975d9" type="checkbox"><label class="sphinx_collapse__label" for="35a95fa0-4763-448e-a287-c1026e4975d9"><i class="sphinx_collapse__icon"></i>Sample periodic.conf</label><div class="sphinx_collapse__content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sysrc<span class="w"> </span>-v<span class="w"> </span>-f<span class="w"> </span>/etc/periodic.conf<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="nv">daily_backup_aliases_enable</span><span class="o">=</span>NO<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="nv">daily_backup_gpart_enable</span><span class="o">=</span>NO<span class="w"> </span><span class="se">\</span>
