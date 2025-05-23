@@ -30,3 +30,4 @@ References:
 - `Installing FreeBSD on a Lenovo Carbon X1 Gen6 <https://www.jrgsystems.com/posts/2020-10-21-installing-freebsd-on-lenovo-x1-carbon-thinkpad>`_
 - `FreeBSD on X1 Carbon (Gen 6) <https://things.bleu255.com/runyourown/FreeBSD_on_X1_Carbon_(Gen_6)>`_
 
+More Soon
