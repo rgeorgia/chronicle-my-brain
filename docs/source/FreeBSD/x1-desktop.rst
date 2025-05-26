@@ -1,7 +1,13 @@
 FreeBSD 14 on the Desktop
 =========================
 
-`FreeBSD 14 on the Desktop <https://www.sacredheartsc.com/blog/freebsd-14-on-the-desktop>`_
+Reference: `FreeBSD 14 on the Desktop <https://www.sacredheartsc.com/blog/freebsd-14-on-the-desktop>`_
+
+Thank you `Cullum Smith <https://www.sacredheartsc.com/>`_ for posting this, it was/is helpful. 
+
+.. note::
+   I removed the KDE portion since I am bent on using i3.
+
 
 Bootloader Tunables
 --------------------
@@ -319,23 +325,6 @@ Create /etc/devfs.rules with the following:
         add path 'video*'      mode 0660 group operator
         add path 'usb/*'       mode 0660 group operator
 
-If you plan on burning CDs, you will need a few more lines. First, check the output of camcontrol devlist to determine the pass(4) device associated with your CD burner:
-
-.. code-block:: bash
-
-    $ camcontrol devlist
-    <AHCI SGPIO Enclosure 2.00 0001>   at scbus0 target 0 lun 0 (ses0,pass0)
-    <CL1-3D256-Q11 NVMe SSSTC 256GB 22301116>  at scbus1 target 0 lun 1 (pass1,nda0)
-    <HL-DT-ST BD-RE BU40N 1.03>        at scbus2 target 0 lun 0 (cd0,pass2)
-
-In my case, cd0 is associated with pass2, so I will add the following:
-
-.. code-block:: bash
-
-    add path 'xpt*'        mode 0660 group operator
-    add path 'cd*'         mode 0660 group operator
-    add path 'pass2'       mode 0660 group operator
-
 Be sure to set the default ruleset like so:
 
     sysrc -v devfs_system_ruleset=localrules
@@ -531,35 +520,6 @@ Out of the box, FreeBSD includes a bunch of periodic(8) scripts that churn throu
             weekly_status_security_enable=NO \
             weekly_whatis_enable=NO
 
-Add Users
----------
-
-Create your local user account. Make sure to add yourself to the operator and wheel groups.
-
-.. code-block:: bash
-
-    pw useradd           \
-          -n robertlee       \
-          -c 'Robert E. Lee' \
-          -s /bin/sh         \
-          -M 700             \
-          -d /home/robertlee \
-          -G operator,wheel
-
-You’ll probably want to install sudo:
-
-.. code-block:: bash
-
-    pkg install sudo
-
-Update ``/usr/local/etc/sudoers`` to give sudo permissions to the wheel group:
-
-.. code-block:: bash
-
-    # /usr/local/etc/sudoers
-
-    %wheel ALL=(ALL:ALL) ALL
-
 Set Locale
 ----------
 
@@ -632,38 +592,6 @@ In case you didn't do this during the installation, set your timezone:
 
     ln -sfhv /usr/share/zoneinfo/America/New_York /etc/localtime
 
-Switch to openssh-portable
---------------------------
-
-The ssh in FreeBSD’s base system is heavily patched with stuff I don’t use. I prefer to use the vanilla openssh-portable from ports.
-
-.. code-block:: bash
-
-    pkg install openssh-portable
-
-Edit ``/usr/local/etc/ssh/sshd_config`` as appropriate:
-
-.. code-block:: bash
-
-    # /usr/local/etc/ssh/sshd_config
-
-    PermitRootLogin prohibit-password
-
-    UsePAM yes
-    UseDNS no
-
-Subsystem sftp /usr/local/libexec/sftp-server
-
-Replace the running sshd with the new one:
-
-.. code-block:: bash
-
-    sysrc -v sshd_enable=NO openssh_enable=YES
-    service sshd stop
-    service openssh start
-
-The ssh command will continue using the base system's ``/usr/bin/ssh`` unless you update your $PATH.
-
 You can edit ``/etc/login.conf`` to make the change for all users:
 
 .. code-block:: bash
@@ -694,46 +622,8 @@ You can fix it by installing terminfo-db:
 
     pkg install terminfo-db
 
-Install Root Certificates
-
-FreeBSD trusts a limited number of certificate authorities out of the box. Install the root CA bundle from Mozilla to trust all the standard ones:
-
-.. code-block:: bash
-
-    pkg install ca_root_nss
-
-Install KDE and Desktop Applications
-
-Grab a cup of coffee and kick back while you install KDE and all the desktop packages. You might not want all of these, they’re just what I find useful.
-
-.. code-block:: bash
-
-   pkg install \
-          audacious-plugins-qt5 \
-          audacious-qt5 \
-          chromium \
-          digikam \
-          elisa \
-          en-hunspell \
-          firefox \
-          freedesktop-sound-theme \
-          k3b \
-          kde5 \
-          kid3-kf5 \
-          kmix \
-          konversation \
-          libreoffice \
-          libva-utils \
-          libvdpau-va-gl \
-          merkuro \
-          plasma5-sddm-kcm \
-          sddm \
-          signal-desktop \
-          thunderbird \
-          vdpauinfo \
-          xorg
-
 Install Fonts
+-------------
 
 You’ll find that some websites don’t render quite right without these fonts installed:
 
@@ -768,163 +658,10 @@ If you want to use the bitmapped version, you’ll need to update xorg.conf.d:
 Enable D-Bus
 ------------
 
-D-Bus is required for KDE and just about every GUI application these days.
+D-Bus is required for many desktops and just about every GUI application these days.
 
 .. code-block:: bash
 
    sysrc -v dbus_enable=YES
    service dbus start
 
-Configure SDDM
---------------
-
-sddm is the preferred login manager for KDE. Enable and start it:
-
-.. code-block:: bash
-
-   sysrc -v sddm_enable=YES
-   service sddm start
-
-With any luck, you’ll be dumped to a graphical login screen where you can launch KDE.
-
-KDE under Wayland won’t even start for me. To prevent my wife from accidentally selecting it, I disabled Wayland in sddm.conf(5) like so:
-
-.. code-block:: bash
-
-   # /usr/local/etc/sddm.conf
-
-   [General]
-   DisplayServer = x11
-
-   [Wayland]
-   SessionDir = /dev/null
-
-Hopefully by the time Wayland runs on FreeBSD, the RedHat teenagers will have moved on to another display server. X11 works fine.
-
-Known Issues
-------------
-
-This section describes what doesn't work on FreeBSD, and some potential workarounds.
-User switching is broken
-
-There is a long-standing ConsoleKit2 bug that prevents user switching from working reliably on FreeBSD.
-
-There is another bug that results in broken graphics acceleration whenever a VT switch is performed.
-
-Therefore, it’s best to just disable user switching for now. You can disable it for all users by adding the following to ``/usr/local/etc/xdg/kdeglobals``:
-
-.. code-block:: bash
-
-    # /usr/local/etc/xdg/kdeglobals
-
-    [KDE Action Restrictions]
-    action/start_new_session=false
-    action/switch_user=false
-
-Processes aren't killed on logout
-
-On FreeBSD, multiple processes remain running indefinitely after logging out of a KDE session. Chromium is especially annoying: it continues running after logout, but gets trapped in some crazy state where it consumes 100% of a CPU core forever.
-
-I imagine the KDE developers are mostly concerned with systemd-based Linux distributions, where logind ensures that all processes associated with a user session are forcibly killed when the user logs out. So this probably isn’t on anyone’s radar.
-
-Luckily, KDE Plasma has the ability to run a cleanup script whenever a user logs out. Create the following directory:
-
-.. code-block:: bash
-
-    mkdir -p /usr/local/etc/xdg/plasma-workspace/shutdown
-
-Then create /usr/local/etc/xdg/plasma-workspace/shutdown/cleanup.sh like so:
-
-.. code-block:: bash
-
-    #!/bin/sh
-
-    # /usr/local/etc/xdg/plasma-workspace/shutdown/cleanup.sh
-
-    # Some processes don't kill themselves when the X server dies.
-    # This script takes care of them.
-    pkill signal-desktop chrome baloo_file dirmngr
-    pkill -f /usr/local/libexec/geoclue-2.0/demos/agent
-
-Don’t forget to make this file executable:
-
-.. code-block:: bash
-
-    chmod +x /usr/local/etc/xdg/plasma-workspace/shutdown/cleanup.sh
-
-Baloo creates a gazillion .nfs files
-
-If you have NFS-mounted home directories (like I do), you may notice that your homedir is littered with hundreds of .nfs files.
-
-KDE comes with a file indexing service called Baloo. Baloo seems to keep lots of open file handles on the files it’s indexing. If these files get deleted, the NFS silly rename hack is triggered, causing a bunch of .nfs files to be created.
-
-I've read that Baloo doesn't index network mounts, but apparently it does (at least on FreeBSD).
-
-You can disable Baloo for all users by creating /usr/local/etc/xdg/baloofilerc with the following:
-
-.. code-block:: bash
-
-    # /usr/local/etc/xdg/baloofilerc
-
-    [Basic Settings]
-    Indexing-Enabled=false
-
-Hardware video acceleration broken in Chromium
-
-Video playback in Chromium is supposed to be hardware-accelerated using VA-API. However, despite installing libva-intel-media-driver, my CPU was pegged at 60% or so when watching a YouTube video.
-
-I blindly copy-pasted dozens of command-line flags for Chromium until I found the incantation that enabled hardware-accelerated video playback:
-
-.. code-block:: bash
-
-    chrome --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan
-
-With those magic flags, CPU usage does not noticeably increase during video playback.
-
-To make this change permanent, you can use a custom .desktop override for Chromium. First, create a new directory to hold our custom .desktop files:
-
-.. code-block:: bash
-
-    mkdir -p /usr/local/share-override/applications
-
-Then, you must set the $XDG_DATA_DIRS environment variable so your new directory takes precedence:
-
-.. code-block:: bash
-
-    --- login.conf
-    +++ login.conf
-    @@ -2,7 +2,7 @@
-                :passwd_format=sha512:\
-                :copyright=/etc/COPYRIGHT:\
-                :welcome=/var/run/motd:\
-        -       :setenv=BLOCKSIZE=K:\
-        +       :setenv=BLOCKSIZE=K,XDG_DATA_DIRS=/usr/local/share-override\c/usr/local/share:\
-                :mail=/var/mail/$:\
-                :path=/sbin /bin /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin ~/bin:\
-                :nologin=/var/run/nologin:\
-
-And, as usual:
-
-.. code-block:: bash
-
-    cap_mkdb /etc/login.conf
-
-Finally, create a custom chromium-browser.desktop file like so:
-
-.. code-block:: bash
-
-    # /usr/local/share-override/desktop/chromium-browser.desktop
-
-    [Desktop Entry]
-    Type=Application
-    Version=1.0
-    Encoding=UTF-8
-    Name=Chromium
-    Comment=Google web browser based on WebKit
-    Icon=chrome
-    Exec=chrome --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan %U
-    Categories=Application;Network;WebBrowser;
-    MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;
-    StartupNotify=true
-
-Luckily, video acceleration in Firefox seems to work properly without any fiddling.
