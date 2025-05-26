@@ -1,5 +1,5 @@
-1 Chronicles
-=============
+Chronicle My Brain
+===================
 
 The Lost Art of being Lost
 --------------------------
@@ -15,3 +15,6 @@ This repository is a marker that reminds me where I need to go. I am tired of th
 
    source/FreeBSD/index
    source/Gentoo/index
+   source/NetBSD/index
+   source/Void/index
+   source/Programming/index

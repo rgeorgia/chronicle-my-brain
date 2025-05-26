@@ -20,11 +20,11 @@ python_maximum_signature_line_length = 60
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+html_static_path = ["_static"]
 html_css_files = [
     "style.css",
 ]
 
-html_static_path = ["_static"]
 pygments_style = "sphinx"
 pygments_dark_style = "monokai"
 
@@ -46,7 +46,9 @@ match html_theme:
                 "light_css_variables": {
                     "color-brand-content": "#CC3333",
                     "color-background-primary": "#f8f9fb",
-                    },
+                },
+                "light_logo": "stjohn.jpg",
+                "dark_logo": "stjohn.jpg",
                 "sidebar_hide_name": True,
                 "announcement": "Because I can't remember squat",
                 "source_view_link": "https://github.com/rgeorgia/chronicle-my-brain.git",

@@ -198,6 +198,10 @@
       
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../../_static/stjohn.jpg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../../_static/stjohn.jpg" alt="Dark Logo"/>
+  </div>
   
   
 </a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
@@ -268,7 +272,7 @@
 <h2>Bootloader Tunables<a class="headerlink" href="#bootloader-tunables" title="Link to this heading">¶</a></h2>
 <p>First, open up <code class="docutils literal notranslate"><span class="pre">/boot/loader.conf</span></code> and consider adding the following:</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="2b327ab5-4315-46ff-bfc2-83adb3928659" name="2b327ab5-4315-46ff-bfc2-83adb3928659" type="checkbox"><label class="sphinx_collapse__label" for="2b327ab5-4315-46ff-bfc2-83adb3928659"><i class="sphinx_collapse__icon"></i>Suggested loader.conf</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="1013f666-57b6-4b66-8f30-86eb751a6f75" name="1013f666-57b6-4b66-8f30-86eb751a6f75" type="checkbox"><label class="sphinx_collapse__label" for="1013f666-57b6-4b66-8f30-86eb751a6f75"><i class="sphinx_collapse__icon"></i>Suggested loader.conf</label><div class="sphinx_collapse__content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># /boot/loader.conf</span>
 
 <span class="c1"># Faster boot time.</span>
@@ -333,7 +337,7 @@ compat.linuxkpi.i915_enable_dc<span class="o">=</span><span class="s2">&quot;2&q
 <h2>Sysctl Tweaks<a class="headerlink" href="#sysctl-tweaks" title="Link to this heading">¶</a></h2>
 <p>Next, open up <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.conf</span></code> and consider setting the following <code class="docutils literal notranslate"><span class="pre">sysctls</span></code>. Note that you can view the description of any <code class="docutils literal notranslate"><span class="pre">sysctl</span></code> by running <code class="docutils literal notranslate"><span class="pre">sysctl</span> <span class="pre">-d</span></code>.</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="84ce2d94-862c-4a25-b6b3-7f96262fe6f3" name="84ce2d94-862c-4a25-b6b3-7f96262fe6f3" type="checkbox"><label class="sphinx_collapse__label" for="84ce2d94-862c-4a25-b6b3-7f96262fe6f3"><i class="sphinx_collapse__icon"></i>Sample sysctl.conf</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="2556f2f2-f878-42f5-8110-9488603a57ab" name="2556f2f2-f878-42f5-8110-9488603a57ab" type="checkbox"><label class="sphinx_collapse__label" for="2556f2f2-f878-42f5-8110-9488603a57ab"><i class="sphinx_collapse__icon"></i>Sample sysctl.conf</label><div class="sphinx_collapse__content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># /etc/sysctl.conf</span>
 <span class="c1"># sEcuRitY HaRdeNinG</span>
 hw.kbd.keymap_restrict_change<span class="o">=</span><span class="m">4</span>
@@ -661,7 +665,7 @@ service<span class="w"> </span>pf<span class="w"> </span>start
 <h2>Disable Periodic Scripts<a class="headerlink" href="#disable-periodic-scripts" title="Link to this heading">¶</a></h2>
 <p>Out of the box, FreeBSD includes a bunch of periodic(8) scripts that churn through your hard disk, reach out to the internet, and send emails. I disable most of these. You can check <code class="docutils literal notranslate"><span class="pre">/etc/defaults/periodic.conf</span></code> for a full list.</p>
 <div class="sphinx_collapse docutils">
-<input class="sphinx_collapse__input" id="75c2c6e4-73c8-4510-a308-9bcb8f1475c3" name="75c2c6e4-73c8-4510-a308-9bcb8f1475c3" type="checkbox"><label class="sphinx_collapse__label" for="75c2c6e4-73c8-4510-a308-9bcb8f1475c3"><i class="sphinx_collapse__icon"></i>Sample periodic.conf</label><div class="sphinx_collapse__content docutils">
+<input class="sphinx_collapse__input" id="62b22d05-d295-488f-bf48-63f5fd67251e" name="62b22d05-d295-488f-bf48-63f5fd67251e" type="checkbox"><label class="sphinx_collapse__label" for="62b22d05-d295-488f-bf48-63f5fd67251e"><i class="sphinx_collapse__icon"></i>Sample periodic.conf</label><div class="sphinx_collapse__content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sysrc<span class="w"> </span>-v<span class="w"> </span>-f<span class="w"> </span>/etc/periodic.conf<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="nv">daily_backup_aliases_enable</span><span class="o">=</span>NO<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="nv">daily_backup_gpart_enable</span><span class="o">=</span>NO<span class="w"> </span><span class="se">\</span>

@@ -1,3 +1,5 @@
+@import '../furo.css';
+
 .wy-nav-content {
 	max-width: 95%;
 }
@@ -19,3 +21,7 @@
 	border-bottom-color: darkgray;
 }
 
+.sidebar-logo {
+	border-radius: 50%;
+	filter: grayscale(80%);
+}
