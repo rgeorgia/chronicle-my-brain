@@ -45,9 +45,7 @@ First, open up ``/boot/loader.conf`` and consider adding the following:
                 # Enable this module to use USB tethering (Android/iPhone)
                 if_urndis_load="YES"
 
-                ################
                 # Network tuning 
-                ################
                 # H-TCP congestion control algorithm designed to perform better over fast,
                 # long-distance networks (like the internet). You might consider using it.
                 cc_htcp_load="YES"
@@ -59,9 +57,7 @@ First, open up ``/boot/loader.conf`` and consider adding the following:
                 net.isr.defaultqlimit="2048"
                 net.link.ifqmaxlen="2048"
 
-                ########################
                 # Laptop-related options
-                ########################
                 # Increase ZFS transaction timeout to save battery.
                 vfs.zfs.txg.timeout="10"
 
@@ -75,17 +71,14 @@ First, open up ``/boot/loader.conf`` and consider adding the following:
 Sysctl Tweaks
 -------------
 
-Next, open up /etc/sysctl.conf and consider setting the following sysctls. Note that you can view the description of any sysctl by running sysctl -d.
+Next, open up ``/etc/sysctl.conf`` and consider setting the following ``sysctls``. Note that you can view the description of any ``sysctl`` by running ``sysctl -d``.
 
 .. collapse:: Sample sysctl.conf
 
         .. code-block:: bash
 
                 # /etc/sysctl.conf
-
-                ####################
                 # sEcuRitY HaRdeNinG
-                ####################
                 hw.kbd.keymap_restrict_change=4
                 kern.coredump=0
                 kern.elf32.aslr.pie_enable=1
@@ -114,7 +107,6 @@ Next, open up /etc/sysctl.conf and consider setting the following sysctls. Note 
                 #security.bsd.see_other_gids=0
                 #security.bsd.see_other_uids=0
 
-                ##################################
                 # Network performance tuning
                 #
                 # The default values for many of these sysctls are optimized for the latencies
@@ -122,8 +114,6 @@ Next, open up /etc/sysctl.conf and consider setting the following sysctls. Note 
                 # performance over connections with a larger RTT (like the internet), but at
                 # the expense of higher memory utilization.
                 #
-                # source: trust me, bro
-                ###############################
                 kern.ipc.maxsockbuf=2097152
                 kern.ipc.soacceptqueue=1024
                 kern.ipc.somaxconn=1024
@@ -152,9 +142,7 @@ Next, open up /etc/sysctl.conf and consider setting the following sysctls. Note 
                 net.local.stream.recvspace=65536
                 net.local.stream.sendspace=65536
 
-                #######################
                 # Desktop optimizations
-                #######################
                 # Prevent shared memory from being swapped to disk.
                 kern.ipc.shm_use_phys=1
 
@@ -169,9 +157,7 @@ Next, open up /etc/sysctl.conf and consider setting the following sysctls. Note 
                 # https://github.com/freebsd/drm-kmod/issues/175
                 kern.vt.suspendswitch=0
 
-                ########################
                 # Power saving (laptops)
-                ########################
                 hw.snd.latency=7
 
 
@@ -189,12 +175,10 @@ First, make sure the required kernel modules are loaded on boot:
 .. code-block:: bash
 
         # /boot/loader.conf
-
         if_iwm_load="YES"
         iwm8265fw_load="YES"
 
 Next, have rc(8) create a wlan0 device on boot:
-
 
 .. code-block:: bash
 
@@ -210,7 +194,6 @@ Note that networkmgr requires root permissions. You can allow all members of the
 .. code-block:: bash
 
         # /usr/local/etc/sudoers.d/networkmgr
-
         %operator ALL=NOPASSWD: /usr/local/bin/networkmgr
 
 CPU Microcode and Power Savings
@@ -221,12 +204,11 @@ Install the latest CPU microcode:
 
     pkg install cpu-microcode
 
-Edit /boot/loader.conf to load the microcode on boot:
+Edit ``/boot/loader.conf`` to load the microcode on boot:
 
 .. code-block:: bash
 
         # /boot/loader.conf
-
         cpu_microcode_load="YES"
         cpu_microcode_name="/boot/firmware/intel-ucode.bin"
 
@@ -237,10 +219,11 @@ You can save a lot of battery (and heat) by enabling lower CPU C-states:
     sysrc -v performance_cx_lowest=Cmax economy_cx_lowest=Cmax
 
 Note that with modern Intel processors, it is no longer necessary to run powerd(8).
+
 Intel Graphics Driver
+---------------------
 
 Install the Intel graphics driver and make sure it’s loaded on boot:
---------------------------------------------------------------------
 
 .. code-block:: bash
 
@@ -282,11 +265,11 @@ Many ports are built with sndio support by default (like Firefox). You can think
 
 .. code-block:: bash
 
-        pkg install sndio
-        sysrc -v sndiod_enable=YES
+    pkg install sndio
+    sysrc -v sndiod_enable=YES
 
-        # There appears to be a race condition with sndiod and clear_tmp_enable.
-        # When /tmp is cleared out on boot, the sndiod socket is inadvertently removed!
+    # There appears to be a race condition with sndiod and clear_tmp_enable.
+    # When /tmp is cleared out on boot, the sndiod socket is inadvertently removed!
     sysrc -v clear_tmp_enable=NO
 
 Using different audio devices simultaneously
@@ -323,7 +306,8 @@ The -s flag sets the buffer size. I had to increase this to 100ms to avoid clipp
 Device Permissions via devfs
 -----------------------------
 
-You should create a custom devfs(8) ruleset to allow unprivileged users to access various hardware devices. Create /etc/devfs.rules with the following:
+You should create a custom devfs(8) ruleset to allow unprivileged users to access various hardware devices. 
+Create /etc/devfs.rules with the following:
 
 .. code-block:: bash
 
@@ -339,18 +323,18 @@ If you plan on burning CDs, you will need a few more lines. First, check the out
 
 .. code-block:: bash
 
-        $ camcontrol devlist
-        <AHCI SGPIO Enclosure 2.00 0001>   at scbus0 target 0 lun 0 (ses0,pass0)
-        <CL1-3D256-Q11 NVMe SSSTC 256GB 22301116>  at scbus1 target 0 lun 1 (pass1,nda0)
-        <HL-DT-ST BD-RE BU40N 1.03>        at scbus2 target 0 lun 0 (cd0,pass2)
+    $ camcontrol devlist
+    <AHCI SGPIO Enclosure 2.00 0001>   at scbus0 target 0 lun 0 (ses0,pass0)
+    <CL1-3D256-Q11 NVMe SSSTC 256GB 22301116>  at scbus1 target 0 lun 1 (pass1,nda0)
+    <HL-DT-ST BD-RE BU40N 1.03>        at scbus2 target 0 lun 0 (cd0,pass2)
 
 In my case, cd0 is associated with pass2, so I will add the following:
 
 .. code-block:: bash
 
-        add path 'xpt*'        mode 0660 group operator
-        add path 'cd*'         mode 0660 group operator
-        add path 'pass2'       mode 0660 group operator
+    add path 'xpt*'        mode 0660 group operator
+    add path 'cd*'         mode 0660 group operator
+    add path 'pass2'       mode 0660 group operator
 
 Be sure to set the default ruleset like so:
 
@@ -365,9 +349,9 @@ Add the following to /etc/rc.local:
 
 .. code-block:: bash
 
-        # /etc/rc.local
+    # /etc/rc.local
 
-        usbconfig | awk -F: '{ print $1 }' | xargs -rtn1 -I% usbconfig -d % power_save
+    usbconfig | awk -F: '{ print $1 }' | xargs -rtn1 -I% usbconfig -d % power_save
 
 ThinkPad Backlight Controls
 ---------------------------
@@ -392,19 +376,19 @@ We’ll need a devd(8) rule to handle these events. Create /etc/devd/thinkpad-br
 
     # /etc/devd/thinkpad-brightness.conf
 
-        notify 20 {
+    notify 20 {
           match "system"    "ACPI";
           match "subsystem" "IBM";
           match "notify"    "0x10";
           action            "/usr/local/libexec/thinkpad-brightness up";
-        };
+    };
 
-        notify 20 {
+    notify 20 {
           match "system"    "ACPI";
           match "subsystem" "IBM";
           match "notify"    "0x11";
           action            "/usr/local/libexec/thinkpad-brightness down";
-        };
+    };
 
 ThinkPad Keyboard Brightness
 ----------------------------
@@ -413,14 +397,13 @@ Finally, create the following script at ``/usr/local/libexec/thinkpad-brightness
 
 .. code-block:: bash
 
-        #!/bin/sh
+    #!/bin/sh
+    # /usr/local/libexec/thinkpad-brightness
 
-        # /usr/local/libexec/thinkpad-brightness
+    cur=$(/usr/bin/backlight -q)
 
-        cur=$(/usr/bin/backlight -q)
-
-        case $1 in
-          up)
+    case $1 in
+        up)
               if [ "$cur" -ge 50 ]; then
                 delta=10
               elif [ "$cur" -ge 10 ]; then
@@ -431,7 +414,7 @@ Finally, create the following script at ``/usr/local/libexec/thinkpad-brightness
 
               /usr/bin/backlight incr "$delta"
             ;;
-          down)
+        down)
               if [ "$cur" -le 10 ]; then
                 delta=2
               elif [ "$cur" -le 50 ]; then
@@ -463,27 +446,26 @@ It’s sensible to block unexpected incoming connections. Create ``/etc/pf.conf`
 
 .. code-block:: bash
 
-        # /etc/pf.conf
+    # /etc/pf.conf
 
-        # Replace this with the names of your network interfaces.
-        egress = "{ em0, wlan0, ue0 }"
+    # Replace this with the names of your network interfaces.
+    egress = "{ em0, wlan0, ue0 }"
 
-        allowed_tcp_ports = "{ ssh }"
-        # If you do any voice/video chats, you may need to open UDP ports for RTP.
-        allowed_udp_ports = "{ 1024:65535 }"
+    allowed_tcp_ports = "{ ssh }"
+    # If you do any voice/video chats, you may need to open UDP ports for RTP.
+    allowed_udp_ports = "{ 1024:65535 }"
 
-        set block-policy return
-        set skip on lo
+    set block-policy return
+    set skip on lo
 
-        scrub in on $egress all fragment reassemble
-        antispoof quick for $egress
+    scrub in on $egress all fragment reassemble
+    antispoof quick for $egress
 
-        block all
-        pass out quick on $egress inet
-        pass in quick on $egress inet proto icmp all icmp-type { echoreq, unreach }
-
-        pass in quick on $egress inet proto tcp to port $allowed_tcp_ports
-        pass in quick on $egress inet proto udp to port $allowed_udp_ports
+    block all
+    pass out quick on $egress inet
+    pass in quick on $egress inet proto icmp all icmp-type { echoreq, unreach }
+    pass in quick on $egress inet proto tcp to port $allowed_tcp_ports
+    pass in quick on $egress inet proto udp to port $allowed_udp_ports
 
 Activate the firewall:
 
@@ -499,55 +481,55 @@ Out of the box, FreeBSD includes a bunch of periodic(8) scripts that churn throu
 
 .. collapse:: Sample periodic.conf
 
-        .. code-block:: bash
+    .. code-block:: bash
 
-                sysrc -v -f /etc/periodic.conf \
-                  daily_backup_aliases_enable=NO \
-                  daily_backup_gpart_enable=NO \
-                  daily_backup_passwd_enable=NO \
-                  daily_clean_disks_verbose=NO \
-                  daily_clean_hoststat_enable=NO \
-                  daily_clean_preserve_verbose=NO \
-                  daily_clean_rwho_verbose=NO \
-                  daily_clean_tmps_verbose=NO \
-                  daily_show_info=NO \
-                  daily_show_success=NO \
-                  daily_status_disks_enable=NO \
-                  daily_status_include_submit_mailq=NO \
-                  daily_status_mail_rejects_enable=NO \
-                  daily_status_mail_rejects_enable=NO \
-                  daily_status_mailq_enable=NO \
-                  daily_status_network_enable=NO \
-                  daily_status_security_enable=NO \
-                  daily_status_uptime_enable=NO \
-                  daily_status_world_kernel=NO \
-                  daily_status_zfs_zpool_list_enable=NO \
-                  daily_submit_queuerun=NO \
-                  monthly_accounting_enable=NO \
-                  monthly_show_info=NO \
-                  monthly_show_success=NO \
-                  monthly_status_security_enable=NO \
-                  security_show_info=NO \
-                  security_show_success=NO \
-                  security_status_chkmounts_enable=NO \
-                  security_status_chksetuid_enable=NO \
-                  security_status_chkuid0_enable=NO \
-                  security_status_ipf6denied_enable=NO \
-                  security_status_ipfdenied_enable=NO \
-                  security_status_ipfwdenied_enable=NO \
-                  security_status_ipfwlimit_enable=NO \
-                  security_status_kernelmsg_enable=NO \
-                  security_status_logincheck_enable=NO \
-                  security_status_loginfail_enable=NO \
-                  security_status_neggrpperm_enable=NO \
-                  security_status_passwdless_enable=NO \
-                  security_status_pfdenied_enable=NO \
-                  security_status_tcpwrap_enable=NO \
-                  weekly_locate_enable=NO \
-                  weekly_show_info=NO \
-                  weekly_show_success=NO \
-                  weekly_status_security_enable=NO \
-                  weekly_whatis_enable=NO
+        sysrc -v -f /etc/periodic.conf \
+            daily_backup_aliases_enable=NO \
+            daily_backup_gpart_enable=NO \
+            daily_backup_passwd_enable=NO \
+            daily_clean_disks_verbose=NO \
+            daily_clean_hoststat_enable=NO \
+            daily_clean_preserve_verbose=NO \
+            daily_clean_rwho_verbose=NO \
+            daily_clean_tmps_verbose=NO \
+            daily_show_info=NO \
+            daily_show_success=NO \
+            daily_status_disks_enable=NO \
+            daily_status_include_submit_mailq=NO \
+            daily_status_mail_rejects_enable=NO \
+            daily_status_mail_rejects_enable=NO \
+            daily_status_mailq_enable=NO \
+            daily_status_network_enable=NO \
+            daily_status_security_enable=NO \
+            daily_status_uptime_enable=NO \
+            daily_status_world_kernel=NO \
+            daily_status_zfs_zpool_list_enable=NO \
+            daily_submit_queuerun=NO \
+            monthly_accounting_enable=NO \
+            monthly_show_info=NO \
+            monthly_show_success=NO \
+            monthly_status_security_enable=NO \
+            security_show_info=NO \
+            security_show_success=NO \
+            security_status_chkmounts_enable=NO \
+            security_status_chksetuid_enable=NO \
+            security_status_chkuid0_enable=NO \
+            security_status_ipf6denied_enable=NO \
+            security_status_ipfdenied_enable=NO \
+            security_status_ipfwdenied_enable=NO \
+            security_status_ipfwlimit_enable=NO \
+            security_status_kernelmsg_enable=NO \
+            security_status_logincheck_enable=NO \
+            security_status_loginfail_enable=NO \
+            security_status_neggrpperm_enable=NO \
+            security_status_passwdless_enable=NO \
+            security_status_pfdenied_enable=NO \
+            security_status_tcpwrap_enable=NO \
+            weekly_locate_enable=NO \
+            weekly_show_info=NO \
+            weekly_show_success=NO \
+            weekly_status_security_enable=NO \
+            weekly_whatis_enable=NO
 
 Add Users
 ---------
@@ -556,7 +538,7 @@ Create your local user account. Make sure to add yourself to the operator and wh
 
 .. code-block:: bash
 
-        pw useradd           \
+    pw useradd           \
           -n robertlee       \
           -c 'Robert E. Lee' \
           -s /bin/sh         \
@@ -574,9 +556,9 @@ Update ``/usr/local/etc/sudoers`` to give sudo permissions to the wheel group:
 
 .. code-block:: bash
 
-        # /usr/local/etc/sudoers
+    # /usr/local/etc/sudoers
 
-        %wheel ALL=(ALL:ALL) ALL
+    %wheel ALL=(ALL:ALL) ALL
 
 Set Locale
 ----------
@@ -585,9 +567,9 @@ Set your locale for login shells in ``/etc/login.conf``. Modify this file as sho
 
 .. code-block:: bash
 
-        --- login.conf
-        +++ login.conf
-        @@ -23,7 +23,9 @@
+    --- login.conf
+    +++ login.conf
+    @@ -23,7 +23,9 @@
                 :umtxp=unlimited:\
                 :priority=0:\
                 :ignoretime@:\
@@ -606,10 +588,10 @@ For non-login shells, create ``/etc/profile.d/locale.sh`` like so:
 
 .. code-block:: bash
 
-        # /etc/profile.d/locale.sh
+    # /etc/profile.d/locale.sh
 
-        export LANG=en_US.UTF-8
-        export CHARSET=UTF-8
+    export LANG=en_US.UTF-8
+    export CHARSET=UTF-8
 
 Enable NTP
 ----------
@@ -663,12 +645,12 @@ Edit ``/usr/local/etc/ssh/sshd_config`` as appropriate:
 
 .. code-block:: bash
 
-        # /usr/local/etc/ssh/sshd_config
+    # /usr/local/etc/ssh/sshd_config
 
-        PermitRootLogin prohibit-password
+    PermitRootLogin prohibit-password
 
-        UsePAM yes
-        UseDNS no
+    UsePAM yes
+    UseDNS no
 
 Subsystem sftp /usr/local/libexec/sftp-server
 
@@ -676,9 +658,9 @@ Replace the running sshd with the new one:
 
 .. code-block:: bash
 
-        sysrc -v sshd_enable=NO openssh_enable=YES
-        service sshd stop
-        service openssh start
+    sysrc -v sshd_enable=NO openssh_enable=YES
+    service sshd stop
+    service openssh start
 
 The ssh command will continue using the base system's ``/usr/bin/ssh`` unless you update your $PATH.
 
@@ -686,9 +668,9 @@ You can edit ``/etc/login.conf`` to make the change for all users:
 
 .. code-block:: bash
 
-        --- login.conf
-        +++ login.conf
-        @@ -4,7 +4,7 @@
+    --- login.conf
+    +++ login.conf
+    @@ -4,7 +4,7 @@
                 :welcome=/var/run/motd:\
                 :setenv=BLOCKSIZE=K:\
                 :mail=/var/mail/$:\
@@ -708,13 +690,17 @@ The termcap(5) database on FreeBSD has an issue which prevents "bright" colors f
 
 You can fix it by installing terminfo-db:
 
-pkg install terminfo-db
+.. code-block:: bash
+
+    pkg install terminfo-db
 
 Install Root Certificates
 
 FreeBSD trusts a limited number of certificate authorities out of the box. Install the root CA bundle from Mozilla to trust all the standard ones:
 
-pkg install ca_root_nss
+.. code-block:: bash
+
+    pkg install ca_root_nss
 
 Install KDE and Desktop Applications
 
@@ -722,7 +708,7 @@ Grab a cup of coffee and kick back while you install KDE and all the desktop pac
 
 .. code-block:: bash
 
-        pkg install \
+   pkg install \
           audacious-plugins-qt5 \
           audacious-qt5 \
           chromium \
@@ -753,7 +739,7 @@ You’ll find that some websites don’t render quite right without these fonts 
 
 .. code-block:: bash
 
-        pkg install \
+   pkg install \
           cantarell-fonts \
           droid-fonts-ttf \
           inconsolata-ttf \
@@ -767,17 +753,17 @@ And of course, how can you live without Terminus:
 
 .. code-block:: bash
 
-        pkg install terminus-font terminus-ttf
+   pkg install terminus-font terminus-ttf
 
 If you want to use the bitmapped version, you’ll need to update xorg.conf.d:
 
 .. code-block:: bash
 
-        # /usr/local/etc/X11/xorg.conf.d/terminus.conf
+   # /usr/local/etc/X11/xorg.conf.d/terminus.conf
 
-        Section "Files"
+   Section "Files"
           FontPath "/usr/local/share/fonts/terminus-font/"
-        EndSection
+   EndSection
 
 Enable D-Bus
 ------------
@@ -786,8 +772,8 @@ D-Bus is required for KDE and just about every GUI application these days.
 
 .. code-block:: bash
 
-        sysrc -v dbus_enable=YES
-        service dbus start
+   sysrc -v dbus_enable=YES
+   service dbus start
 
 Configure SDDM
 --------------
@@ -796,8 +782,8 @@ sddm is the preferred login manager for KDE. Enable and start it:
 
 .. code-block:: bash
 
-        sysrc -v sddm_enable=YES
-        service sddm start
+   sysrc -v sddm_enable=YES
+   service sddm start
 
 With any luck, you’ll be dumped to a graphical login screen where you can launch KDE.
 
@@ -805,13 +791,13 @@ KDE under Wayland won’t even start for me. To prevent my wife from accidentall
 
 .. code-block:: bash
 
-        # /usr/local/etc/sddm.conf
+   # /usr/local/etc/sddm.conf
 
-        [General]
-        DisplayServer = x11
+   [General]
+   DisplayServer = x11
 
-        [Wayland]
-        SessionDir = /dev/null
+   [Wayland]
+   SessionDir = /dev/null
 
 Hopefully by the time Wayland runs on FreeBSD, the RedHat teenagers will have moved on to another display server. X11 works fine.
 
@@ -825,15 +811,15 @@ There is a long-standing ConsoleKit2 bug that prevents user switching from worki
 
 There is another bug that results in broken graphics acceleration whenever a VT switch is performed.
 
-Therefore, it’s best to just disable user switching for now. You can disable it for all users by adding the following to /usr/local/etc/xdg/kdeglobals:
+Therefore, it’s best to just disable user switching for now. You can disable it for all users by adding the following to ``/usr/local/etc/xdg/kdeglobals``:
 
 .. code-block:: bash
 
-        # /usr/local/etc/xdg/kdeglobals
+    # /usr/local/etc/xdg/kdeglobals
 
-        [KDE Action Restrictions]
-        action/start_new_session=false
-        action/switch_user=false
+    [KDE Action Restrictions]
+    action/start_new_session=false
+    action/switch_user=false
 
 Processes aren't killed on logout
 
@@ -845,26 +831,26 @@ Luckily, KDE Plasma has the ability to run a cleanup script whenever a user logs
 
 .. code-block:: bash
 
-        mkdir -p /usr/local/etc/xdg/plasma-workspace/shutdown
+    mkdir -p /usr/local/etc/xdg/plasma-workspace/shutdown
 
 Then create /usr/local/etc/xdg/plasma-workspace/shutdown/cleanup.sh like so:
 
 .. code-block:: bash
 
-        #!/bin/sh
+    #!/bin/sh
 
-        # /usr/local/etc/xdg/plasma-workspace/shutdown/cleanup.sh
+    # /usr/local/etc/xdg/plasma-workspace/shutdown/cleanup.sh
 
-        # Some processes don't kill themselves when the X server dies.
-        # This script takes care of them.
-        pkill signal-desktop chrome baloo_file dirmngr
-        pkill -f /usr/local/libexec/geoclue-2.0/demos/agent
+    # Some processes don't kill themselves when the X server dies.
+    # This script takes care of them.
+    pkill signal-desktop chrome baloo_file dirmngr
+    pkill -f /usr/local/libexec/geoclue-2.0/demos/agent
 
 Don’t forget to make this file executable:
 
 .. code-block:: bash
 
-        chmod +x /usr/local/etc/xdg/plasma-workspace/shutdown/cleanup.sh
+    chmod +x /usr/local/etc/xdg/plasma-workspace/shutdown/cleanup.sh
 
 Baloo creates a gazillion .nfs files
 
@@ -878,10 +864,10 @@ You can disable Baloo for all users by creating /usr/local/etc/xdg/baloofilerc w
 
 .. code-block:: bash
 
-        # /usr/local/etc/xdg/baloofilerc
+    # /usr/local/etc/xdg/baloofilerc
 
-        [Basic Settings]
-        Indexing-Enabled=false
+    [Basic Settings]
+    Indexing-Enabled=false
 
 Hardware video acceleration broken in Chromium
 
@@ -891,7 +877,7 @@ I blindly copy-pasted dozens of command-line flags for Chromium until I found th
 
 .. code-block:: bash
 
-        chrome --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan
+    chrome --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan
 
 With those magic flags, CPU usage does not noticeably increase during video playback.
 
@@ -899,15 +885,15 @@ To make this change permanent, you can use a custom .desktop override for Chromi
 
 .. code-block:: bash
 
-        mkdir -p /usr/local/share-override/applications
+    mkdir -p /usr/local/share-override/applications
 
 Then, you must set the $XDG_DATA_DIRS environment variable so your new directory takes precedence:
 
 .. code-block:: bash
 
-        --- login.conf
-        +++ login.conf
-        @@ -2,7 +2,7 @@
+    --- login.conf
+    +++ login.conf
+    @@ -2,7 +2,7 @@
                 :passwd_format=sha512:\
                 :copyright=/etc/COPYRIGHT:\
                 :welcome=/var/run/motd:\
@@ -921,24 +907,24 @@ And, as usual:
 
 .. code-block:: bash
 
-        cap_mkdb /etc/login.conf
+    cap_mkdb /etc/login.conf
 
 Finally, create a custom chromium-browser.desktop file like so:
 
 .. code-block:: bash
 
-        # /usr/local/share-override/desktop/chromium-browser.desktop
+    # /usr/local/share-override/desktop/chromium-browser.desktop
 
-        [Desktop Entry]
-        Type=Application
-        Version=1.0
-        Encoding=UTF-8
-        Name=Chromium
-        Comment=Google web browser based on WebKit
-        Icon=chrome
-        Exec=chrome --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan %U
-        Categories=Application;Network;WebBrowser;
-        MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;
-        StartupNotify=true
+    [Desktop Entry]
+    Type=Application
+    Version=1.0
+    Encoding=UTF-8
+    Name=Chromium
+    Comment=Google web browser based on WebKit
+    Icon=chrome
+    Exec=chrome --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan %U
+    Categories=Application;Network;WebBrowser;
+    MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;
+    StartupNotify=true
 
 Luckily, video acceleration in Firefox seems to work properly without any fiddling.
