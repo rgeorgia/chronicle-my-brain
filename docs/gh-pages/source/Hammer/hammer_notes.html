@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Hammer File Share" href="../Hammer/index.html" /><link rel="prev" title="FreeBSD 14 on the Desktop" href="../FreeBSD/x1-desktop.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Famous Hammers in Myths and History" href="types_of_hammers.html" /><link rel="prev" title="Hammer File Share" href="index.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
-        <title>Notes for Gentoo - Chronicles of Hope documentation</title>
+        <title>Notes on creating a Hammer File Share - Chronicles of Hope documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
@@ -187,7 +187,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -213,12 +213,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../FreeBSD/x1-desktop.html">FreeBSD 14 on the Desktop</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Notes for Gentoo</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Notes for Gentoo</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Gentoo/index.html">Notes for Gentoo</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Notes for Gentoo</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Hammer/index.html">Hammer File Share</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Hammer File Share</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Hammer/hammer_notes.html">Notes on creating a Hammer File Share</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Hammer/types_of_hammers.html">Famous Hammers in Myths and History</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Hammer File Share</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Hammer File Share</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Notes on creating a Hammer File Share</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types_of_hammers.html">Famous Hammers in Myths and History</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../VoidLinux/index.html">Notes on Void Linux</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Notes on Void Linux</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -259,16 +259,134 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="notes-for-gentoo">
-<h1>Notes for Gentoo<a class="headerlink" href="#notes-for-gentoo" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
+          <section id="notes-on-creating-a-hammer-file-share">
+<h1>Notes on creating a Hammer File Share<a class="headerlink" href="#notes-on-creating-a-hammer-file-share" title="Link to this heading">¶</a></h1>
+<p>I asked Copilot to help me create a samba file share on a VoidLinux system with a  two 8TB drives in a mirrored zpool. I want to set up a samba share that a windows machine, Mac and Linux can mount.</p>
+<section id="first-response">
+<h2>First Response<a class="headerlink" href="#first-response" title="Link to this heading">¶</a></h2>
+<p>Setting up a Samba share on your Void Linux workstation with a mirrored ZFS pool for cross-platform access is a solid choice. Here’s a step-by-step guide:</p>
+<ol class="arabic simple">
+<li><p>Install Samba</p></li>
+</ol>
+<p>First I updated the package list and installed Samba:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xbps-install<span class="w"> </span>-Syu
+sudo<span class="w"> </span>xbps-install<span class="w"> </span>-S<span class="w"> </span>samba
+</pre></div>
 </div>
+<ol class="arabic simple" start="2">
+<li><p>Enable and Start the Samba Service</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/sv/smbd<span class="w"> </span>/var/service/
+sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/sv/nmbd<span class="w"> </span>/var/service/
+</pre></div>
+</div>
+<p>To verify it’s running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>sv<span class="w"> </span>status<span class="w"> </span>smbd
+sudo<span class="w"> </span>sv<span class="w"> </span>status<span class="w"> </span>nmbd
+</pre></div>
+</div>
+<section id="why-separate-services">
+<h3>Why Separate Services?<a class="headerlink" href="#why-separate-services" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>smbd handles actual file sharing.</p></li>
+<li><p>nmbd broadcasts the share name for discovery on Windows and macOS networks.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Configure Your Samba Share</p></li>
+</ol>
+<p>Edit /etc/samba/smb.conf to define your shared folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>sv<span class="w"> </span>status<span class="w"> </span>smbd
+sudo<span class="w"> </span>sv<span class="w"> </span>status<span class="w"> </span>nmbd
+</pre></div>
+</div>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[global]</span>
+<span class="na">workgroup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">WORKGROUP</span>
+<span class="na">server string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Void Samba Server</span>
+<span class="na">security</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">user</span>
+<span class="na">map to guest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Bad User</span>
+
+<span class="k">[shared]</span>
+<span class="na">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/mnt/zpool/share</span>
+<span class="na">browseable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">writable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">read only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">no</span>
+<span class="na">guest ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">force user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your_user</span>
+<span class="na">valid users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your_user</span>
+</pre></div>
+</div>
+<p>My zfs dataset  is mounted at <code class="docutils literal notranslate"><span class="pre">/zhammer</span></code>.</p>
+<p>Make sure /mnt/zpool/share exists:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/zpool/share
+chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/mnt/zpool/share
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Set Up User Authentication</p></li>
+</ol>
+<p>Create a Samba user:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>smbpasswd<span class="w"> </span>-a<span class="w"> </span>your_user
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Adjust Firewall Settings (if applicable)</p></li>
+</ol>
+<p>Allow Samba traffic:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">445</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">137</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">138</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Restart Samba</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>sv<span class="w"> </span>restart<span class="w"> </span>samba
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Mount the Share on Other Machines</p></li>
+</ol>
+<ul class="simple">
+<li><p>Windows: Open Explorer, type \your_void_ipshared, and map the drive.</p></li>
+<li><p>Mac: Use Finder -&gt; Go -&gt; Connect to Server, then <a class="reference external" href="smb://your_void_ip/shared">smb://your_void_ip/shared</a></p></li>
+<li><p>Linux: Mount manually:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>cifs<span class="w"> </span>//your_void_ip/shared<span class="w"> </span>/mnt<span class="w"> </span>-o<span class="w"> </span><span class="nv">username</span><span class="o">=</span>your_user,password<span class="o">=</span>your_password
+</pre></div>
+</div>
+<p>Let me know if you run into any issues, especially with ZFS permissions or network access!</p>
+</section>
+</section>
+<section id="more-secure-options">
+<h2>More Secure Options<a class="headerlink" href="#more-secure-options" title="Link to this heading">¶</a></h2>
+<p>Instead of 777, consider:
+- User Group-Based Control: Create a Samba-specific group:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>groupadd<span class="w"> </span>smbshare
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>smbshare<span class="w"> </span>your_user
+sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>your_user:smbshare<span class="w"> </span>/mnt/zpool/share
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">770</span><span class="w"> </span>/mnt/zpool/share
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This allows only your_user and members of smbshare to access the folder.</p></li>
+<li><p>Force Specific Ownership in Samba: Modify your smb.conf:</p></li>
+</ul>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">force group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smbshare</span>
+<span class="na">create mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0660</span>
+<span class="na">directory mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0770</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This ensures new files are created with proper permissions.</p></li>
+</ul>
+<p>If you’re the only one using the share and security isn’t a major concern, 777 is fine for quick access. But if you prefer more control, these adjustments are better long-term solutions.</p>
+</section>
 </section>
 
         </article>
@@ -276,23 +394,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../Hammer/index.html">
+          <a class="next-page" href="types_of_hammers.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Hammer File Share</div>
+                <div class="title">Famous Hammers in Myths and History</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../FreeBSD/x1-desktop.html">
+          <a class="prev-page" href="index.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">FreeBSD 14 on the Desktop</div>
+                <div class="title">Hammer File Share</div>
                 
               </div>
             </a>
@@ -314,8 +432,31 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Notes on creating a Hammer File Share</a><ul>
+<li><a class="reference internal" href="#first-response">First Response</a><ul>
+<li><a class="reference internal" href="#why-separate-services">Why Separate Services?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#more-secure-options">More Secure Options</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
