@@ -322,11 +322,33 @@ sudo<span class="w"> </span>sv<span class="w"> </span>status<span class="w"> </s
 </pre></div>
 </div>
 <p>My zfs dataset  is mounted at <code class="docutils literal notranslate"><span class="pre">/zhammer</span></code>.</p>
-<p>Make sure /mnt/zpool/share exists:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/zpool/share
-chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/mnt/zpool/share
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hammerVoid<span class="w"> </span>~<span class="w">  </span>zfs<span class="w"> </span>list<span class="w">                                                                   </span>Sun<span class="w"> </span><span class="m">08</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">01</span>:32:15<span class="w"> </span>PM<span class="w"> </span>EDT
+NAME<span class="w">                           </span>USED<span class="w">  </span>AVAIL<span class="w">  </span>REFER<span class="w">  </span>MOUNTPOINT
+tank<span class="w">                          </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/tank
+tank/home<span class="w">                     </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/export/home
+tank/home/rgeorgia<span class="w">            </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/export/home/rgeorgia
+tank/home/rgeorgia/workspace<span class="w">  </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">  </span><span class="m">12</span>.5G<span class="w">  </span>/export/home/rgeorgia/workspace
+zhammer<span class="w">                       </span><span class="m">1</span>.52M<span class="w">  </span><span class="m">14</span>.4T<span class="w">    </span>96K<span class="w">  </span>/zhammer
+hammerVoid<span class="w"> </span>~<span class="w">  </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/zhammer/martel<span class="w">                                                 </span>Sun<span class="w"> </span><span class="m">08</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">01</span>:49:08<span class="w"> </span>PM<span class="w"> </span>EDT
+Password:
+hammerVoid<span class="w"> </span>~<span class="w">  </span>sudo<span class="w"> </span>zfs<span class="w"> </span>create<span class="w"> </span>zhammer/martel<span class="w">                                      </span><span class="m">5</span>.3s<span class="w"> </span><span class="w"> </span>Sun<span class="w"> </span><span class="m">08</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">01</span>:52:14<span class="w"> </span>PM<span class="w"> </span>EDT
+hammerVoid<span class="w"> </span>~<span class="w">  </span>zfs<span class="w"> </span>list<span class="w">                                                           </span>333ms<span class="w"> </span><span class="w"> </span>Sun<span class="w"> </span><span class="m">08</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">01</span>:52:25<span class="w"> </span>PM<span class="w"> </span>EDT
+NAME<span class="w">                           </span>USED<span class="w">  </span>AVAIL<span class="w">  </span>REFER<span class="w">  </span>MOUNTPOINT
+tank<span class="w">                          </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/tank
+tank/home<span class="w">                     </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/export/home
+tank/home/rgeorgia<span class="w">            </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/export/home/rgeorgia
+tank/home/rgeorgia/workspace<span class="w">  </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">  </span><span class="m">12</span>.5G<span class="w">  </span>/export/home/rgeorgia/workspace
+zhammer<span class="w">                       </span><span class="m">1</span>.66M<span class="w">  </span><span class="m">14</span>.4T<span class="w">    </span>96K<span class="w">  </span>/zhammer
+zhammer/martel<span class="w">                  </span>96K<span class="w">  </span><span class="m">14</span>.4T<span class="w">    </span>96K<span class="w">  </span>/zhammer/martel
+hammerVoid<span class="w"> </span>~<span class="w">  </span>sudo<span class="w"> </span>zfs<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">mountpoint</span><span class="o">=</span>/zhammer/martel<span class="w"> </span>zhammer/martel
 </pre></div>
 </div>
+<p>Make sure /mnt/zpool/share exists:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>mkdir -p /mnt/zpool/share
+chmod 777 /mnt/zpool/share</p>
+</div></blockquote>
 <ol class="arabic simple" start="4">
 <li><p>Set Up User Authentication</p></li>
 </ol>
@@ -341,6 +363,14 @@ chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">445</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
 sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">137</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
 sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">138</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">445</span>/tcp
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">137</span>/udp
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">138</span>/udp
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">139</span>/udp
+sudo<span class="w"> </span>ufw<span class="w"> </span>app<span class="w"> </span>list
+sudo<span class="w"> </span>ufw<span class="w"> </span>app<span class="w"> </span>info<span class="w"> </span>Samba
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span>Samba
 </pre></div>
 </div>
 <ol class="arabic simple" start="6">
