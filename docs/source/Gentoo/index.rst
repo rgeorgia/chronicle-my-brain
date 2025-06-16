@@ -10,4 +10,6 @@ Notes for Gentoo
 .. toctree::
    :maxdepth: 2
    :caption: Gentoo
-   
+ 
+   zfs_install
+   gentoo_install

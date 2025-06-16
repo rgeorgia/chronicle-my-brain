@@ -364,10 +364,13 @@ chmod 777 /mnt/zpool/share</p>
 sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">137</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
 sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">138</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
 
-sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">445</span>/tcp
-sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">137</span>/udp
-sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">138</span>/udp
-sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">139</span>/udp
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">80</span>/tcp<span class="w">     </span><span class="c1"># HTTP</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">443</span>/tcp<span class="w">    </span><span class="c1"># HTTPS</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">22</span>/tcp<span class="w">     </span><span class="c1"># SSH</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">445</span>/tcp<span class="w">    </span><span class="c1"># SMB over TCP</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">137</span>/udp<span class="w">    </span><span class="c1"># NetBIOS Name Service</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">138</span>/udp<span class="w">    </span><span class="c1"># NetBIOS Datagram Service</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">139</span>/tcp<span class="w">    </span><span class="c1"># NetBIOS Session Service (optional, for legacy support)</span>
 sudo<span class="w"> </span>ufw<span class="w"> </span>app<span class="w"> </span>list
 sudo<span class="w"> </span>ufw<span class="w"> </span>app<span class="w"> </span>info<span class="w"> </span>Samba
 sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span>Samba

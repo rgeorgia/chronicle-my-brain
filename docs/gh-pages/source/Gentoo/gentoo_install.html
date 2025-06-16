@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Gentoo ZFS Install" href="zfs_install.html" /><link rel="prev" title="FreeBSD 14 on the Desktop" href="../FreeBSD/x1-desktop.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Hammer File Share" href="../Hammer/index.html" /><link rel="prev" title="Gentoo ZFS Install" href="zfs_install.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
-        <title>Notes for Gentoo - Chronicles of Hope documentation</title>
+        <title>Gentoo Install - Chronicles of Hope documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
@@ -187,7 +187,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -213,9 +213,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../FreeBSD/x1-desktop.html">FreeBSD 14 on the Desktop</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Notes for Gentoo</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Notes for Gentoo</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Notes for Gentoo</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Notes for Gentoo</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="zfs_install.html">Gentoo ZFS Install</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html">Gentoo Install</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Gentoo Install</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Hammer/index.html">Hammer File Share</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Hammer File Share</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -261,47 +261,175 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="notes-for-gentoo">
-<h1>Notes for Gentoo<a class="headerlink" href="#notes-for-gentoo" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Gentoo</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="zfs_install.html">Gentoo ZFS Install</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="zfs_install.html#zfs-on-root">ZFS on root</a></li>
-<li class="toctree-l2"><a class="reference internal" href="zfs_install.html#follow-the-handbook">Follow the Handbook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="zfs_install.html#return-to-the-handbook">Return to the Handbook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="zfs_install.html#id1">Return to the Handbook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="zfs_install.html#id2">Return to the Handbook</a></li>
-<li class="toctree-l2"><a class="reference internal" href="zfs_install.html#rebooting-the-system">Rebooting the system</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="gentoo_install.html">Gentoo Install</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#general-prep">General Prep</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#prepare-disks">Prepare Disks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#mount-drives">Mount Drives</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#grab-stage">Grab Stage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#update-make-conf">Update make.conf</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#mount-stuff">Mount Stuff</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#locale">Locale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#update-env">Update env</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#configure-kernel">Configure Kernel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#grub">GRUB</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#configure-system">Configure System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#network">Network</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#boot-loader">Boot Loader</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#reboot">REBOOT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#post-install">POST INSTALL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html#display-manager">Display Manager</a></li>
-</ul>
-</li>
-</ul>
-</div>
+          <section id="gentoo-install">
+<h1>Gentoo Install<a class="headerlink" href="#gentoo-install" title="Link to this heading">¶</a></h1>
+<section id="general-prep">
+<h2>General Prep<a class="headerlink" href="#general-prep" title="Link to this heading">¶</a></h2>
+<p>lsblk
+ping www.gentoo.org
+ifconfig to get interfaces</p>
+<p>If you want to remotely install start sshd and set the root password</p>
+</section>
+<section id="prepare-disks">
+<h2>Prepare Disks<a class="headerlink" href="#prepare-disks" title="Link to this heading">¶</a></h2>
+<p>cfdisk /dev/sda</p>
+<p>sda1    1G  fat32   efi partion
+sda2    8G  swap    2 times ram
+sda3    *   ext4    root</p>
+<p>mkfs.vfat -F 32 /dev/sda1
+mkswap          /dev/sda2
+mkfs.ext4       /dev/sda3</p>
+</section>
+<section id="mount-drives">
+<h2>Mount Drives<a class="headerlink" href="#mount-drives" title="Link to this heading">¶</a></h2>
+<p>mount /dev/sda3 /mnt/gentoo
+swapon /dev/sda2
+mkdir -p /mnt/gentoo/boot/efi</p>
+</section>
+<section id="grab-stage">
+<h2>Grab Stage<a class="headerlink" href="#grab-stage" title="Link to this heading">¶</a></h2>
+<p>Make sure you are in the proper directory</p>
+<p>cd /mnt/gentoo</p>
+<p>date MMDDhhmmCCYY</p>
+<p>links <a class="reference external" href="https://www.gentoo.org/downloads/mirrors/">https://www.gentoo.org/downloads/mirrors/</a></p>
+<p>tar xpvf &lt;stage&gt; –xattrs-include=’<em>.</em>’ –numeric-owner</p>
+</section>
+<section id="update-make-conf">
+<h2>Update make.conf<a class="headerlink" href="#update-make-conf" title="Link to this heading">¶</a></h2>
+<p>COMMON_FLAGS=”-march=native -O2 -pipe”
+MAKEOPTS=”-j8”
+USE=”-systemd -KDE X gtk gnome”</p>
+<p>cp –dereference /etc/resolv.conf /mnt/gentoo/etc</p>
+</section>
+<section id="mount-stuff">
+<h2>Mount Stuff<a class="headerlink" href="#mount-stuff" title="Link to this heading">¶</a></h2>
+<p>mount –types proc  /proc   /mnt/gentoo/proc
+mount –rbind       /sys    /mnt/gentoo/sys
+mount –make-rslave         /mnt/gentoo/sys
+mount –rbind       /dev    /mnt/gentoo/dev
+mount –make-rslave         /mnt/gentoo/dev
+mount –bind        /run    /mnt/gentoo/run
+mount –make-slave          /mnt/gentoo/run</p>
+<p>chroot /mnt/gentoo /bin/bash
+source /etc/profile
+export PS1=”(chroot) $PS1”</p>
+<p>mount /dev/sda1 /boot/efi</p>
+<p>emerge-webrsync</p>
+<p>eselect profile list
+eselect profile set 23
+emerge –sync
+echo ‘sys-kernel/linux-firmware &#64;BINARY-REDISTRIBUTABLE’ | tee -a /etc/portage/package.license</p>
+<p>Note: set portage env var ACCEPT_LINCENSE
+Note: /var/db/repos/gentoo/profiles/use.desc describes all USE flags
+Note: What about video card in /etc/portage/package.use/00video_cards?</p>
+<p>emerge –ask app-editors/vim
+emerge –ask –verbose –update –deep –changed-used &#64;world</p>
+</section>
+<section id="locale">
+<h2>Locale<a class="headerlink" href="#locale" title="Link to this heading">¶</a></h2>
+<p>ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime</p>
+<p>vim /etc/locale.gen
+locale-gen
+eselect locale list
+eselect locale set 4</p>
+</section>
+<section id="update-env">
+<h2>Update env<a class="headerlink" href="#update-env" title="Link to this heading">¶</a></h2>
+<p>env-update &amp;&amp; source /etc/profile &amp;&amp; export PS1=”(chroot) $PS1”</p>
+</section>
+<section id="configure-kernel">
+<h2>Configure Kernel<a class="headerlink" href="#configure-kernel" title="Link to this heading">¶</a></h2>
+<p>emerge –ask sys-kernel/linux-firmware
+emerge –ask sys-firmware/sof-firmware</p>
+</section>
+<section id="grub">
+<h2>GRUB<a class="headerlink" href="#grub" title="Link to this heading">¶</a></h2>
+<p>echo “sys-kernel/installkernel dracut grub” &gt;&gt; /etc/portage/package.use/installkernel</p>
+<p>emerge –ask sys-kernel/installkernel
+emerge –ask sys-kernel/gentoo-kernel-bin</p>
+</section>
+<section id="configure-system">
+<h2>Configure System<a class="headerlink" href="#configure-system" title="Link to this heading">¶</a></h2>
+<p>vim /etc/fstab</p>
+<p>/dev/sda1   /boot/efi   vfat    defaults            0 2
+/dev/sda2   none        swap    sw                  0 0
+/dev/sda3   /           ext4    defaults,noatime    0 1</p>
+</section>
+<section id="network">
+<h2>Network<a class="headerlink" href="#network" title="Link to this heading">¶</a></h2>
+<p>echo “YOURHOSTNAME” &gt; /etc/hostname</p>
+<p>Edit /etc/hosts</p>
+<p>127.0.0.1   YOURHOSTNAME localhost</p>
+<p>Edit /etc/conf.d/hostname</p>
+<p>emerge –ask net-misc/dhcpcd
+emerge –ask net-misc/networkmanager</p>
+<p>rc-update add NetworkManager default
+rc-update add dhcpcd default</p>
+<p>rc-service NetworkManager start
+rc-service dhcpcd start</p>
+<p>Adding Users:</p>
+<p>Note: before adding users, add the shells you want</p>
+<p>Change root password</p>
+<p>passwd root</p>
+<p>emerge –ask app-shells/fish bash</p>
+<p>useradd -m -G wheel,video,audio -s /usr/bin/fish rgeorgia
+passwd rgeorgia</p>
+<p>emerge –ask app-admin/sysklogd
+emerge –ask sys-apps/mlocate
+emerge –ask net-misc/chrony
+emerge –ask app-admin/sudo</p>
+<p>rc-update add sysklogd default
+rc-update add chronyd default
+rc-update add sshd default</p>
+<p>EDITOR-vim visudo</p>
+</section>
+<section id="boot-loader">
+<h2>Boot Loader<a class="headerlink" href="#boot-loader" title="Link to this heading">¶</a></h2>
+<p>echo ‘GRUB_PLATFORMS=”efi-64”’ &gt;&gt; /etc/portage/make.conf</p>
+<p>emerge –ask sys-boot/grub efibootmgr
+grub-install –efi-directory /boot/efi
+grub-mkconfig -o /boot/efi/EFI</p>
+</section>
+<section id="reboot">
+<h2>REBOOT<a class="headerlink" href="#reboot" title="Link to this heading">¶</a></h2>
+<p>Exit chroot</p>
+<p>exit</p>
+<p>cd to home or /root</p>
+<p>mount -l /mnt/gentoo/{/shm,/pts}
+mount -R /mnt/gentoo</p>
+<p>reboot</p>
+</section>
+<section id="post-install">
+<h2>POST INSTALL<a class="headerlink" href="#post-install" title="Link to this heading">¶</a></h2>
+<p>sudo touch /etc/portage/package.use/xorg
+echo ‘sys-auth/pambase elogind’ | tee -a /etc/portage/package.use/xorg
+echo ‘media-libs/libglvd x’ | tee -a /etc/portage/package.use/xorg</p>
+<p>sudo emerge –ask sys-apps/dbus
+sudo emerge –ask dev-vcs/git
+sudo emerge –ask x11-base/xorg-server
+sudo emerge –ask x11-drivers/xf86-video-intel
+sudo emerge –ask x11-apps/xinitr
+sudo emerge –ask x11-apps/xrandr
+sudo emerge –ask gnome-base/gdm
+sudo emerge –ask gnome-base/gnome
+sudo emerge –ask –no-replace gui-libs/display-mmanager</p>
+</section>
+<section id="display-manager">
+<h2>Display Manager<a class="headerlink" href="#display-manager" title="Link to this heading">¶</a></h2>
+<p>vim /etc/conf.d/display-manager
+DISPLAYMANAGER=”gdm”
+sudo rc-update add display-manager default</p>
+<p>Add for video card to package.use</p>
+<p>echo “<em>/</em> VIDEO_CARDS: -* intel” &gt;&gt; /etc/portage/package.use/00video-cards</p>
+<p><strong>Note</strong>: add binary package</p>
+<p>Note: if you want .xinitrc add <code class="docutils literal notranslate"><span class="pre">exec</span> <span class="pre">sway</span></code></p>
+</section>
 </section>
 
         </article>
@@ -309,23 +437,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="zfs_install.html">
+          <a class="next-page" href="../Hammer/index.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Gentoo ZFS Install</div>
+                <div class="title">Hammer File Share</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../FreeBSD/x1-desktop.html">
+          <a class="prev-page" href="zfs_install.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">FreeBSD 14 on the Desktop</div>
+                <div class="title">Gentoo ZFS Install</div>
                 
               </div>
             </a>
@@ -347,8 +475,42 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Gentoo Install</a><ul>
+<li><a class="reference internal" href="#general-prep">General Prep</a></li>
+<li><a class="reference internal" href="#prepare-disks">Prepare Disks</a></li>
+<li><a class="reference internal" href="#mount-drives">Mount Drives</a></li>
+<li><a class="reference internal" href="#grab-stage">Grab Stage</a></li>
+<li><a class="reference internal" href="#update-make-conf">Update make.conf</a></li>
+<li><a class="reference internal" href="#mount-stuff">Mount Stuff</a></li>
+<li><a class="reference internal" href="#locale">Locale</a></li>
+<li><a class="reference internal" href="#update-env">Update env</a></li>
+<li><a class="reference internal" href="#configure-kernel">Configure Kernel</a></li>
+<li><a class="reference internal" href="#grub">GRUB</a></li>
+<li><a class="reference internal" href="#configure-system">Configure System</a></li>
+<li><a class="reference internal" href="#network">Network</a></li>
+<li><a class="reference internal" href="#boot-loader">Boot Loader</a></li>
+<li><a class="reference internal" href="#reboot">REBOOT</a></li>
+<li><a class="reference internal" href="#post-install">POST INSTALL</a></li>
+<li><a class="reference internal" href="#display-manager">Display Manager</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

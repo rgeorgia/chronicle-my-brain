@@ -114,10 +114,13 @@ Allow Samba traffic:
     sudo iptables -A INPUT -p udp --dport 137 -j ACCEPT
     sudo iptables -A INPUT -p udp --dport 138 -j ACCEPT
 
-    sudo ufw allow 445/tcp
-    sudo ufw allow 137/udp
-    sudo ufw allow 138/udp
-    sudo ufw allow 139/udp
+    sudo ufw allow 80/tcp     # HTTP
+    sudo ufw allow 443/tcp    # HTTPS
+    sudo ufw allow 22/tcp     # SSH
+    sudo ufw allow 445/tcp    # SMB over TCP
+    sudo ufw allow 137/udp    # NetBIOS Name Service
+    sudo ufw allow 138/udp    # NetBIOS Datagram Service
+    sudo ufw allow 139/tcp    # NetBIOS Session Service (optional, for legacy support)
     sudo ufw app list
     sudo ufw app info Samba
     sudo ufw allow Samba
