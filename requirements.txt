@@ -43,4 +43,4 @@ sphinxcontrib-serializinghtml==2.0.0
 sphinxnotes-strike==1.2.1
 typer==0.16.0
 typing_extensions==4.14.0
-urllib3==2.4.0
+urllib3==2.5.0
