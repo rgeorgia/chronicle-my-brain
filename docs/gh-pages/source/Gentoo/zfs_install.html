@@ -280,12 +280,12 @@
 <section id="follow-the-handbook">
 <h2>Follow the Handbook<a class="headerlink" href="#follow-the-handbook" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Section on Preparing the disks returning at the creating file systems section.</p></li>
+<li><p>Section on Preparing the disks returning <a href="#id1"><span class="problematic" id="id2">**</span></a>at the creating file <a href="#id3"><span class="problematic" id="id4">**</span></a>systems section.</p></li>
 <li><p>This guide will be using the example below however it should be simple enough to adapt this to the user’s needs.</p></li>
 </ul>
-<div class="table-wrapper colwidths-given docutils container" id="id3">
-<table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Disk Partitioning</span><a class="headerlink" href="#id3" title="Link to this table">¶</a></caption>
+<div class="table-wrapper colwidths-given docutils container" id="id11">
+<table class="docutils align-default" id="id11">
+<caption><span class="caption-text">Disk Partitioning</span><a class="headerlink" href="#id11" title="Link to this table">¶</a></caption>
 <colgroup>
 <col style="width: 20.0%" />
 <col style="width: 20.0%" />
@@ -318,7 +318,7 @@
 </tbody>
 </table>
 </div>
-<p>The document used /efi as the mount point, but other docs use /boot/efi.</p>
+<p>The document used <code class="docutils literal notranslate"><span class="pre">/efi</span></code> as the mount point, but other docs use <code class="docutils literal notranslate"><span class="pre">/boot/efi</span></code>.</p>
 <section id="boot">
 <h3>Boot<a class="headerlink" href="#boot" title="Link to this heading">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkfs.vfat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/sda1
@@ -358,6 +358,10 @@ zpool<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </
 <span class="w">    </span>-m<span class="w"> </span>none<span class="w"> </span>tank<span class="w"> </span>/dev/sda3
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The option <a href="#id5"><span class="problematic" id="id6">``</span></a>-o compatibility=openzfs-2.1-linux <a href="#id7"><span class="problematic" id="id8">``</span></a>makes sure that GRUB works. If you are using ZFSBootMenu, you can skip that option.</p>
+</div>
 </section>
 <section id="create-zfs-file-systems">
 <h3>Create ZFS file systems<a class="headerlink" href="#create-zfs-file-systems" title="Link to this heading">¶</a></h3>
@@ -393,8 +397,8 @@ mount<span class="w"> </span>-t<span class="w"> </span>zfs
 </pre></div>
 </div>
 </section>
-<section id="id1">
-<h2>Return to the Handbook<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<section id="id9">
+<h2>Return to the Handbook<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Installing Gentoo base system and return here at <strong>Kernel configuration</strong> and compilation.</p></li>
 </ul>
@@ -448,8 +452,8 @@ emerge –config sys-kernel/gentoo-kernel-bin</p>
 </div>
 </section>
 </section>
-<section id="id2">
-<h2>Return to the Handbook<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<section id="id10">
+<h2>Return to the Handbook<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Configuring the system and return here at <strong>Configuring the bootloader</strong> for anything other than <code class="docutils literal notranslate"><span class="pre">sys-boot/grub</span></code>.</p></li>
 </ul>
@@ -563,13 +567,13 @@ reboot
 </ul>
 </li>
 <li><a class="reference internal" href="#return-to-the-handbook">Return to the Handbook</a></li>
-<li><a class="reference internal" href="#id1">Return to the Handbook</a><ul>
+<li><a class="reference internal" href="#id9">Return to the Handbook</a><ul>
 <li><a class="reference internal" href="#kernel">Kernel</a></li>
 <li><a class="reference internal" href="#zfs-userland-utilities-and-kernel-module">ZFS userland utilities and kernel module</a></li>
 <li><a class="reference internal" href="#initramfs">Initramfs</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id2">Return to the Handbook</a><ul>
+<li><a class="reference internal" href="#id10">Return to the Handbook</a><ul>
 <li><a class="reference internal" href="#bootloader">Bootloader</a></li>
 <li><a class="reference internal" href="#zfsbootmenu">ZFSBootMenu</a></li>
 </ul>

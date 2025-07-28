@@ -271,162 +271,236 @@
 <h1>Gentoo Install<a class="headerlink" href="#gentoo-install" title="Link to this heading">¶</a></h1>
 <section id="general-prep">
 <h2>General Prep<a class="headerlink" href="#general-prep" title="Link to this heading">¶</a></h2>
-<p>lsblk
-ping www.gentoo.org
-ifconfig to get interfaces</p>
+<p>lsblk</p>
+<p>ping www.gentoo.org</p>
+<p>ifconfig to get interfaces</p>
 <p>If you want to remotely install start sshd and set the root password</p>
 </section>
 <section id="prepare-disks">
 <h2>Prepare Disks<a class="headerlink" href="#prepare-disks" title="Link to this heading">¶</a></h2>
-<p>cfdisk /dev/sda</p>
-<p>sda1    1G  fat32   efi partion
-sda2    8G  swap    2 times ram
-sda3    *   ext4    root</p>
-<p>mkfs.vfat -F 32 /dev/sda1
-mkswap          /dev/sda2
-mkfs.ext4       /dev/sda3</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cfdisk<span class="w"> </span>/dev/nvme0n1
+
+nvme0n1p1<span class="w">    </span>1G<span class="w">  </span>fat32<span class="w">   </span>efi<span class="w"> </span>partion
+nvme0n1p2<span class="w">    </span>8G<span class="w">  </span>swap<span class="w">    </span><span class="m">2</span><span class="w"> </span><span class="nb">times</span><span class="w"> </span>ram
+nvme0n1p3<span class="w">    </span>*<span class="w">   </span>ext4<span class="w">    </span>root
+
+mkfs.vfat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/nvme0n1p1
+mkswap<span class="w">          </span>/dev/nvme0n1p2
+mkfs.ext4<span class="w">       </span>/dev/nvme0n1p3
+</pre></div>
+</div>
 </section>
 <section id="mount-drives">
 <h2>Mount Drives<a class="headerlink" href="#mount-drives" title="Link to this heading">¶</a></h2>
-<p>mount /dev/sda3 /mnt/gentoo
-swapon /dev/sda2
-mkdir -p /mnt/gentoo/boot/efi</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount<span class="w"> </span>/dev/nvme0n1p3<span class="w"> </span>/mnt/gentoo
+swapon<span class="w"> </span>/dev/nvme0n1p2
+mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/gentoo/boot/efi
+</pre></div>
+</div>
 </section>
 <section id="grab-stage">
 <h2>Grab Stage<a class="headerlink" href="#grab-stage" title="Link to this heading">¶</a></h2>
 <p>Make sure you are in the proper directory</p>
-<p>cd /mnt/gentoo</p>
-<p>date MMDDhhmmCCYY</p>
-<p>links <a class="reference external" href="https://www.gentoo.org/downloads/mirrors/">https://www.gentoo.org/downloads/mirrors/</a></p>
-<p>tar xpvf &lt;stage&gt; –xattrs-include=’<em>.</em>’ –numeric-owner</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/mnt/gentoo
+
+date<span class="w"> </span>MMDDhhmmCCYY
+
+links<span class="w"> </span>https://www.gentoo.org/downloads/mirrors/
+
+tar<span class="w"> </span>xpvf<span class="w"> </span>&lt;stage&gt;<span class="w"> </span>--xattrs-include<span class="o">=</span><span class="s1">&#39;*.*&#39;</span><span class="w"> </span>--numeric-owner
+</pre></div>
+</div>
 </section>
 <section id="update-make-conf">
 <h2>Update make.conf<a class="headerlink" href="#update-make-conf" title="Link to this heading">¶</a></h2>
-<p>COMMON_FLAGS=”-march=native -O2 -pipe”
-MAKEOPTS=”-j8”
-USE=”-systemd -KDE X gtk gnome”</p>
-<p>cp –dereference /etc/resolv.conf /mnt/gentoo/etc</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">COMMON_FLAGS</span><span class="o">=</span><span class="s2">&quot;-march=native -O2 -pipe&quot;</span>
+<span class="nv">MAKEOPTS</span><span class="o">=</span><span class="s2">&quot;-j8&quot;</span>
+<span class="nv">USE</span><span class="o">=</span><span class="s2">&quot;-systemd -KDE X gtk gnome&quot;</span>
+
+cp<span class="w"> </span>--dereference<span class="w"> </span>/etc/resolv.conf<span class="w"> </span>/mnt/gentoo/etc
+</pre></div>
+</div>
 </section>
 <section id="mount-stuff">
 <h2>Mount Stuff<a class="headerlink" href="#mount-stuff" title="Link to this heading">¶</a></h2>
-<p>mount –types proc  /proc   /mnt/gentoo/proc
-mount –rbind       /sys    /mnt/gentoo/sys
-mount –make-rslave         /mnt/gentoo/sys
-mount –rbind       /dev    /mnt/gentoo/dev
-mount –make-rslave         /mnt/gentoo/dev
-mount –bind        /run    /mnt/gentoo/run
-mount –make-slave          /mnt/gentoo/run</p>
-<p>chroot /mnt/gentoo /bin/bash
-source /etc/profile
-export PS1=”(chroot) $PS1”</p>
-<p>mount /dev/sda1 /boot/efi</p>
-<p>emerge-webrsync</p>
-<p>eselect profile list
-eselect profile set 23
-emerge –sync
-echo ‘sys-kernel/linux-firmware &#64;BINARY-REDISTRIBUTABLE’ | tee -a /etc/portage/package.license</p>
-<p>Note: set portage env var ACCEPT_LINCENSE
-Note: /var/db/repos/gentoo/profiles/use.desc describes all USE flags
-Note: What about video card in /etc/portage/package.use/00video_cards?</p>
-<p>emerge –ask app-editors/vim
-emerge –ask –verbose –update –deep –changed-used &#64;world</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount<span class="w"> </span>--types<span class="w"> </span>proc<span class="w">  </span>/proc<span class="w">   </span>/mnt/gentoo/proc
+mount<span class="w"> </span>--rbind<span class="w">       </span>/sys<span class="w">    </span>/mnt/gentoo/sys
+mount<span class="w"> </span>--make-rslave<span class="w">         </span>/mnt/gentoo/sys
+mount<span class="w"> </span>--rbind<span class="w">       </span>/dev<span class="w">    </span>/mnt/gentoo/dev
+mount<span class="w"> </span>--make-rslave<span class="w">         </span>/mnt/gentoo/dev
+mount<span class="w"> </span>--bind<span class="w">        </span>/run<span class="w">    </span>/mnt/gentoo/run
+mount<span class="w"> </span>--make-slave<span class="w">          </span>/mnt/gentoo/run
+
+chroot<span class="w"> </span>/mnt/gentoo<span class="w"> </span>/bin/bash
+<span class="nb">source</span><span class="w"> </span>/etc/profile
+<span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;(chroot) </span><span class="nv">$PS1</span><span class="s2">&quot;</span>
+
+mount<span class="w"> </span>/dev/nvme0n1p1<span class="w"> </span>/boot/efi
+
+emerge-webrsync
+
+eselect<span class="w"> </span>profile<span class="w"> </span>list
+eselect<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">23</span>
+emerge<span class="w"> </span>--sync
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.license
+</pre></div>
+</div>
+<p>Note: set portage env var ACCEPT_LICENSE</p>
+<p>Note: /var/db/repos/gentoo/profiles/use.desc describes all USE flags</p>
+<p>Note: What about video card in /etc/portage/package.use/00video_cards?</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>--ask<span class="w"> </span>app-editors/vim
+emerge<span class="w"> </span>--ask<span class="w"> </span>--verbose<span class="w"> </span>--update<span class="w"> </span>--deep<span class="w"> </span>--changed-use<span class="w"> </span>@world
+</pre></div>
+</div>
 </section>
 <section id="locale">
 <h2>Locale<a class="headerlink" href="#locale" title="Link to this heading">¶</a></h2>
-<p>ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime</p>
-<p>vim /etc/locale.gen
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln<span class="w"> </span>-sf<span class="w"> </span>/usr/share/zoneinfo/America/New_York<span class="w"> </span>/etc/localtime
+
+vim<span class="w"> </span>/etc/locale.gen
 locale-gen
-eselect locale list
-eselect locale set 4</p>
+eselect<span class="w"> </span>locale<span class="w"> </span>list
+eselect<span class="w"> </span>locale<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
 </section>
 <section id="update-env">
 <h2>Update env<a class="headerlink" href="#update-env" title="Link to this heading">¶</a></h2>
-<p>env-update &amp;&amp; source /etc/profile &amp;&amp; export PS1=”(chroot) $PS1”</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>env-update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>/etc/profile<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;(chroot) </span><span class="nv">$PS1</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
 </section>
 <section id="configure-kernel">
 <h2>Configure Kernel<a class="headerlink" href="#configure-kernel" title="Link to this heading">¶</a></h2>
-<p>emerge –ask sys-kernel/linux-firmware
-emerge –ask sys-firmware/sof-firmware</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/linux-firmware
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-firmware/sof-firmware
+</pre></div>
+</div>
 </section>
 <section id="grub">
 <h2>GRUB<a class="headerlink" href="#grub" title="Link to this heading">¶</a></h2>
-<p>echo “sys-kernel/installkernel dracut grub” &gt;&gt; /etc/portage/package.use/installkernel</p>
-<p>emerge –ask sys-kernel/installkernel
-emerge –ask sys-kernel/gentoo-kernel-bin</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;sys-kernel/installkernel dracut grub&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/portage/package.use/installkernel
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/installkernel
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/gentoo-kernel-bin
+</pre></div>
+</div>
 </section>
 <section id="configure-system">
 <h2>Configure System<a class="headerlink" href="#configure-system" title="Link to this heading">¶</a></h2>
-<p>vim /etc/fstab</p>
-<p>/dev/sda1   /boot/efi   vfat    defaults            0 2
-/dev/sda2   none        swap    sw                  0 0
-/dev/sda3   /           ext4    defaults,noatime    0 1</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>/etc/fstab
+
+/dev/nvme0n1p1<span class="w">   </span>/boot/efi<span class="w">   </span>vfat<span class="w">    </span>defaults<span class="w">            </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>
+/dev/nvme0n1p2<span class="w">   </span>none<span class="w">        </span>swap<span class="w">    </span>sw<span class="w">                  </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+/dev/nvme0n1p3<span class="w">   </span>/<span class="w">           </span>ext4<span class="w">    </span>defaults,noatime<span class="w">    </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
 </section>
 <section id="network">
 <h2>Network<a class="headerlink" href="#network" title="Link to this heading">¶</a></h2>
-<p>echo “YOURHOSTNAME” &gt; /etc/hostname</p>
-<p>Edit /etc/hosts</p>
-<p>127.0.0.1   YOURHOSTNAME localhost</p>
-<p>Edit /etc/conf.d/hostname</p>
-<p>emerge –ask net-misc/dhcpcd
-emerge –ask net-misc/networkmanager</p>
-<p>rc-update add NetworkManager default
-rc-update add dhcpcd default</p>
-<p>rc-service NetworkManager start
-rc-service dhcpcd start</p>
-<p>Adding Users:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;YOURHOSTNAME&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/hostname
+</pre></div>
+</div>
+</section>
+<section id="edit-etc-hosts">
+<h2>Edit /etc/hosts<a class="headerlink" href="#edit-etc-hosts" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">127</span>.0.0.1<span class="w">   </span>YOURHOSTNAME<span class="w"> </span>localhost
+</pre></div>
+</div>
+</section>
+<section id="edit-etc-conf-d-hostname">
+<h2>Edit /etc/conf.d/hostname<a class="headerlink" href="#edit-etc-conf-d-hostname" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>--ask<span class="w"> </span>net-misc/dhcpcd
+emerge<span class="w"> </span>--ask<span class="w"> </span>net-misc/networkmanager
+
+rc-update<span class="w"> </span>add<span class="w"> </span>NetworkManager<span class="w"> </span>default
+rc-update<span class="w"> </span>add<span class="w"> </span>dhcpcd<span class="w"> </span>default
+
+rc-service<span class="w"> </span>NetworkManager<span class="w"> </span>start
+rc-service<span class="w"> </span>dhcpcd<span class="w"> </span>start
+</pre></div>
+</div>
+</section>
+<section id="adding-users">
+<h2>Adding Users:<a class="headerlink" href="#adding-users" title="Link to this heading">¶</a></h2>
 <p>Note: before adding users, add the shells you want</p>
 <p>Change root password</p>
-<p>passwd root</p>
-<p>emerge –ask app-shells/fish bash</p>
-<p>useradd -m -G wheel,video,audio -s /usr/bin/fish rgeorgia
-passwd rgeorgia</p>
-<p>emerge –ask app-admin/sysklogd
-emerge –ask sys-apps/mlocate
-emerge –ask net-misc/chrony
-emerge –ask app-admin/sudo</p>
-<p>rc-update add sysklogd default
-rc-update add chronyd default
-rc-update add sshd default</p>
-<p>EDITOR-vim visudo</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>passwd<span class="w"> </span>root
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>app-shells/fish<span class="w"> </span>bash
+
+useradd<span class="w"> </span>-m<span class="w"> </span>-G<span class="w"> </span>wheel,video,audio,kvm,plugdev<span class="w"> </span>-s<span class="w"> </span>/usr/bin/fish<span class="w"> </span>rgeorgia
+passwd<span class="w"> </span>rgeorgia
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>app-admin/sysklogd
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-apps/mlocate
+emerge<span class="w"> </span>--ask<span class="w"> </span>net-misc/chrony
+emerge<span class="w"> </span>--ask<span class="w"> </span>app-admin/sudo
+
+rc-update<span class="w"> </span>add<span class="w"> </span>sysklogd<span class="w"> </span>default
+rc-update<span class="w"> </span>add<span class="w"> </span>chronyd<span class="w"> </span>default
+rc-update<span class="w"> </span>add<span class="w"> </span>sshd<span class="w"> </span>default
+
+<span class="nv">EDITOR</span><span class="o">=</span>vim<span class="w"> </span>visudo
+</pre></div>
+</div>
 </section>
 <section id="boot-loader">
 <h2>Boot Loader<a class="headerlink" href="#boot-loader" title="Link to this heading">¶</a></h2>
-<p>echo ‘GRUB_PLATFORMS=”efi-64”’ &gt;&gt; /etc/portage/make.conf</p>
-<p>emerge –ask sys-boot/grub efibootmgr
-grub-install –efi-directory /boot/efi
-grub-mkconfig -o /boot/efi/EFI</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;GRUB_PLATFORMS=&quot;efi-64&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/portage/make.conf
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-boot/grub<span class="w"> </span>efibootmgr
+grub-install<span class="w"> </span>--efi-directory<span class="w"> </span>/boot/efi
+grub-mkconfig<span class="w"> </span>-o<span class="w"> </span>/boot/grub/grub.cfg
+</pre></div>
+</div>
 </section>
 <section id="reboot">
 <h2>REBOOT<a class="headerlink" href="#reboot" title="Link to this heading">¶</a></h2>
 <p>Exit chroot</p>
-<p>exit</p>
-<p>cd to home or /root</p>
-<p>mount -l /mnt/gentoo/{/shm,/pts}
-mount -R /mnt/gentoo</p>
-<p>reboot</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span>
+
+<span class="nb">cd</span><span class="w"> </span>to<span class="w"> </span>home<span class="w"> </span>or<span class="w"> </span>/root
+
+umount<span class="w"> </span>-l<span class="w"> </span>/mnt/gentoo/<span class="o">{</span>shm,pts<span class="o">}</span>
+umount<span class="w"> </span>-R<span class="w"> </span>/mnt/gentoo
+
+reboot
+</pre></div>
+</div>
 </section>
 <section id="post-install">
 <h2>POST INSTALL<a class="headerlink" href="#post-install" title="Link to this heading">¶</a></h2>
-<p>sudo touch /etc/portage/package.use/xorg
-echo ‘sys-auth/pambase elogind’ | tee -a /etc/portage/package.use/xorg
-echo ‘media-libs/libglvd x’ | tee -a /etc/portage/package.use/xorg</p>
-<p>sudo emerge –ask sys-apps/dbus
-sudo emerge –ask dev-vcs/git
-sudo emerge –ask x11-base/xorg-server
-sudo emerge –ask x11-drivers/xf86-video-intel
-sudo emerge –ask x11-apps/xinitr
-sudo emerge –ask x11-apps/xrandr
-sudo emerge –ask gnome-base/gdm
-sudo emerge –ask gnome-base/gnome
-sudo emerge –ask –no-replace gui-libs/display-mmanager</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>touch<span class="w"> </span>/etc/portage/package.use/xorg
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;sys-auth/pambase elogind&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.use/xorg
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;media-libs/libglvd x&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.use/xorg
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;sys-apps/dbus&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.use/xorg
+
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>sys-apps/dbus
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>dev-vcs/git
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-base/xorg-server
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-drivers/xf86-video-intel
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-apps/xinit
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-apps/xrandr
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>gnome-base/gdm
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>gnome-base/gnome
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>--noreplace<span class="w"> </span>gui-libs/display-manager
+</pre></div>
+</div>
 </section>
 <section id="display-manager">
 <h2>Display Manager<a class="headerlink" href="#display-manager" title="Link to this heading">¶</a></h2>
-<p>vim /etc/conf.d/display-manager
-DISPLAYMANAGER=”gdm”
-sudo rc-update add display-manager default</p>
-<p>Add for video card to package.use</p>
-<p>echo “<em>/</em> VIDEO_CARDS: -* intel” &gt;&gt; /etc/portage/package.use/00video-cards</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>/etc/conf.d/display-manager
+<span class="nv">DISPLAYMANAGER</span><span class="o">=</span><span class="s2">&quot;gdm&quot;</span>
+sudo<span class="w"> </span>rc-update<span class="w"> </span>add<span class="w"> </span>display-manager<span class="w"> </span>default
+</pre></div>
+</div>
+</section>
+<section id="add-for-video-card-to-package-use">
+<h2>Add for video card to package.use<a class="headerlink" href="#add-for-video-card-to-package-use" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;*/* VIDEO_CARDS: -* intel&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/portage/package.use/00video-cards
+</pre></div>
+</div>
 <p><strong>Note</strong>: add binary package</p>
 <p>Note: if you want .xinitrc add <code class="docutils literal notranslate"><span class="pre">exec</span> <span class="pre">sway</span></code></p>
 </section>
@@ -500,10 +574,14 @@ sudo rc-update add display-manager default</p>
 <li><a class="reference internal" href="#grub">GRUB</a></li>
 <li><a class="reference internal" href="#configure-system">Configure System</a></li>
 <li><a class="reference internal" href="#network">Network</a></li>
+<li><a class="reference internal" href="#edit-etc-hosts">Edit /etc/hosts</a></li>
+<li><a class="reference internal" href="#edit-etc-conf-d-hostname">Edit /etc/conf.d/hostname</a></li>
+<li><a class="reference internal" href="#adding-users">Adding Users:</a></li>
 <li><a class="reference internal" href="#boot-loader">Boot Loader</a></li>
 <li><a class="reference internal" href="#reboot">REBOOT</a></li>
 <li><a class="reference internal" href="#post-install">POST INSTALL</a></li>
 <li><a class="reference internal" href="#display-manager">Display Manager</a></li>
+<li><a class="reference internal" href="#add-for-video-card-to-package-use">Add for video card to package.use</a></li>
 </ul>
 </li>
 </ul>

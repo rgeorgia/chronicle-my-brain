@@ -14,7 +14,7 @@ Layout
 Follow the Handbook 
 ----------------------
 
-- Section on Preparing the disks returning at the creating file systems section.
+- Section on Preparing the disks returning **at the creating file **systems section.
 - This guide will be using the example below however it should be simple enough to adapt this to the user's needs.
 
 .. list-table:: Disk Partitioning
@@ -38,7 +38,7 @@ Follow the Handbook
      - ZFS Partition
      - ``/, /boot, /home,`` ...
 
-The document used /efi as the mount point, but other docs use /boot/efi.
+The document used ``/efi`` as the mount point, but other docs use ``/boot/efi``.
 
 Boot
 ~~~~~~~~~~
@@ -90,6 +90,10 @@ Load ZFS kernel module and create a ZFS pool tank on /dev/sda3.
         -O relatime=on \
         -O compression=lz4 \
         -m none tank /dev/sda3
+
+.. note::
+
+    The option ``-o compatibility=openzfs-2.1-linux ``makes sure that GRUB works. If you are using ZFSBootMenu, you can skip that option.
 
 Create ZFS file systems
 ~~~~~~~~~~~~~~~~~~~~~~~~~

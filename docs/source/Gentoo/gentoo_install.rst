@@ -5,7 +5,9 @@ General Prep
 ------------
 
 lsblk
+
 ping www.gentoo.org
+
 ifconfig to get interfaces
 
 If you want to remotely install start sshd and set the root password
@@ -13,212 +15,258 @@ If you want to remotely install start sshd and set the root password
 Prepare Disks
 -------------
 
-cfdisk /dev/sda
+.. code-block:: bash
 
-sda1    1G  fat32   efi partion
-sda2    8G  swap    2 times ram
-sda3    *   ext4    root
+        cfdisk /dev/nvme0n1
 
-mkfs.vfat -F 32 /dev/sda1
-mkswap          /dev/sda2
-mkfs.ext4       /dev/sda3
+        nvme0n1p1    1G  fat32   efi partion
+        nvme0n1p2    8G  swap    2 times ram
+        nvme0n1p3    *   ext4    root
+
+        mkfs.vfat -F 32 /dev/nvme0n1p1
+        mkswap          /dev/nvme0n1p2
+        mkfs.ext4       /dev/nvme0n1p3
 
 Mount Drives
 -------------
 
-mount /dev/sda3 /mnt/gentoo
-swapon /dev/sda2
-mkdir -p /mnt/gentoo/boot/efi
+.. code-block:: bash
+
+        mount /dev/nvme0n1p3 /mnt/gentoo
+        swapon /dev/nvme0n1p2
+        mkdir -p /mnt/gentoo/boot/efi
 
 Grab Stage
 ----------
 
 Make sure you are in the proper directory
 
-cd /mnt/gentoo
+.. code-block:: bash
 
-date MMDDhhmmCCYY
+        cd /mnt/gentoo
 
-links https://www.gentoo.org/downloads/mirrors/
+        date MMDDhhmmCCYY
 
-tar xpvf <stage> --xattrs-include='*.*' --numeric-owner
+        links https://www.gentoo.org/downloads/mirrors/
+
+        tar xpvf <stage> --xattrs-include='*.*' --numeric-owner
 
 Update make.conf
 ----------------
-COMMON_FLAGS="-march=native -O2 -pipe"
-MAKEOPTS="-j8"
-USE="-systemd -KDE X gtk gnome"
 
-cp --dereference /etc/resolv.conf /mnt/gentoo/etc
+.. code-block:: bash
+
+        COMMON_FLAGS="-march=native -O2 -pipe"
+        MAKEOPTS="-j8"
+        USE="-systemd -KDE X gtk gnome"
+
+        cp --dereference /etc/resolv.conf /mnt/gentoo/etc
 
 Mount Stuff
 -----------
 
-mount --types proc  /proc   /mnt/gentoo/proc
-mount --rbind       /sys    /mnt/gentoo/sys
-mount --make-rslave         /mnt/gentoo/sys
-mount --rbind       /dev    /mnt/gentoo/dev
-mount --make-rslave         /mnt/gentoo/dev
-mount --bind        /run    /mnt/gentoo/run
-mount --make-slave          /mnt/gentoo/run
+.. code-block:: bash
 
-chroot /mnt/gentoo /bin/bash
-source /etc/profile
-export PS1="(chroot) $PS1"
+        mount --types proc  /proc   /mnt/gentoo/proc
+        mount --rbind       /sys    /mnt/gentoo/sys
+        mount --make-rslave         /mnt/gentoo/sys
+        mount --rbind       /dev    /mnt/gentoo/dev
+        mount --make-rslave         /mnt/gentoo/dev
+        mount --bind        /run    /mnt/gentoo/run
+        mount --make-slave          /mnt/gentoo/run
 
-mount /dev/sda1 /boot/efi
+        chroot /mnt/gentoo /bin/bash
+        source /etc/profile
+        export PS1="(chroot) $PS1"
 
-emerge-webrsync
+        mount /dev/nvme0n1p1 /boot/efi
 
-eselect profile list
-eselect profile set 23
-emerge --sync
-echo 'sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE' | tee -a /etc/portage/package.license
+        emerge-webrsync
 
-Note: set portage env var ACCEPT_LINCENSE
+        eselect profile list
+        eselect profile set 23
+        emerge --sync
+        echo 'sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE' | tee -a /etc/portage/package.license
+
+Note: set portage env var ACCEPT_LICENSE
+
+
 Note: /var/db/repos/gentoo/profiles/use.desc describes all USE flags
+
 Note: What about video card in /etc/portage/package.use/00video_cards?
 
-emerge --ask app-editors/vim
-emerge --ask --verbose --update --deep --changed-used @world
+.. code-block:: bash
+
+        emerge --ask app-editors/vim
+        emerge --ask --verbose --update --deep --changed-use @world
 
 Locale
 ------
 
-ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+.. code-block:: bash
 
-vim /etc/locale.gen
-locale-gen
-eselect locale list
-eselect locale set 4
+        ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+
+        vim /etc/locale.gen
+        locale-gen
+        eselect locale list
+        eselect locale set 4
 
 Update env
 ----------
-env-update && source /etc/profile && export PS1="(chroot) $PS1"
+.. code-block:: bash
+
+        env-update && source /etc/profile && export PS1="(chroot) $PS1"
 
 Configure Kernel
 ----------------
 
-emerge --ask sys-kernel/linux-firmware
-emerge --ask sys-firmware/sof-firmware
+.. code-block:: bash
+
+        emerge --ask sys-kernel/linux-firmware
+        emerge --ask sys-firmware/sof-firmware
 
 GRUB
 ----
 
-echo "sys-kernel/installkernel dracut grub" >> /etc/portage/package.use/installkernel
+.. code-block:: bash
 
-emerge --ask sys-kernel/installkernel
-emerge --ask sys-kernel/gentoo-kernel-bin
+        echo "sys-kernel/installkernel dracut grub" >> /etc/portage/package.use/installkernel
+
+        emerge --ask sys-kernel/installkernel
+        emerge --ask sys-kernel/gentoo-kernel-bin
 
 Configure System
 ----------------
 
-vim /etc/fstab
+.. code-block:: bash
 
-/dev/sda1   /boot/efi   vfat    defaults            0 2
-/dev/sda2   none        swap    sw                  0 0
-/dev/sda3   /           ext4    defaults,noatime    0 1
+        vim /etc/fstab
 
-
+        /dev/nvme0n1p1   /boot/efi   vfat    defaults            0 2
+        /dev/nvme0n1p2   none        swap    sw                  0 0
+        /dev/nvme0n1p3   /           ext4    defaults,noatime    0 1
 
 Network
 -------
 
-echo "YOURHOSTNAME" > /etc/hostname
+.. code-block:: bash
+
+        echo "YOURHOSTNAME" > /etc/hostname
 
 Edit /etc/hosts
+----------------
 
-127.0.0.1   YOURHOSTNAME localhost
+.. code-block:: bash
+
+        127.0.0.1   YOURHOSTNAME localhost
+
 
 Edit /etc/conf.d/hostname
+--------------------------
 
-emerge --ask net-misc/dhcpcd
-emerge --ask net-misc/networkmanager
+.. code-block:: bash
 
-rc-update add NetworkManager default
-rc-update add dhcpcd default
+        emerge --ask net-misc/dhcpcd
+        emerge --ask net-misc/networkmanager
 
-rc-service NetworkManager start
-rc-service dhcpcd start
+        rc-update add NetworkManager default
+        rc-update add dhcpcd default
+
+        rc-service NetworkManager start
+        rc-service dhcpcd start
 
 Adding Users:
+---------------
 
 Note: before adding users, add the shells you want
 
 Change root password
 
-passwd root
+.. code-block:: bash
 
-emerge --ask app-shells/fish bash
+        passwd root
 
-useradd -m -G wheel,video,audio -s /usr/bin/fish rgeorgia
-passwd rgeorgia
+        emerge --ask app-shells/fish bash
 
-emerge --ask app-admin/sysklogd
-emerge --ask sys-apps/mlocate
-emerge --ask net-misc/chrony
-emerge --ask app-admin/sudo
+        useradd -m -G wheel,video,audio,kvm,plugdev -s /usr/bin/fish rgeorgia
+        passwd rgeorgia
 
-rc-update add sysklogd default
-rc-update add chronyd default
-rc-update add sshd default
+        emerge --ask app-admin/sysklogd
+        emerge --ask sys-apps/mlocate
+        emerge --ask net-misc/chrony
+        emerge --ask app-admin/sudo
 
-EDITOR-vim visudo
+        rc-update add sysklogd default
+        rc-update add chronyd default
+        rc-update add sshd default
+
+        EDITOR=vim visudo
 
 Boot Loader
 -----------
 
-echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
+.. code-block:: bash
 
-emerge --ask sys-boot/grub efibootmgr
-grub-install --efi-directory /boot/efi
-grub-mkconfig -o /boot/efi/EFI
+        echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
+
+        emerge --ask sys-boot/grub efibootmgr
+        grub-install --efi-directory /boot/efi
+        grub-mkconfig -o /boot/grub/grub.cfg
 
 REBOOT
 ------
 
 Exit chroot
 
-exit
+.. code-block:: bash
 
-cd to home or /root
+        exit
 
-mount -l /mnt/gentoo/{/shm,/pts}
-mount -R /mnt/gentoo
+        cd to home or /root
 
-reboot
+        umount -l /mnt/gentoo/{shm,pts}
+        umount -R /mnt/gentoo
+
+        reboot
 
 POST INSTALL
 ------------
 
-sudo touch /etc/portage/package.use/xorg
-echo 'sys-auth/pambase elogind' | tee -a /etc/portage/package.use/xorg
-echo 'media-libs/libglvd x' | tee -a /etc/portage/package.use/xorg
+.. code-block:: bash
 
-sudo emerge --ask sys-apps/dbus
-sudo emerge --ask dev-vcs/git
-sudo emerge --ask x11-base/xorg-server
-sudo emerge --ask x11-drivers/xf86-video-intel
-sudo emerge --ask x11-apps/xinitr
-sudo emerge --ask x11-apps/xrandr
-sudo emerge --ask gnome-base/gdm
-sudo emerge --ask gnome-base/gnome
-sudo emerge --ask --no-replace gui-libs/display-mmanager
+        sudo touch /etc/portage/package.use/xorg
+        echo 'sys-auth/pambase elogind' | tee -a /etc/portage/package.use/xorg
+        echo 'media-libs/libglvd x' | tee -a /etc/portage/package.use/xorg
+        echo 'sys-apps/dbus' | tee -a /etc/portage/package.use/xorg
+
+        sudo emerge --ask sys-apps/dbus
+        sudo emerge --ask dev-vcs/git
+        sudo emerge --ask x11-base/xorg-server
+        sudo emerge --ask x11-drivers/xf86-video-intel
+        sudo emerge --ask x11-apps/xinit
+        sudo emerge --ask x11-apps/xrandr
+        sudo emerge --ask gnome-base/gdm
+        sudo emerge --ask gnome-base/gnome
+        sudo emerge --ask --noreplace gui-libs/display-manager
 
 Display Manager
 ---------------
 
-vim /etc/conf.d/display-manager
-DISPLAYMANAGER="gdm"
-sudo rc-update add display-manager default
+.. code-block:: bash
+
+        vim /etc/conf.d/display-manager
+        DISPLAYMANAGER="gdm"
+        sudo rc-update add display-manager default
 
 Add for video card to package.use
+----------------------------------
 
-echo "*/* VIDEO_CARDS: -* intel" >> /etc/portage/package.use/00video-cards
+.. code-block:: bash
+
+        echo "*/* VIDEO_CARDS: -* intel" >> /etc/portage/package.use/00video-cards
 
 **Note**: add binary package
 
 Note: if you want .xinitrc add ``exec sway``
-
-
 
