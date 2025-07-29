@@ -17,23 +17,23 @@ Prepare Disks
 
 .. code-block:: bash
 
-        cfdisk /dev/nvme0n1
+        cfdisk /dev/sda
 
-        nvme0n1p1    1G  fat32   efi partion
-        nvme0n1p2    8G  swap    2 times ram
-        nvme0n1p3    *   ext4    root
+        sda1    1G  fat32   efi partion
+        sda2    8G  swap    2 times ram
+        sda3    *   ext4    root
 
-        mkfs.vfat -F 32 /dev/nvme0n1p1
-        mkswap          /dev/nvme0n1p2
-        mkfs.ext4       /dev/nvme0n1p3
+        mkfs.vfat -F 32 /dev/sda1
+        mkswap          /dev/sda2
+        mkfs.ext4       /dev/sda3
 
 Mount Drives
 -------------
 
 .. code-block:: bash
 
-        mount /dev/nvme0n1p3 /mnt/gentoo
-        swapon /dev/nvme0n1p2
+        mount /dev/sda3 /mnt/gentoo
+        swapon /dev/sda2
         mkdir -p /mnt/gentoo/boot/efi
 
 Grab Stage
@@ -79,7 +79,7 @@ Mount Stuff
         source /etc/profile
         export PS1="(chroot) $PS1"
 
-        mount /dev/nvme0n1p1 /boot/efi
+        mount /dev/sda1 /boot/efi
 
         emerge-webrsync
 
@@ -143,9 +143,9 @@ Configure System
 
         vim /etc/fstab
 
-        /dev/nvme0n1p1   /boot/efi   vfat    defaults            0 2
-        /dev/nvme0n1p2   none        swap    sw                  0 0
-        /dev/nvme0n1p3   /           ext4    defaults,noatime    0 1
+        /dev/sda1   /boot/efi   vfat    defaults            0 2
+        /dev/sda2   none        swap    sw                  0 0
+        /dev/sda3   /           ext4    defaults,noatime    0 1
 
 Network
 -------

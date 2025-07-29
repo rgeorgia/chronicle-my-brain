@@ -278,22 +278,22 @@
 </section>
 <section id="prepare-disks">
 <h2>Prepare Disks<a class="headerlink" href="#prepare-disks" title="Link to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cfdisk<span class="w"> </span>/dev/nvme0n1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cfdisk<span class="w"> </span>/dev/sda
 
-nvme0n1p1<span class="w">    </span>1G<span class="w">  </span>fat32<span class="w">   </span>efi<span class="w"> </span>partion
-nvme0n1p2<span class="w">    </span>8G<span class="w">  </span>swap<span class="w">    </span><span class="m">2</span><span class="w"> </span><span class="nb">times</span><span class="w"> </span>ram
-nvme0n1p3<span class="w">    </span>*<span class="w">   </span>ext4<span class="w">    </span>root
+sda1<span class="w">    </span>1G<span class="w">  </span>fat32<span class="w">   </span>efi<span class="w"> </span>partion
+sda2<span class="w">    </span>8G<span class="w">  </span>swap<span class="w">    </span><span class="m">2</span><span class="w"> </span><span class="nb">times</span><span class="w"> </span>ram
+sda3<span class="w">    </span>*<span class="w">   </span>ext4<span class="w">    </span>root
 
-mkfs.vfat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/nvme0n1p1
-mkswap<span class="w">          </span>/dev/nvme0n1p2
-mkfs.ext4<span class="w">       </span>/dev/nvme0n1p3
+mkfs.vfat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/sda1
+mkswap<span class="w">          </span>/dev/sda2
+mkfs.ext4<span class="w">       </span>/dev/sda3
 </pre></div>
 </div>
 </section>
 <section id="mount-drives">
 <h2>Mount Drives<a class="headerlink" href="#mount-drives" title="Link to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount<span class="w"> </span>/dev/nvme0n1p3<span class="w"> </span>/mnt/gentoo
-swapon<span class="w"> </span>/dev/nvme0n1p2
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount<span class="w"> </span>/dev/sda3<span class="w"> </span>/mnt/gentoo
+swapon<span class="w"> </span>/dev/sda2
 mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/gentoo/boot/efi
 </pre></div>
 </div>
@@ -335,7 +335,7 @@ chroot<span class="w"> </span>/mnt/gentoo<span class="w"> </span>/bin/bash
 <span class="nb">source</span><span class="w"> </span>/etc/profile
 <span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;(chroot) </span><span class="nv">$PS1</span><span class="s2">&quot;</span>
 
-mount<span class="w"> </span>/dev/nvme0n1p1<span class="w"> </span>/boot/efi
+mount<span class="w"> </span>/dev/sda1<span class="w"> </span>/boot/efi
 
 emerge-webrsync
 
@@ -390,9 +390,9 @@ emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/gentoo-ker
 <h2>Configure System<a class="headerlink" href="#configure-system" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>/etc/fstab
 
-/dev/nvme0n1p1<span class="w">   </span>/boot/efi<span class="w">   </span>vfat<span class="w">    </span>defaults<span class="w">            </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>
-/dev/nvme0n1p2<span class="w">   </span>none<span class="w">        </span>swap<span class="w">    </span>sw<span class="w">                  </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
-/dev/nvme0n1p3<span class="w">   </span>/<span class="w">           </span>ext4<span class="w">    </span>defaults,noatime<span class="w">    </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+/dev/sda1<span class="w">   </span>/boot/efi<span class="w">   </span>vfat<span class="w">    </span>defaults<span class="w">            </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>
+/dev/sda2<span class="w">   </span>none<span class="w">        </span>swap<span class="w">    </span>sw<span class="w">                  </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+/dev/sda3<span class="w">   </span>/<span class="w">           </span>ext4<span class="w">    </span>defaults,noatime<span class="w">    </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
 </section>
