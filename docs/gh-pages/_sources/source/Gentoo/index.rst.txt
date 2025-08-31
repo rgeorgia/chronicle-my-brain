@@ -13,3 +13,4 @@ Notes for Gentoo
  
    zfs_install
    gentoo_install
+   gentoo_install_nvme
