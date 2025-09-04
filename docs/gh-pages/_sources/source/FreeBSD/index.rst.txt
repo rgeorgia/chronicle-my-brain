@@ -12,6 +12,5 @@ FreeBSD Notes
    :maxdepth: 2
    :caption: FreeBSD
    
-   x1config
-   x1-desktop
-
+   freebsd-infosec
+   freebsd-thru-handbook

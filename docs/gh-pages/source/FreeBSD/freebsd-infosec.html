@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="ZAP port was installed" href="freebsd-infosec.html" /><link rel="prev" title="1 Chronicles" href="../../index.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="&lt;no title&gt;" href="freebsd-thru-handbook.html" /><link rel="prev" title="FreeBSD Notes" href="index.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
-        <title>FreeBSD Notes - Chronicles of Hope documentation</title>
+        <title>ZAP port was installed - Chronicles of Hope documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
@@ -207,9 +207,8 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">How Great is the darkness</span></p>
 <ul class="current">
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">FreeBSD Notes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of FreeBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="freebsd-infosec.html">ZAP port was installed</a></li>
-<li class="toctree-l2"><a class="reference internal" href="freebsd-thru-handbook.html">Handbook as a check list</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">FreeBSD Notes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of FreeBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">ZAP port was installed</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Gentoo/index.html">Notes for Gentoo</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Notes for Gentoo</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -267,18 +266,42 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="freebsd-notes">
-<h1>FreeBSD Notes<a class="headerlink" href="#freebsd-notes" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">FreeBSD</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="freebsd-infosec.html">ZAP port was installed</a></li>
-<li class="toctree-l1"><a class="reference internal" href="freebsd-thru-handbook.html">Handbook as a check list</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="freebsd-thru-handbook.html#freebsd-handbook">FreeBSD Handbook</a></li>
-</ul>
-</li>
-</ul>
+          <section id="zap-port-was-installed">
+<h1>ZAP port was installed<a class="headerlink" href="#zap-port-was-installed" title="Link to this heading">¶</a></h1>
+<ol class="arabic simple">
+<li><p>You must install Chrome based browser or Firefox based browser for be used</p></li>
+</ol>
+<blockquote>
+<div><p>in some tasks.</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># pkg install chromium firefox geckodriver</span>
+</pre></div>
 </div>
+<ol class="arabic" start="2">
+<li><p>ZAP includes linux webdrivers for Chrome and Firefox but these don’t work
+on FreeBSD.</p>
+<p>You must change some paths from <cite>Tools/Options/Selenium/Webdrivers</cite>:</p>
+</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Chromedriver<span class="w"> </span>to<span class="w"> </span>/usr/local/bin/chromedriver
+Geckodriver<span class="w"> </span>to<span class="w"> </span>/usr/local/bin/geckodriver
+
+Also,<span class="w"> </span>you<span class="w"> </span>must<span class="w"> </span>change<span class="w"> </span>Chrome<span class="w"> </span>and<span class="w"> </span>Firefox<span class="w"> </span>based<span class="w"> </span>web<span class="w"> </span>browser<span class="w"> </span>binary<span class="w"> </span>path<span class="w"> </span>files:
+
+Chrome<span class="w"> </span>binary<span class="w"> </span>to<span class="w"> </span>/usr/local/bin/chrome
+Firefox<span class="w"> </span>binary<span class="w"> </span>to<span class="w"> </span>/usr/local/bin/firefox
+</pre></div>
+</div>
+<ol class="arabic" start="3">
+<li><p>If you want to use some python scripts to use ZAP from command line or from
+another applications, look at the following urls:</p>
+<p><a class="reference external" href="https://github.com/zaproxy/zaproxy/blob/main/docker/zap-baseline.py">https://github.com/zaproxy/zaproxy/blob/main/docker/zap-baseline.py</a>
+<a class="reference external" href="https://github.com/zaproxy/community-scripts/tree/main/other/api/mass-baseline">https://github.com/zaproxy/community-scripts/tree/main/other/api/mass-baseline</a>
+<a class="reference external" href="https://github.com/zaproxy/zap-api-python/tree/main/src/examples">https://github.com/zaproxy/zap-api-python/tree/main/src/examples</a></p>
+<p>These scripts use ZAP Python API. Install it from security/py-zaproxy</p>
+</li>
+<li><p>Enjoy it</p></li>
+</ol>
 </section>
 
         </article>
@@ -286,23 +309,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="freebsd-infosec.html">
+          <a class="next-page" href="freebsd-thru-handbook.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">ZAP port was installed</div>
+                <div class="title">&lt;no title&gt;</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../../index.html">
+          <a class="prev-page" href="index.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Home</div>
+                <div class="title">FreeBSD Notes</div>
                 
               </div>
             </a>
