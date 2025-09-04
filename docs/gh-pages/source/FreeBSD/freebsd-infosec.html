@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="&lt;no title&gt;" href="freebsd-thru-handbook.html" /><link rel="prev" title="FreeBSD Notes" href="index.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Handbook as a check list" href="freebsd-thru-handbook.html" /><link rel="prev" title="FreeBSD Notes" href="index.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
-        <title>ZAP port was installed - Chronicles of Hope documentation</title>
+        <title>Infosec on FreeBSD - Chronicles of Hope documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
@@ -187,7 +187,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -208,10 +208,11 @@
   <p class="caption" role="heading"><span class="caption-text">How Great is the darkness</span></p>
 <ul class="current">
 <li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">FreeBSD Notes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of FreeBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">ZAP port was installed</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Infosec on FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="freebsd-thru-handbook.html">Handbook as a check list</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Gentoo/index.html">Notes for Gentoo</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Notes for Gentoo</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Gentoo/index.html">Gentoo Notes</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Gentoo Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Gentoo/zfs_install.html">Gentoo ZFS Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Gentoo/gentoo_install.html">Gentoo Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Gentoo/gentoo_install_nvme.html">Gentoo Install NVME</a></li>
@@ -260,20 +261,44 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="zap-port-was-installed">
-<h1>ZAP port was installed<a class="headerlink" href="#zap-port-was-installed" title="Link to this heading">¶</a></h1>
+          <section id="infosec-on-freebsd">
+<h1>Infosec on FreeBSD<a class="headerlink" href="#infosec-on-freebsd" title="Link to this heading">¶</a></h1>
+<section id="tools-to-install">
+<h2>Tools to install<a class="headerlink" href="#tools-to-install" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>[X] john</p></li>
+<li><p>[X] ndiff</p></li>
+<li><p>[X] nmap</p></li>
+<li><p>[M] zenmap</p></li>
+<li><p>[X] nikto</p></li>
+<li><p>[X] kismet-2008</p></li>
+<li><p>[M] wistumbler2-gtk</p></li>
+<li><p>[X] wireshark</p></li>
+<li><p>[ ] sqlmap</p></li>
+<li><p>[ ] ettercap-gtk</p></li>
+<li><p>[ ] traceroute</p></li>
+<li><p>[ ] traceroute6</p></li>
+<li><p>[ ] hashcat</p></li>
+<li><p>[ ] hydra</p></li>
+<li><p>[ ] burp</p></li>
+<li><p>[ ] nbtscan</p></li>
+<li><p>[ ] dillo</p></li>
+<li><p>[X] zap</p></li>
+<li><p>[ ] chromium</p></li>
+<li><p>[ ] sqlitebrowser</p></li>
+</ul>
+</section>
+<section id="zap-port-was-installed">
+<h2>ZAP port was installed<a class="headerlink" href="#zap-port-was-installed" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
-<li><p>You must install Chrome based browser or Firefox based browser for be used</p></li>
+<li><p>You must install Chrome based browser or Firefox based browser for be used in some tasks.</p></li>
 </ol>
-<blockquote>
-<div><p>in some tasks.</p>
-</div></blockquote>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># pkg install chromium firefox geckodriver</span>
 </pre></div>
 </div>
@@ -303,6 +328,29 @@ another applications, look at the following urls:</p>
 <li><p>Enjoy it</p></li>
 </ol>
 </section>
+<section id="kismet">
+<h2>Kismet<a class="headerlink" href="#kismet" title="Link to this heading">¶</a></h2>
+<p>Kismet has been installed with a setuid-root capture helper binary,
+<cite>/usr/local/bin/kismet_capture</cite>, which may be executed by users in the
+kismet group.  USERS IN THIS GROUP WILL BE ABLE TO ALTER NETWORK
+INTERFACE STATES, but this is more secure than running all of kismet
+as root.  ONLY users in this group will be able to run kismet and capture
+from physical network devices.</p>
+</section>
+<section id="wireshark">
+<h2>Wireshark<a class="headerlink" href="#wireshark" title="Link to this heading">¶</a></h2>
+<p>In order for wireshark be able to capture packets when used by unprivileged
+user, /dev/bpf should be in network group and have read-write permissions.
+For example:</p>
+<p># chgrp network /dev/bpf*
+# chmod g+r /dev/bpf*
+# chmod g+w /dev/bpf*</p>
+<p>In order for this to persist across reboots, add the following to
+/etc/devfs.conf:</p>
+<p>own  bpf* root:network
+perm bpf* 0660</p>
+</section>
+</section>
 
         </article>
       </div>
@@ -314,7 +362,7 @@ another applications, look at the following urls:</p>
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">&lt;no title&gt;</div>
+                <div class="title">Handbook as a check list</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -347,8 +395,30 @@ another applications, look at the following urls:</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Infosec on FreeBSD</a><ul>
+<li><a class="reference internal" href="#tools-to-install">Tools to install</a></li>
+<li><a class="reference internal" href="#zap-port-was-installed">ZAP port was installed</a></li>
+<li><a class="reference internal" href="#kismet">Kismet</a></li>
+<li><a class="reference internal" href="#wireshark">Wireshark</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
