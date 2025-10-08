@@ -14,7 +14,7 @@ Layout
 Follow the Handbook 
 ----------------------
 
-- Section on Preparing the disks returning **at the creating file **systems section.
+- Section on Preparing the disks returning **at the creating file** systems section.
 - This guide will be using the example below however it should be simple enough to adapt this to the user's needs.
 
 .. list-table:: Disk Partitioning
@@ -93,7 +93,7 @@ Load ZFS kernel module and create a ZFS pool tank on /dev/sda3.
 
 .. note::
 
-    The option ``-o compatibility=openzfs-2.1-linux ``makes sure that GRUB works. If you are using ZFSBootMenu, you can skip that option.
+    The option ``-o compatibility=openzfs-2.1-linux`` makes sure that GRUB works. If you are using ZFSBootMenu, you can skip that option.
 
 Create ZFS file systems
 ~~~~~~~~~~~~~~~~~~~~~~~~~

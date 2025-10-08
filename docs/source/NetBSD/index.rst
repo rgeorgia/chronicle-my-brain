@@ -3,13 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Notes on Void Linux
-====================
+NetBSD Notes
+=============
+
 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Void Linux
-
-   void_notes
+   :caption: NetBSD
    
+   addnewdisk

@@ -14,6 +14,6 @@ This repository is a marker that reminds me where I need to go. I am tired of th
    :caption: How Great is the darkness
 
    source/FreeBSD/index
+   source/NetBSD/index
    source/Gentoo/index
    source/Hammer/index
-   source/VoidLinux/index
