@@ -3,13 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-NetBSD Notes
+OpenBSD Notes
 =============
 
 
 
 .. toctree::
    :maxdepth: 2
-   :caption: NetBSD
+   :caption: OpenBSD
    
-   addnewdisk
+   openbsd-firefox
+   openbsd-httpd
+   openbsd-print

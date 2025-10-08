@@ -13,3 +13,4 @@ NetBSD Notes
    :caption: NetBSD
    
    addnewdisk
+   nginx
