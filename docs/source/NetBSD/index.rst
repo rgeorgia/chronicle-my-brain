@@ -13,4 +13,5 @@ NetBSD Notes
    :caption: NetBSD
    
    addnewdisk
+   printing
    nginx

@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 *.swp
 
+docs/gh-pages/
+
 # C extensions
 *.so
 
