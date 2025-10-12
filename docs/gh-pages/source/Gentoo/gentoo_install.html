@@ -1,0 +1,610 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Gentoo Install NVME" href="gentoo_install_nvme.html" /><link rel="prev" title="Gentoo ZFS Install" href="zfs_install.html" />
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
+        <title>Gentoo Install - Chronicles of Hope documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=dace8524" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --color-brand-content: #CC3333;
+  --color-background-primary: #f8f9fb;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     Because I can't remember squat 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Chronicles of Hope  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">How Great is the darkness</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../FreeBSD/index.html">FreeBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of FreeBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../FreeBSD/freebsd-infosec.html">Infosec on FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FreeBSD/freebsd-thru-handbook.html">Handbook as a check list</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NetBSD/index.html">NetBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of NetBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NetBSD/addnewdisk.html">Add a New Drive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NetBSD/printing.html">Setting Up my Printer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NetBSD/nginx.html">NetBSD and Nginx</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../OpenBSD/index.html">OpenBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of OpenBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-firefox.html">Unveil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-httpd.html">openHammer and httpd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-print.html">openHammer Printing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Gentoo Notes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Gentoo Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="zfs_install.html">Gentoo ZFS Install</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Gentoo Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo_install_nvme.html">Gentoo Install NVME</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Hammer/index.html">Hammer File Share</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Hammer File Share</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Hammer/hammer_notes.html">Notes on creating a Hammer File Share</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Hammer/types_of_hammers.html">Famous Hammers in Myths and History</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/rgeorgia/chronicle-my-brain.git" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="gentoo-install">
+<h1>Gentoo Install<a class="headerlink" href="#gentoo-install" title="Link to this heading">¶</a></h1>
+<section id="general-prep">
+<h2>General Prep<a class="headerlink" href="#general-prep" title="Link to this heading">¶</a></h2>
+<p>lsblk</p>
+<p>ping www.gentoo.org</p>
+<p>ifconfig to get interfaces</p>
+<p>If you want to remotely install start sshd and set the root password</p>
+</section>
+<section id="prepare-disks">
+<h2>Prepare Disks<a class="headerlink" href="#prepare-disks" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cfdisk<span class="w"> </span>/dev/sda
+
+sda1<span class="w">    </span>1G<span class="w">  </span>fat32<span class="w">   </span>efi<span class="w"> </span>partion
+sda2<span class="w">    </span>8G<span class="w">  </span>swap<span class="w">    </span><span class="m">2</span><span class="w"> </span><span class="nb">times</span><span class="w"> </span>ram
+sda3<span class="w">    </span>*<span class="w">   </span>ext4<span class="w">    </span>root
+
+mkfs.vfat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/sda1
+mkswap<span class="w">          </span>/dev/sda2
+mkfs.ext4<span class="w">       </span>/dev/sda3
+</pre></div>
+</div>
+</section>
+<section id="mount-drives">
+<h2>Mount Drives<a class="headerlink" href="#mount-drives" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount<span class="w"> </span>/dev/sda3<span class="w"> </span>/mnt/gentoo
+swapon<span class="w"> </span>/dev/sda2
+mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/gentoo/boot/efi
+</pre></div>
+</div>
+</section>
+<section id="grab-stage">
+<h2>Grab Stage<a class="headerlink" href="#grab-stage" title="Link to this heading">¶</a></h2>
+<p>Make sure you are in the proper directory</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/mnt/gentoo
+
+date<span class="w"> </span>MMDDhhmmCCYY
+
+links<span class="w"> </span>https://www.gentoo.org/downloads/mirrors/
+
+tar<span class="w"> </span>xpvf<span class="w"> </span>&lt;stage&gt;<span class="w"> </span>--xattrs-include<span class="o">=</span><span class="s1">&#39;*.*&#39;</span><span class="w"> </span>--numeric-owner
+</pre></div>
+</div>
+</section>
+<section id="update-make-conf">
+<h2>Update make.conf<a class="headerlink" href="#update-make-conf" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">COMMON_FLAGS</span><span class="o">=</span><span class="s2">&quot;-march=native -O2 -pipe&quot;</span>
+<span class="nv">MAKEOPTS</span><span class="o">=</span><span class="s2">&quot;-j8&quot;</span>
+<span class="nv">USE</span><span class="o">=</span><span class="s2">&quot;-systemd -KDE X gtk gnome&quot;</span>
+
+cp<span class="w"> </span>--dereference<span class="w"> </span>/etc/resolv.conf<span class="w"> </span>/mnt/gentoo/etc
+</pre></div>
+</div>
+</section>
+<section id="mount-stuff">
+<h2>Mount Stuff<a class="headerlink" href="#mount-stuff" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount<span class="w"> </span>--types<span class="w"> </span>proc<span class="w">  </span>/proc<span class="w">   </span>/mnt/gentoo/proc
+mount<span class="w"> </span>--rbind<span class="w">       </span>/sys<span class="w">    </span>/mnt/gentoo/sys
+mount<span class="w"> </span>--make-rslave<span class="w">         </span>/mnt/gentoo/sys
+mount<span class="w"> </span>--rbind<span class="w">       </span>/dev<span class="w">    </span>/mnt/gentoo/dev
+mount<span class="w"> </span>--make-rslave<span class="w">         </span>/mnt/gentoo/dev
+mount<span class="w"> </span>--bind<span class="w">        </span>/run<span class="w">    </span>/mnt/gentoo/run
+mount<span class="w"> </span>--make-slave<span class="w">          </span>/mnt/gentoo/run
+
+chroot<span class="w"> </span>/mnt/gentoo<span class="w"> </span>/bin/bash
+<span class="nb">source</span><span class="w"> </span>/etc/profile
+<span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;(chroot) </span><span class="nv">$PS1</span><span class="s2">&quot;</span>
+
+mount<span class="w"> </span>/dev/sda1<span class="w"> </span>/boot/efi
+
+emerge-webrsync
+
+eselect<span class="w"> </span>profile<span class="w"> </span>list
+eselect<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">23</span>
+emerge<span class="w"> </span>--sync
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.license
+</pre></div>
+</div>
+<p>Note: set portage env var ACCEPT_LICENSE</p>
+<p>Note: /var/db/repos/gentoo/profiles/use.desc describes all USE flags</p>
+<p>Note: What about video card in /etc/portage/package.use/00video_cards?</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>--ask<span class="w"> </span>app-editors/vim
+emerge<span class="w"> </span>--ask<span class="w"> </span>--verbose<span class="w"> </span>--update<span class="w"> </span>--deep<span class="w"> </span>--changed-use<span class="w"> </span>@world
+</pre></div>
+</div>
+</section>
+<section id="locale">
+<h2>Locale<a class="headerlink" href="#locale" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln<span class="w"> </span>-sf<span class="w"> </span>/usr/share/zoneinfo/America/New_York<span class="w"> </span>/etc/localtime
+
+vim<span class="w"> </span>/etc/locale.gen
+locale-gen
+eselect<span class="w"> </span>locale<span class="w"> </span>list
+eselect<span class="w"> </span>locale<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+</section>
+<section id="update-env">
+<h2>Update env<a class="headerlink" href="#update-env" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>env-update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>/etc/profile<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;(chroot) </span><span class="nv">$PS1</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="configure-kernel">
+<h2>Configure Kernel<a class="headerlink" href="#configure-kernel" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/linux-firmware
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-firmware/sof-firmware
+</pre></div>
+</div>
+</section>
+<section id="grub">
+<h2>GRUB<a class="headerlink" href="#grub" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;sys-kernel/installkernel dracut grub&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/portage/package.use/installkernel
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/installkernel
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/gentoo-kernel-bin
+</pre></div>
+</div>
+</section>
+<section id="configure-system">
+<h2>Configure System<a class="headerlink" href="#configure-system" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>/etc/fstab
+
+/dev/sda1<span class="w">   </span>/boot/efi<span class="w">   </span>vfat<span class="w">    </span>defaults<span class="w">            </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>
+/dev/sda2<span class="w">   </span>none<span class="w">        </span>swap<span class="w">    </span>sw<span class="w">                  </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+/dev/sda3<span class="w">   </span>/<span class="w">           </span>ext4<span class="w">    </span>defaults,noatime<span class="w">    </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="network">
+<h2>Network<a class="headerlink" href="#network" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;YOURHOSTNAME&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/hostname
+</pre></div>
+</div>
+</section>
+<section id="edit-etc-hosts">
+<h2>Edit /etc/hosts<a class="headerlink" href="#edit-etc-hosts" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">127</span>.0.0.1<span class="w">   </span>YOURHOSTNAME<span class="w"> </span>localhost
+</pre></div>
+</div>
+</section>
+<section id="edit-etc-conf-d-hostname">
+<h2>Edit /etc/conf.d/hostname<a class="headerlink" href="#edit-etc-conf-d-hostname" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>--ask<span class="w"> </span>net-misc/dhcpcd
+emerge<span class="w"> </span>--ask<span class="w"> </span>net-misc/networkmanager
+
+rc-update<span class="w"> </span>add<span class="w"> </span>NetworkManager<span class="w"> </span>default
+rc-update<span class="w"> </span>add<span class="w"> </span>dhcpcd<span class="w"> </span>default
+
+rc-service<span class="w"> </span>NetworkManager<span class="w"> </span>start
+rc-service<span class="w"> </span>dhcpcd<span class="w"> </span>start
+</pre></div>
+</div>
+</section>
+<section id="adding-users">
+<h2>Adding Users:<a class="headerlink" href="#adding-users" title="Link to this heading">¶</a></h2>
+<p>Note: before adding users, add the shells you want</p>
+<p>Change root password</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>passwd<span class="w"> </span>root
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>app-shells/fish<span class="w"> </span>bash
+
+useradd<span class="w"> </span>-m<span class="w"> </span>-G<span class="w"> </span>wheel,video,audio,kvm,plugdev<span class="w"> </span>-s<span class="w"> </span>/usr/bin/fish<span class="w"> </span>rgeorgia
+passwd<span class="w"> </span>rgeorgia
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>app-admin/sysklogd
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-apps/mlocate
+emerge<span class="w"> </span>--ask<span class="w"> </span>net-misc/chrony
+emerge<span class="w"> </span>--ask<span class="w"> </span>app-admin/sudo
+
+rc-update<span class="w"> </span>add<span class="w"> </span>sysklogd<span class="w"> </span>default
+rc-update<span class="w"> </span>add<span class="w"> </span>chronyd<span class="w"> </span>default
+rc-update<span class="w"> </span>add<span class="w"> </span>sshd<span class="w"> </span>default
+
+<span class="nv">EDITOR</span><span class="o">=</span>vim<span class="w"> </span>visudo
+</pre></div>
+</div>
+</section>
+<section id="boot-loader">
+<h2>Boot Loader<a class="headerlink" href="#boot-loader" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;GRUB_PLATFORMS=&quot;efi-64&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/portage/make.conf
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-boot/grub<span class="w"> </span>efibootmgr
+grub-install<span class="w"> </span>--efi-directory<span class="w"> </span>/boot/efi
+grub-mkconfig<span class="w"> </span>-o<span class="w"> </span>/boot/grub/grub.cfg
+</pre></div>
+</div>
+</section>
+<section id="reboot">
+<h2>REBOOT<a class="headerlink" href="#reboot" title="Link to this heading">¶</a></h2>
+<p>Exit chroot</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span>
+
+<span class="nb">cd</span><span class="w"> </span>to<span class="w"> </span>home<span class="w"> </span>or<span class="w"> </span>/root
+
+umount<span class="w"> </span>-l<span class="w"> </span>/mnt/gentoo/<span class="o">{</span>shm,pts<span class="o">}</span>
+umount<span class="w"> </span>-R<span class="w"> </span>/mnt/gentoo
+
+reboot
+</pre></div>
+</div>
+</section>
+<section id="post-install">
+<h2>POST INSTALL<a class="headerlink" href="#post-install" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>touch<span class="w"> </span>/etc/portage/package.use/xorg
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;sys-auth/pambase elogind&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.use/xorg
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;media-libs/libglvd x&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.use/xorg
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;sys-apps/dbus&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.use/xorg
+
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>sys-apps/dbus
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>dev-vcs/git
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-base/xorg-server
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-drivers/xf86-video-intel
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-apps/xinit
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-apps/xrandr
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>gnome-base/gdm
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>gnome-base/gnome
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>--noreplace<span class="w"> </span>gui-libs/display-manager
+</pre></div>
+</div>
+</section>
+<section id="display-manager">
+<h2>Display Manager<a class="headerlink" href="#display-manager" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>/etc/conf.d/display-manager
+<span class="nv">DISPLAYMANAGER</span><span class="o">=</span><span class="s2">&quot;gdm&quot;</span>
+sudo<span class="w"> </span>rc-update<span class="w"> </span>add<span class="w"> </span>display-manager<span class="w"> </span>default
+</pre></div>
+</div>
+</section>
+<section id="add-for-video-card-to-package-use">
+<h2>Add for video card to package.use<a class="headerlink" href="#add-for-video-card-to-package-use" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;*/* VIDEO_CARDS: -* intel&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/portage/package.use/00video-cards
+</pre></div>
+</div>
+<p><strong>Note</strong>: add binary package</p>
+<p>Note: if you want .xinitrc add <code class="docutils literal notranslate"><span class="pre">exec</span> <span class="pre">sway</span></code></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="gentoo_install_nvme.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Gentoo Install NVME</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="zfs_install.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Gentoo ZFS Install</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Ronverbs, LLC
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Gentoo Install</a><ul>
+<li><a class="reference internal" href="#general-prep">General Prep</a></li>
+<li><a class="reference internal" href="#prepare-disks">Prepare Disks</a></li>
+<li><a class="reference internal" href="#mount-drives">Mount Drives</a></li>
+<li><a class="reference internal" href="#grab-stage">Grab Stage</a></li>
+<li><a class="reference internal" href="#update-make-conf">Update make.conf</a></li>
+<li><a class="reference internal" href="#mount-stuff">Mount Stuff</a></li>
+<li><a class="reference internal" href="#locale">Locale</a></li>
+<li><a class="reference internal" href="#update-env">Update env</a></li>
+<li><a class="reference internal" href="#configure-kernel">Configure Kernel</a></li>
+<li><a class="reference internal" href="#grub">GRUB</a></li>
+<li><a class="reference internal" href="#configure-system">Configure System</a></li>
+<li><a class="reference internal" href="#network">Network</a></li>
+<li><a class="reference internal" href="#edit-etc-hosts">Edit /etc/hosts</a></li>
+<li><a class="reference internal" href="#edit-etc-conf-d-hostname">Edit /etc/conf.d/hostname</a></li>
+<li><a class="reference internal" href="#adding-users">Adding Users:</a></li>
+<li><a class="reference internal" href="#boot-loader">Boot Loader</a></li>
+<li><a class="reference internal" href="#reboot">REBOOT</a></li>
+<li><a class="reference internal" href="#post-install">POST INSTALL</a></li>
+<li><a class="reference internal" href="#display-manager">Display Manager</a></li>
+<li><a class="reference internal" href="#add-for-video-card-to-package-use">Add for video card to package.use</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    </body>
+</html>

@@ -1,0 +1,607 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Gentoo Install" href="gentoo_install.html" /><link rel="prev" title="Gentoo Notes" href="index.html" />
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
+        <title>Gentoo ZFS Install - Chronicles of Hope documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=dace8524" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --color-brand-content: #CC3333;
+  --color-background-primary: #f8f9fb;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     Because I can't remember squat 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Chronicles of Hope  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">How Great is the darkness</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../FreeBSD/index.html">FreeBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of FreeBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../FreeBSD/freebsd-infosec.html">Infosec on FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FreeBSD/freebsd-thru-handbook.html">Handbook as a check list</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NetBSD/index.html">NetBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of NetBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NetBSD/addnewdisk.html">Add a New Drive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NetBSD/printing.html">Setting Up my Printer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NetBSD/nginx.html">NetBSD and Nginx</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../OpenBSD/index.html">OpenBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of OpenBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-firefox.html">Unveil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-httpd.html">openHammer and httpd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-print.html">openHammer Printing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Gentoo Notes</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Gentoo Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Gentoo ZFS Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo_install.html">Gentoo Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo_install_nvme.html">Gentoo Install NVME</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Hammer/index.html">Hammer File Share</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Hammer File Share</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Hammer/hammer_notes.html">Notes on creating a Hammer File Share</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Hammer/types_of_hammers.html">Famous Hammers in Myths and History</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/rgeorgia/chronicle-my-brain.git" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="gentoo-zfs-install">
+<h1>Gentoo ZFS Install<a class="headerlink" href="#gentoo-zfs-install" title="Link to this heading">¶</a></h1>
+<section id="zfs-on-root">
+<h2>ZFS on root<a class="headerlink" href="#zfs-on-root" title="Link to this heading">¶</a></h2>
+<p>ref: <a class="reference external" href="https://wiki.gentoo.org/wiki/ZFS/rootfs#Live_Media">ZFS/rootfs</a></p>
+<section id="partitions">
+<h3>Partitions<a class="headerlink" href="#partitions" title="Link to this heading">¶</a></h3>
+<p>Layout</p>
+</section>
+</section>
+<section id="follow-the-handbook">
+<h2>Follow the Handbook<a class="headerlink" href="#follow-the-handbook" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Section on Preparing the disks returning <strong>at the creating file</strong> systems section.</p></li>
+<li><p>This guide will be using the example below however it should be simple enough to adapt this to the user’s needs.</p></li>
+</ul>
+<div class="table-wrapper colwidths-given docutils container" id="id3">
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Disk Partitioning</span><a class="headerlink" href="#id3" title="Link to this table">¶</a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 30.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Device</p></th>
+<th class="head"><p>Size</p></th>
+<th class="head"><p>Partition</p></th>
+<th class="head"><p>Mount Point</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/dev/sda1</span></code></p></td>
+<td><p>1024 MiB</p></td>
+<td><p>EFI System Partition</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/boot/efi</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/dev/sda2</span></code></p></td>
+<td><p>2048 MiB</p></td>
+<td><p>swap</p></td>
+<td><p>swap</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/dev/sda3</span></code></p></td>
+<td><p>Rest of Disk</p></td>
+<td><p>ZFS Partition</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/,</span> <span class="pre">/boot,</span> <span class="pre">/home,</span></code> …</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The document used <code class="docutils literal notranslate"><span class="pre">/efi</span></code> as the mount point, but other docs use <code class="docutils literal notranslate"><span class="pre">/boot/efi</span></code>.</p>
+<section id="boot">
+<h3>Boot<a class="headerlink" href="#boot" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkfs.vfat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/sda1
+</pre></div>
+</div>
+</section>
+<section id="swap">
+<h3>Swap<a class="headerlink" href="#swap" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkswap<span class="w"> </span>/dev/sda2
+swapon<span class="w"> </span>/dev/sda2
+</pre></div>
+</div>
+</section>
+<section id="zfs-setup">
+<h3>ZFS Setup<a class="headerlink" href="#zfs-setup" title="Link to this heading">¶</a></h3>
+<p>Generate host ID</p>
+<p>Randomly generate host ID into /etc/hostid allowing output overwrite.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zgenhostid<span class="w"> </span>-f
+</pre></div>
+</div>
+<p>Alternatively, set a specific host ID, 0x00bab10c in this example.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zgenhostid<span class="w"> </span>-f<span class="w"> </span>0x00bab10c
+</pre></div>
+</div>
+<p>Create a ZFS pool</p>
+<p>Load ZFS kernel module and create a ZFS pool tank on /dev/sda3.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>modprobe<span class="w"> </span>zfs
+
+zpool<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-o<span class="w"> </span><span class="nv">ashift</span><span class="o">=</span><span class="m">12</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-o<span class="w"> </span><span class="nv">autotrim</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-o<span class="w"> </span><span class="nv">compatibility</span><span class="o">=</span>openzfs-2.1-linux<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-O<span class="w"> </span><span class="nv">acltype</span><span class="o">=</span>posixacl<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-O<span class="w"> </span><span class="nv">xattr</span><span class="o">=</span>sa<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-O<span class="w"> </span><span class="nv">relatime</span><span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-O<span class="w"> </span><span class="nv">compression</span><span class="o">=</span>lz4<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-m<span class="w"> </span>none<span class="w"> </span>tank<span class="w"> </span>/dev/sda3
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The option <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">compatibility=openzfs-2.1-linux</span></code> makes sure that GRUB works. If you are using ZFSBootMenu, you can skip that option.</p>
+</div>
+</section>
+<section id="create-zfs-file-systems">
+<h3>Create ZFS file systems<a class="headerlink" href="#create-zfs-file-systems" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zfs<span class="w"> </span>create<span class="w"> </span>-o<span class="w"> </span><span class="nv">mountpoint</span><span class="o">=</span>none<span class="w"> </span>tank/os
+zfs<span class="w"> </span>create<span class="w"> </span>-o<span class="w"> </span><span class="nv">mountpoint</span><span class="o">=</span>/<span class="w"> </span>-o<span class="w"> </span><span class="nv">canmount</span><span class="o">=</span>noauto<span class="w"> </span>tank/os/gentoo
+zfs<span class="w"> </span>create<span class="w"> </span>-o<span class="w"> </span><span class="nv">mountpoint</span><span class="o">=</span>/home<span class="w"> </span>tank/home
+
+zpool<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">bootfs</span><span class="o">=</span>tank/os/gentoo<span class="w"> </span>tank
+zpool<span class="w"> </span><span class="nb">export</span><span class="w"> </span>tank
+zpool<span class="w"> </span>import<span class="w"> </span>-N<span class="w"> </span>-R<span class="w"> </span>/mnt/gentoo<span class="w"> </span>tank
+zfs<span class="w"> </span>mount<span class="w"> </span>tank/os/gentoo
+zfs<span class="w"> </span>mount<span class="w"> </span>tank/home
+mount<span class="w"> </span>-t<span class="w"> </span>zfs
+</pre></div>
+</div>
+<p>Here is an example of the command output in case of successful mounting of file systems.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tank</span><span class="o">/</span><span class="n">os</span><span class="o">/</span><span class="n">gentoo</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">gentoo</span> <span class="nb">type</span> <span class="n">zfs</span> <span class="p">(</span><span class="n">rw</span><span class="p">,</span><span class="n">relatime</span><span class="p">,</span><span class="n">xattr</span><span class="p">,</span><span class="n">posixacl</span><span class="p">)</span>
+<span class="n">tank</span><span class="o">/</span><span class="n">home</span> <span class="n">on</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">gentoo</span><span class="o">/</span><span class="n">home</span> <span class="nb">type</span> <span class="n">zfs</span> <span class="p">(</span><span class="n">rw</span><span class="p">,</span><span class="n">relatime</span><span class="p">,</span><span class="n">xattr</span><span class="p">,</span><span class="n">posixacl</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Update device symbolic links:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>udevadm<span class="w"> </span>trigger
+</pre></div>
+</div>
+</section>
+</section>
+<section id="return-to-the-handbook">
+<h2>Return to the Handbook<a class="headerlink" href="#return-to-the-handbook" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>EFI_system_partition_filesyste and return <strong>just before entering chroot</strong> command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>/etc/hostid<span class="w"> </span>/mnt/gentoo/etc
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h2>Return to the Handbook<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Installing Gentoo base system and return here at <strong>Kernel configuration</strong> and compilation.</p></li>
+</ul>
+<section id="kernel">
+<h3>Kernel<a class="headerlink" href="#kernel" title="Link to this heading">¶</a></h3>
+<p>Edit <code class="docutils literal notranslate"><span class="pre">/etc/portage/make.conf</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>/etc/portage/make.conf
+<span class="c1"># Add the following line for distrubution kernel support</span>
+<span class="nv">USE</span><span class="o">=</span><span class="s2">&quot;dist-kernel&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>-av<span class="w"> </span>sys-kernel/gentoo-kernel
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>if you prefer using the pre-compiled binary,
+emerge -av sys-kernel/gentoo-kernel-bin</p>
+</div>
+</section>
+<section id="zfs-userland-utilities-and-kernel-module">
+<h3>ZFS userland utilities and kernel module<a class="headerlink" href="#zfs-userland-utilities-and-kernel-module" title="Link to this heading">¶</a></h3>
+<p>The sys-fs/zfs and sys-fs/zfs-kmod packages are necessary to allow your system to interact with and manage your ZFS pools.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>-av<span class="w"> </span>sys-fs/zfs<span class="w"> </span>sys-fs/zfs-kmod
+</pre></div>
+</div>
+</section>
+<section id="initramfs">
+<h3>Initramfs<a class="headerlink" href="#initramfs" title="Link to this heading">¶</a></h3>
+<p>Create a directory for Dracut configuration files if it does not exist.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/dracut.conf.d
+</pre></div>
+</div>
+<p>Then, create a file zol.conf with the following content in this directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>/etc/dracut.conf.d/zol.conf
+</pre></div>
+</div>
+<p>FILE /etc/dracut.conf.d/zol.confDracut configuration for ZFS</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nofsck</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span>
+<span class="n">add_dracutmodules</span><span class="o">+=</span><span class="s2">&quot; zfs &quot;</span>
+</pre></div>
+</div>
+<p>Build the initramfs for the distribution kernel</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>--config<span class="w"> </span>sys-kernel/gentoo-kernel
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Or, if the binary version was installed,
+emerge –config sys-kernel/gentoo-kernel-bin</p>
+</div>
+</section>
+</section>
+<section id="id2">
+<h2>Return to the Handbook<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Configuring the system and return here at <strong>Configuring the bootloader</strong> for anything other than <code class="docutils literal notranslate"><span class="pre">sys-boot/grub</span></code>.</p></li>
+</ul>
+<section id="bootloader">
+<h3>Bootloader<a class="headerlink" href="#bootloader" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zfs<span class="w"> </span><span class="nb">set</span><span class="w"> </span>org.zfsbootmenu:commandline<span class="o">=</span><span class="s2">&quot;quiet loglevel=4&quot;</span><span class="w"> </span>tank/os
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Therefore, the -systemd USE flag must be added to sys-kernel/installkernel to prevent that from happening.</p>
+</div>
+<p><strong>If</strong> the ESP was not mounted previously, it is necessary to do it now:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>/boot/efi
+mount<span class="w"> </span>/dev/sda1<span class="w"> </span>/boot/efi
+</pre></div>
+</div>
+</section>
+<section id="zfsbootmenu">
+<h3>ZFSBootMenu<a class="headerlink" href="#zfsbootmenu" title="Link to this heading">¶</a></h3>
+<p>Installing ZFSBootMenu (prebuilt)</p>
+<p>Create a directory for the bootloader and download the EFI binary into it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>/boot/efi/EFI/BOOT
+curl<span class="w"> </span>-L<span class="w"> </span>https://get.zfsbootmenu.org/efi<span class="w"> </span>-o<span class="w"> </span>/boot/efi/EFI/BOOT/BOOTX64.EFI
+
+emerge<span class="w"> </span>-av<span class="w"> </span>sys-boot/efibootmgr
+efibootmgr<span class="w"> </span>-c<span class="w"> </span>-d<span class="w"> </span>/dev/sda<span class="w"> </span>-p<span class="w"> </span><span class="m">1</span><span class="w"> </span>-L<span class="w"> </span><span class="s2">&quot;ZFSBootMenu&quot;</span><span class="w"> </span>-l<span class="w"> </span><span class="se">\\</span>BOOT<span class="se">\\</span>EFI<span class="se">\\</span>BOOT<span class="se">\\</span>BOOTX64.EFI
+</pre></div>
+</div>
+</section>
+</section>
+<section id="rebooting-the-system">
+<h2>Rebooting the system<a class="headerlink" href="#rebooting-the-system" title="Link to this heading">¶</a></h2>
+<p>Exit the chrooted environment and unmount all mounted partitions, do not forget to export the pool. After that, the system can be rebooted.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span>
+<span class="nb">cd</span>
+umount<span class="w"> </span>-l<span class="w"> </span>/mnt/gentoo/dev<span class="o">{</span>/shm,/pts,<span class="o">}</span>
+umount<span class="w"> </span>-n<span class="w"> </span>-R<span class="w"> </span>/mnt/gentoo
+zpool<span class="w"> </span><span class="nb">export</span><span class="w"> </span>tank
+reboot
+</pre></div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="gentoo_install.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Gentoo Install</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Gentoo Notes</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Ronverbs, LLC
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Gentoo ZFS Install</a><ul>
+<li><a class="reference internal" href="#zfs-on-root">ZFS on root</a><ul>
+<li><a class="reference internal" href="#partitions">Partitions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#follow-the-handbook">Follow the Handbook</a><ul>
+<li><a class="reference internal" href="#boot">Boot</a></li>
+<li><a class="reference internal" href="#swap">Swap</a></li>
+<li><a class="reference internal" href="#zfs-setup">ZFS Setup</a></li>
+<li><a class="reference internal" href="#create-zfs-file-systems">Create ZFS file systems</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#return-to-the-handbook">Return to the Handbook</a></li>
+<li><a class="reference internal" href="#id1">Return to the Handbook</a><ul>
+<li><a class="reference internal" href="#kernel">Kernel</a></li>
+<li><a class="reference internal" href="#zfs-userland-utilities-and-kernel-module">ZFS userland utilities and kernel module</a></li>
+<li><a class="reference internal" href="#initramfs">Initramfs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">Return to the Handbook</a><ul>
+<li><a class="reference internal" href="#bootloader">Bootloader</a></li>
+<li><a class="reference internal" href="#zfsbootmenu">ZFSBootMenu</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rebooting-the-system">Rebooting the system</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    </body>
+</html>
