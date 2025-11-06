@@ -9,13 +9,12 @@ I've tried for a week to install Gentoo on this laptop. All attempts have failed
 General Prep
 ------------
 
-lsblk
-
-ping www.gentoo.org
-
-ifconfig to get interfaces
+- lsblk
+- ping www.gentoo.org
+- ifconfig to get interfaces
 
 Interfaces:
+-----------
 
 - enp0s31f6
 - wlp2s0
@@ -27,7 +26,7 @@ Prepare Disks
 
 .. code-block:: bash
 
-        livecd ~ # wipefs -a /dev/nvme0n1
+        wipefs -a /dev/nvme0n1
         /dev/nvme0n1: 8 bytes were erased at offset 0x00000200 (gpt): 45 46 49 20 50 41 52 54
         /dev/nvme0n1: 8 bytes were erased at offset 0x773c255e00 (gpt): 45 46 49 20 50 41 52 54
         /dev/nvme0n1: 2 bytes were erased at offset 0x000001fe (PMBR): 55 aa
@@ -50,7 +49,7 @@ Mount Drives
 
         mount /dev/nvme0n1p3 /mnt/gentoo
         swapon /dev/nvme0n1p2
-        mkdir -p /mnt/gentoo/boot/efi
+        mkdir -p /mnt/gentoo/efi
 
 Grab Stage
 ----------
@@ -65,7 +64,7 @@ Make sure you are in the proper directory
 
         links https://www.gentoo.org/downloads/mirrors/
 
-        tar xpvf <stage> --xattrs-include='*.*' --numeric-owner
+        tar xpvf <stage> --xattrs-include='*.*' --numeric-owner -C /mnt/gentoo
 
 Update make.conf
 ----------------
@@ -73,10 +72,10 @@ Update make.conf
 .. code-block:: bash
 
         COMMON_FLAGS="-march=native -O2 -pipe"
-        MAKEOPTS="-j8"
+        MAKEOPTS="-j8 -l9"
         USE="-systemd -KDE X gtk gnome"
 
-        cp --dereference /etc/resolv.conf /mnt/gentoo/etc
+``cp --dereference /etc/resolv.conf /mnt/gentoo/etc``
 
 Mount Stuff
 -----------
@@ -95,12 +94,14 @@ Mount Stuff
         source /etc/profile
         export PS1="(chroot) $PS1"
 
-        mount /dev/nvme0n1p1 /boot/efi
+        mount /dev/nvme0n1p1 /efi
 
         emerge-webrsync
 
         eselect profile list
-        eselect profile set 23
+        eselect profile set 5
+
+        emerge --oneshot sys-apps/portage
         emerge --sync
 
         eselect news list
@@ -113,7 +114,11 @@ Note: set portage env var ACCEPT_LICENSE
 
 Note: /var/db/repos/gentoo/profiles/use.desc describes all USE flags
 
-Note: What about video card in /etc/portage/package.use/00video_cards?
+**Note**: What about video card in /etc/portage/package.use/00video_cards?
+
+Some instructions have adding VIDEO_CARDS to make.conf
+
+``VIDEO_CARDS="intel"``
 
 .. code-block:: bash
 
@@ -181,7 +186,7 @@ fstab dev
 
         vim /etc/fstab
 
-        /dev/nvme0n1p1   /boot/efi   vfat    defaults            0 2
+        /dev/nvme0n1p1   /efi   vfat    defaults            0 2
         /dev/nvme0n1p2   none        swap    sw                  0 0
         /dev/nvme0n1p3   /           xfs    defaults,noatime    0 1
 
@@ -196,7 +201,7 @@ fstab blkid
         vim /etc/fstab
 
         UUID=a21029c4-160e-4c85-b285-5ff23e109495    /           xfs     defaults,noatime    0 1  
-        UUID=6A8B-A612                               /boot/efi   vfat    defaults            0 2
+        UUID=6A8B-A612                               /efi   vfat    defaults            0 2
         UUID=8afc8f4a-fd82-4fa1-a52f-328227bea259    none        swap    sw                  0 0
 
 
@@ -240,9 +245,9 @@ Change root password
 
         passwd root
 
-        emerge --ask app-shells/fish bash
+        emerge --ask app-shells/zsh bash
 
-        useradd -m -G wheel,video,audio,kvm,plugdev -s /usr/bin/fish rgeorgia
+        useradd -m -G wheel,video,audio,kvm,plugdev -s /usr/bin/zsh rgeorgia
         passwd rgeorgia
 
         emerge --ask app-admin/sysklogd
@@ -264,9 +269,9 @@ Boot Loader
         echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
 
         emerge --ask sys-boot/grub efibootmgr
-        # grub-install --efi-directory /boot/efi
-        grub-install --target=x86_64-efi --efi-directory=/boot/efi
-        grub-mkconfig -o /boot/grub/grub.cfg
+        # grub-install --efi-directory /efi
+        grub-install --target=x86_64-efi --efi-directory=/efi
+        grub-mkconfig -o /efi/EFI
 
 REBOOT
 ------
