@@ -11,5 +11,6 @@ Hammer File Share
    :maxdepth: 2
    :caption: Hammer File Share
 
-   hammer_notes
    types_of_hammers 
+   oh_external_drv
+   oh_samba
