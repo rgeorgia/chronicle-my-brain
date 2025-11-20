@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Notes for Void Linux" href="void_notes.html" /><link rel="prev" title="Famous Hammers in Myths and History" href="../Hammer/types_of_hammers.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
-        <title>Notes on Void Linux - Chronicles of Hope documentation</title>
+        <title>Setting up bozohttpd - Chronicles of Hope documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
@@ -187,7 +187,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -206,24 +206,33 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">How Great is the darkness</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../FreeBSD/index.html">FreeBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of FreeBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../FreeBSD/freebsd-infosec.html">ZAP port was installed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FreeBSD/freebsd-infosec.html">Infosec on FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FreeBSD/freebsd-thru-handbook.html">Handbook as a check list</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Gentoo/index.html">Notes for Gentoo</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Notes for Gentoo</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">NetBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of NetBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="addnewdisk.html">Add a New Drive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="printing.html">Setting Up my Printer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nginx.html">NetBSD and Nginx</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../OpenBSD/index.html">OpenBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of OpenBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-firefox.html">Unveil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-httpd.html">openHammer and httpd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-print.html">openHammer Printing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Gentoo/index.html">Gentoo Notes</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Gentoo Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Gentoo/zfs_install.html">Gentoo ZFS Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Gentoo/gentoo_install.html">Gentoo Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Gentoo/gentoo_install_nvme.html">Gentoo Install NVME</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Hammer/index.html">Hammer File Share</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Hammer File Share</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Hammer/index.html">Hammer File Share</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Hammer File Share</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Hammer/hammer_notes.html">Notes on creating a Hammer File Share</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Hammer/types_of_hammers.html">Famous Hammers in Myths and History</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Notes on Void Linux</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Notes on Void Linux</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="void_notes.html">Notes for Void Linux</a></li>
 </ul>
 </li>
 </ul>
@@ -260,20 +269,19 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="notes-on-void-linux">
-<h1>Notes on Void Linux<a class="headerlink" href="#notes-on-void-linux" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Void Linux</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="void_notes.html">Notes for Void Linux</a></li>
-</ul>
-</div>
+          <section id="setting-up-bozohttpd">
+<h1>Setting up bozohttpd<a class="headerlink" href="#setting-up-bozohttpd" title="Link to this heading">¶</a></h1>
+<p>I need to setup a web server so I can provide an interface for the user to setup the samba share or look at files or something… Sounds complicated. I’ll simple setup a website for either Rocket, Axiom or Django.</p>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<p><a class="reference external" href="https://www.unitedbsd.com/d/434-serve-files-securely-on-netbsd-over-https-via-bozotic-httpd">Serve files securely on NetBSD over HTTPS via bozotic-httpd</a></p>
+</section>
 </section>
 
         </article>
@@ -281,26 +289,8 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="void_notes.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">Notes for Void Linux</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="../Hammer/types_of_hammers.html">
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Famous Hammers in Myths and History</div>
-                
-              </div>
-            </a>
+          
+          
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -319,8 +309,27 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Setting up bozohttpd</a><ul>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
