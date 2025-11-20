@@ -1,0 +1,763 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Setting Up Samba" href="oh_samba.html" /><link rel="prev" title="Famous Hammers in Myths and History" href="types_of_hammers.html" />
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2025.07.19 -->
+        <title>Setting Up External Drive - Chronicles of Hope documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=25af2a20" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=dace8524" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --color-brand-content: #CC3333;
+  --color-background-primary: #f8f9fb;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+<div class="announcement">
+  <aside class="announcement-content">
+     Because I can't remember squat 
+  </aside>
+</div>
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Chronicles of Hope  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">How Great is the darkness</span></p>
+<ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../FreeBSD/index.html">FreeBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of FreeBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../FreeBSD/freebsd-infosec.html">Infosec on FreeBSD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FreeBSD/freebsd-thru-handbook.html">Handbook as a check list</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../NetBSD/index.html">NetBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of NetBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../NetBSD/addnewdisk.html">Add a New Drive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NetBSD/printing.html">Setting Up my Printer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NetBSD/nginx.html">NetBSD and Nginx</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../OpenBSD/index.html">OpenBSD Notes</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of OpenBSD Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-firefox.html">Unveil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-httpd.html">openHammer and httpd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OpenBSD/openbsd-print.html">openHammer Printing</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Gentoo/index.html">Gentoo Notes</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Gentoo Notes</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Gentoo/zfs_install.html">Gentoo ZFS Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gentoo/gentoo_install.html">Gentoo Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Gentoo/gentoo_install_nvme.html">Gentoo Install NVME</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Hammer File Share</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Hammer File Share</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types_of_hammers.html">Famous Hammers in Myths and History</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Setting Up External Drive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oh_samba.html">Setting Up Samba</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/rgeorgia/chronicle-my-brain.git" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="setting-up-external-drive">
+<h1>Setting Up External Drive<a class="headerlink" href="#setting-up-external-drive" title="Link to this heading">¶</a></h1>
+<p>How many disks do I have?</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>sysctl<span class="w"> </span>hw.disknames
+hw.disknames<span class="o">=</span>sd0:,sd1:ddfd33f24fa82897
+</pre></div>
+</div>
+<p>Now I want see which is the boot disk.</p>
+<section id="dmesg-grep-sd">
+<h2>dmesg | grep sd*<a class="headerlink" href="#dmesg-grep-sd" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>sd0
+sd0<span class="w"> </span>at<span class="w"> </span>scsibus0<span class="w"> </span>targ<span class="w"> </span><span class="m">0</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>WDC<span class="w"> </span>WD40EFRX-68N,<span class="w"> </span><span class="m">82</span>.0&gt;<span class="w"> </span>naa.50014ee2651931c3
+sd0:<span class="w"> </span>3815447MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">7814037168</span><span class="w"> </span>sectors
+sd0<span class="w"> </span>at<span class="w"> </span>scsibus1<span class="w"> </span>targ<span class="w"> </span><span class="m">0</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>WDC<span class="w"> </span>WD40EFRX-68N,<span class="w"> </span><span class="m">82</span>.0&gt;<span class="w"> </span>naa.50014ee2651931c3
+sd0:<span class="w"> </span>3815447MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">7814037168</span><span class="w"> </span>sectors
+sd0<span class="w"> </span>at<span class="w"> </span>scsibus1<span class="w"> </span>targ<span class="w"> </span><span class="m">0</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>WDC<span class="w"> </span>WD40EFRX-68N,<span class="w"> </span><span class="m">82</span>.0&gt;<span class="w"> </span>naa.50014ee2651931c3
+sd0:<span class="w"> </span>3815447MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">7814037168</span><span class="w"> </span>sectors
+sd0<span class="w"> </span>at<span class="w"> </span>scsibus1<span class="w"> </span>targ<span class="w"> </span><span class="m">0</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>WDC<span class="w"> </span>WD40EFRX-68N,<span class="w"> </span><span class="m">82</span>.0&gt;<span class="w"> </span>naa.50014ee2651931c3
+sd0:<span class="w"> </span>3815447MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">7814037168</span><span class="w"> </span>sectors
+sd0<span class="w"> </span>at<span class="w"> </span>scsibus1<span class="w"> </span>targ<span class="w"> </span><span class="m">0</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>WDC<span class="w"> </span>WD40EFRX-68N,<span class="w"> </span><span class="m">82</span>.0&gt;<span class="w"> </span>naa.50014ee2651931c3
+sd0:<span class="w"> </span>3815447MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">7814037168</span><span class="w"> </span>sectors
+sd0<span class="w"> </span>at<span class="w"> </span>scsibus1<span class="w"> </span>targ<span class="w"> </span><span class="m">0</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>WDC<span class="w"> </span>WD40EFRX-68N,<span class="w"> </span><span class="m">82</span>.0&gt;<span class="w"> </span>naa.50014ee2651931c3
+sd0:<span class="w"> </span>3815447MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">7814037168</span><span class="w"> </span>sectors
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>sd1
+sd1<span class="w"> </span>at<span class="w"> </span>scsibus0<span class="w"> </span>targ<span class="w"> </span><span class="m">1</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>INDMEM<span class="w"> </span>SSD<span class="w"> </span>mSata,<span class="w"> </span>Q092&gt;<span class="w"> </span>naa.0000000000000000
+sd1:<span class="w"> </span>244198MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">500118192</span><span class="w"> </span>sectors,<span class="w"> </span>thin
+sd1<span class="w"> </span>at<span class="w"> </span>scsibus1<span class="w"> </span>targ<span class="w"> </span><span class="m">1</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>INDMEM<span class="w"> </span>SSD<span class="w"> </span>mSata,<span class="w"> </span>Q092&gt;<span class="w"> </span>naa.0000000000000000
+sd1:<span class="w"> </span>244198MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">500118192</span><span class="w"> </span>sectors,<span class="w"> </span>thin
+root<span class="w"> </span>on<span class="w"> </span>sd1a<span class="w"> </span><span class="o">(</span>ddfd33f24fa82897.a<span class="o">)</span><span class="w"> </span>swap<span class="w"> </span>on<span class="w"> </span>sd1b<span class="w"> </span>dump<span class="w"> </span>on<span class="w"> </span>sd1b
+sd1<span class="w"> </span>at<span class="w"> </span>scsibus1<span class="w"> </span>targ<span class="w"> </span><span class="m">1</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>INDMEM<span class="w"> </span>SSD<span class="w"> </span>mSata,<span class="w"> </span>Q092&gt;<span class="w"> </span>naa.0000000000000000
+sd1:<span class="w"> </span>244198MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">500118192</span><span class="w"> </span>sectors,<span class="w"> </span>thin
+root<span class="w"> </span>on<span class="w"> </span>sd1a<span class="w"> </span><span class="o">(</span>ddfd33f24fa82897.a<span class="o">)</span><span class="w"> </span>swap<span class="w"> </span>on<span class="w"> </span>sd1b<span class="w"> </span>dump<span class="w"> </span>on<span class="w"> </span>sd1b
+sd1<span class="w"> </span>at<span class="w"> </span>scsibus1<span class="w"> </span>targ<span class="w"> </span><span class="m">1</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>INDMEM<span class="w"> </span>SSD<span class="w"> </span>mSata,<span class="w"> </span>Q092&gt;<span class="w"> </span>naa.0000000000000000
+sd1:<span class="w"> </span>244198MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">500118192</span><span class="w"> </span>sectors,<span class="w"> </span>thin
+root<span class="w"> </span>on<span class="w"> </span>sd1a<span class="w"> </span><span class="o">(</span>ddfd33f24fa82897.a<span class="o">)</span><span class="w"> </span>swap<span class="w"> </span>on<span class="w"> </span>sd1b<span class="w"> </span>dump<span class="w"> </span>on<span class="w"> </span>sd1b
+sd1<span class="w"> </span>at<span class="w"> </span>scsibus1<span class="w"> </span>targ<span class="w"> </span><span class="m">1</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>INDMEM<span class="w"> </span>SSD<span class="w"> </span>mSata,<span class="w"> </span>Q092&gt;<span class="w"> </span>naa.0000000000000000
+sd1:<span class="w"> </span>244198MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">500118192</span><span class="w"> </span>sectors,<span class="w"> </span>thin
+root<span class="w"> </span>on<span class="w"> </span>sd1a<span class="w"> </span><span class="o">(</span>ddfd33f24fa82897.a<span class="o">)</span><span class="w"> </span>swap<span class="w"> </span>on<span class="w"> </span>sd1b<span class="w"> </span>dump<span class="w"> </span>on<span class="w"> </span>sd1b
+sd1<span class="w"> </span>at<span class="w"> </span>scsibus1<span class="w"> </span>targ<span class="w"> </span><span class="m">1</span><span class="w"> </span>lun<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>&lt;ATA,<span class="w"> </span>INDMEM<span class="w"> </span>SSD<span class="w"> </span>mSata,<span class="w"> </span>Q092&gt;<span class="w"> </span>naa.0000000000000000
+sd1:<span class="w"> </span>244198MB,<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes/sector,<span class="w"> </span><span class="m">500118192</span><span class="w"> </span>sectors,<span class="w"> </span>thin
+root<span class="w"> </span>on<span class="w"> </span>sd1a<span class="w"> </span><span class="o">(</span>ddfd33f24fa82897.a<span class="o">)</span><span class="w"> </span>swap<span class="w"> </span>on<span class="w"> </span>sd1b<span class="w"> </span>dump<span class="w"> </span>on<span class="w"> </span>sd1b
+</pre></div>
+</div>
+</section>
+<section id="df-h">
+<h2>df -h<a class="headerlink" href="#df-h" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>df<span class="w"> </span>-h
+Filesystem<span class="w">     </span>Size<span class="w">    </span>Used<span class="w">   </span>Avail<span class="w"> </span>Capacity<span class="w">  </span>Mounted<span class="w"> </span>on
+/dev/sd1a<span class="w">      </span><span class="m">7</span>.7G<span class="w">    </span>151M<span class="w">    </span><span class="m">7</span>.2G<span class="w">     </span><span class="m">3</span>%<span class="w">    </span>/
+/dev/sd1n<span class="w">     </span><span class="m">87</span>.2G<span class="w">   </span><span class="m">11</span>.9M<span class="w">   </span><span class="m">82</span>.9G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/home
+/dev/sd1d<span class="w">      </span><span class="m">7</span>.8G<span class="w">   </span><span class="m">10</span>.0K<span class="w">    </span><span class="m">7</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/tmp
+/dev/sd1f<span class="w">     </span><span class="m">33</span>.9G<span class="w">    </span><span class="m">1</span>.6G<span class="w">   </span><span class="m">30</span>.6G<span class="w">     </span><span class="m">6</span>%<span class="w">    </span>/usr
+/dev/sd1g<span class="w">      </span><span class="m">1</span>.9G<span class="w">    </span>322M<span class="w">    </span><span class="m">1</span>.5G<span class="w">    </span><span class="m">18</span>%<span class="w">    </span>/usr/X11R6
+/dev/sd1h<span class="w">     </span><span class="m">24</span>.2G<span class="w">    </span><span class="m">2</span>.3G<span class="w">   </span><span class="m">20</span>.7G<span class="w">    </span><span class="m">10</span>%<span class="w">    </span>/usr/local
+/dev/sd1k<span class="w">      </span><span class="m">6</span>.8G<span class="w">    </span><span class="m">2</span>.0K<span class="w">    </span><span class="m">6</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/usr/obj
+/dev/sd1j<span class="w">      </span><span class="m">6</span>.8G<span class="w">    </span><span class="m">2</span>.0K<span class="w">    </span><span class="m">6</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/usr/src
+/dev/sd1e<span class="w">     </span><span class="m">29</span>.1G<span class="w">   </span><span class="m">45</span>.1M<span class="w">   </span><span class="m">27</span>.6G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/var
+/dev/sd1m<span class="w">      </span><span class="m">9</span>.7G<span class="w">    </span><span class="m">2</span>.0K<span class="w">    </span><span class="m">9</span>.2G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/var/postgresql
+/dev/sd1l<span class="w">      </span><span class="m">7</span>.8G<span class="w">    </span><span class="m">1</span>.4M<span class="w">    </span><span class="m">7</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/var/www
+</pre></div>
+</div>
+<p>So, looks like sd1 is my boot drive. The /dev/sd1 is 240G drive.</p>
+<p>Let’s prepare sd0. I want a small partition for meta data or something else that sounds really cool and smart. The rest of the drive will be for my Samba share.</p>
+<p>Okay, I’ll take a look at sd0</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>fdisk<span class="w"> </span>sd0
+Disk:<span class="w"> </span>sd0<span class="w">       </span>Usable<span class="w"> </span>LBA:<span class="w"> </span><span class="m">34</span><span class="w"> </span>to<span class="w"> </span><span class="m">7814037134</span><span class="w"> </span><span class="o">[</span><span class="m">7814037168</span><span class="w"> </span>Sectors<span class="o">]</span>
+<span class="w">   </span><span class="c1">#: type                                 [       start:         size ]</span>
+------------------------------------------------------------------------
+
+
+rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>fdisk<span class="w"> </span>sd0
+Disk:<span class="w"> </span>sd0<span class="w">       </span>Usable<span class="w"> </span>LBA:<span class="w"> </span><span class="m">34</span><span class="w"> </span>to<span class="w"> </span><span class="m">7814037134</span><span class="w"> </span><span class="o">[</span><span class="m">7814037168</span><span class="w"> </span>Sectors<span class="o">]</span>
+<span class="w">   </span><span class="c1">#: type                                 [       start:         size ]</span>
+------------------------------------------------------------------------
+<span class="m">20</span>:50<span class="w"> </span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>fdisk<span class="w"> </span>-v<span class="w"> </span>sd0
+Primary<span class="w"> </span>GPT:
+Disk:<span class="w"> </span>sd0<span class="w">       </span>Usable<span class="w"> </span>LBA:<span class="w"> </span><span class="m">34</span><span class="w"> </span>to<span class="w"> </span><span class="m">7814037134</span><span class="w"> </span><span class="o">[</span><span class="m">7814037168</span><span class="w"> </span>Sectors<span class="o">]</span>
+GUID:<span class="w"> </span>eb81cd67-b076-11f0-93f2-41623103e5ba
+<span class="w">   </span><span class="c1">#: type                                 [       start:         size ]</span>
+<span class="w">      </span>guid<span class="w">                                 </span>name
+------------------------------------------------------------------------
+
+Secondary<span class="w"> </span>GPT:
+Disk:<span class="w"> </span>sd0<span class="w">       </span>Usable<span class="w"> </span>LBA:<span class="w"> </span><span class="m">34</span><span class="w"> </span>to<span class="w"> </span><span class="m">7814037134</span><span class="w"> </span><span class="o">[</span><span class="m">7814037168</span><span class="w"> </span>Sectors<span class="o">]</span>
+GUID:<span class="w"> </span>eb81cd67-b076-11f0-93f2-41623103e5ba
+<span class="w">   </span><span class="c1">#: type                                 [       start:         size ]</span>
+<span class="w">      </span>guid<span class="w">                                 </span>name
+------------------------------------------------------------------------
+
+MBR:
+Disk:<span class="w"> </span>sd0<span class="w">       </span>geometry:<span class="w"> </span><span class="m">32960</span>/511/255<span class="w"> </span><span class="o">[</span><span class="m">4294852800</span><span class="w"> </span>Sectors<span class="o">]</span>
+Offset:<span class="w"> </span><span class="m">0</span><span class="w">       </span>Signature:<span class="w"> </span>0xAA55
+<span class="w">            </span>Starting<span class="w">         </span>Ending<span class="w">         </span>LBA<span class="w"> </span>Info:
+<span class="w"> </span><span class="c1">#: id      C   H   S -      C   H   S [       start:        size ]</span>
+-------------------------------------------------------------------------------
+<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>EE<span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w"> </span>-<span class="w">  </span><span class="m">59967</span><span class="w"> </span><span class="m">146</span><span class="w">   </span><span class="m">3</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="m">1</span>:<span class="w">  </span><span class="m">7814037167</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>EFI<span class="w"> </span>GPT
+<span class="w"> </span><span class="m">1</span>:<span class="w"> </span><span class="m">00</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span>-<span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="m">0</span>:<span class="w">           </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>Unused
+<span class="w"> </span><span class="m">2</span>:<span class="w"> </span><span class="m">00</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span>-<span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="m">0</span>:<span class="w">           </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>Unused
+<span class="w"> </span><span class="m">3</span>:<span class="w"> </span><span class="m">00</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span>-<span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="m">0</span>:<span class="w">           </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>Unused
+</pre></div>
+</div>
+</section>
+<section id="creating-a-gpt">
+<h2>Creating a GPT<a class="headerlink" href="#creating-a-gpt" title="Link to this heading">¶</a></h2>
+<p>Looks like it’s not been initialized. I’ll be following instructions found on page 34 of <em>OpenBSD Mastery Filesystems</em> by Lucas. Seems like in order to create a new GPT all in one command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>fdisk<span class="w"> </span>-Ay<span class="w"> </span>sd0
+Writing<span class="w"> </span>GPT.
+</pre></div>
+</div>
+<p>Now look at our handy work.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>fdisk<span class="w"> </span>sd0
+
+Disk:<span class="w"> </span>sd0<span class="w">       </span>Usable<span class="w"> </span>LBA:<span class="w"> </span><span class="m">34</span><span class="w"> </span>to<span class="w"> </span><span class="m">7814037134</span><span class="w"> </span><span class="o">[</span><span class="m">7814037168</span><span class="w"> </span>Sectors<span class="o">]</span>
+<span class="w">   </span><span class="c1">#: type                                 [       start:         size ]</span>
+------------------------------------------------------------------------
+<span class="w">   </span><span class="m">0</span>:<span class="w"> </span>OpenBSD<span class="w">                              </span><span class="o">[</span><span class="w">          </span><span class="m">64</span>:<span class="w">   </span><span class="m">7814037071</span><span class="w"> </span><span class="o">]</span>
+
+rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>fdisk<span class="w"> </span>-v<span class="w"> </span>sd0
+
+Primary<span class="w"> </span>GPT:
+Disk:<span class="w"> </span>sd0<span class="w">       </span>Usable<span class="w"> </span>LBA:<span class="w"> </span><span class="m">34</span><span class="w"> </span>to<span class="w"> </span><span class="m">7814037134</span><span class="w"> </span><span class="o">[</span><span class="m">7814037168</span><span class="w"> </span>Sectors<span class="o">]</span>
+GUID:<span class="w"> </span>eb81cd67-b076-11f0-93f2-41623103e5ba
+<span class="w">   </span><span class="c1">#: type                                 [       start:         size ]</span>
+<span class="w">      </span>guid<span class="w">                                 </span>name
+------------------------------------------------------------------------
+<span class="w">   </span><span class="m">0</span>:<span class="w"> </span>OpenBSD<span class="w">                              </span><span class="o">[</span><span class="w">          </span><span class="m">64</span>:<span class="w">   </span><span class="m">7814037071</span><span class="w"> </span><span class="o">]</span>
+<span class="w">      </span>146aacad-d679-449a-ad69-04f0f00b098a<span class="w"> </span>OpenBSD<span class="w"> </span>Area
+
+Secondary<span class="w"> </span>GPT:
+Disk:<span class="w"> </span>sd0<span class="w">       </span>Usable<span class="w"> </span>LBA:<span class="w"> </span><span class="m">34</span><span class="w"> </span>to<span class="w"> </span><span class="m">7814037134</span><span class="w"> </span><span class="o">[</span><span class="m">7814037168</span><span class="w"> </span>Sectors<span class="o">]</span>
+GUID:<span class="w"> </span>eb81cd67-b076-11f0-93f2-41623103e5ba
+<span class="w">   </span><span class="c1">#: type                                 [       start:         size ]</span>
+<span class="w">      </span>guid<span class="w">                                 </span>name
+------------------------------------------------------------------------
+<span class="w">   </span><span class="m">0</span>:<span class="w"> </span>OpenBSD<span class="w">                              </span><span class="o">[</span><span class="w">          </span><span class="m">64</span>:<span class="w">   </span><span class="m">7814037071</span><span class="w"> </span><span class="o">]</span>
+<span class="w">      </span>146aacad-d679-449a-ad69-04f0f00b098a<span class="w"> </span>OpenBSD<span class="w"> </span>Area
+
+MBR:
+Disk:<span class="w"> </span>sd0<span class="w">       </span>geometry:<span class="w"> </span><span class="m">32960</span>/511/255<span class="w"> </span><span class="o">[</span><span class="m">4294852800</span><span class="w"> </span>Sectors<span class="o">]</span>
+Offset:<span class="w"> </span><span class="m">0</span><span class="w">       </span>Signature:<span class="w"> </span>0xAA55
+<span class="w">            </span>Starting<span class="w">         </span>Ending<span class="w">         </span>LBA<span class="w"> </span>Info:
+<span class="w"> </span><span class="c1">#: id      C   H   S -      C   H   S [       start:        size ]</span>
+-------------------------------------------------------------------------------
+<span class="w"> </span><span class="m">0</span>:<span class="w"> </span>EE<span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w"> </span>-<span class="w">  </span><span class="m">27006</span><span class="w"> </span><span class="m">208</span><span class="w">   </span><span class="m">2</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="m">1</span>:<span class="w">  </span><span class="m">3519069871</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>EFI<span class="w"> </span>GPT
+<span class="w"> </span><span class="m">1</span>:<span class="w"> </span><span class="m">00</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span>-<span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="m">0</span>:<span class="w">           </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>Unused
+<span class="w"> </span><span class="m">2</span>:<span class="w"> </span><span class="m">00</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span>-<span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="m">0</span>:<span class="w">           </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>Unused
+<span class="w"> </span><span class="m">3</span>:<span class="w"> </span><span class="m">00</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span>-<span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w"> </span><span class="o">[</span><span class="w">           </span><span class="m">0</span>:<span class="w">           </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>Unused
+</pre></div>
+</div>
+</section>
+<section id="disklabel">
+<h2>disklabel<a class="headerlink" href="#disklabel" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>disklabel<span class="w"> </span>-p<span class="w"> </span>t<span class="w"> </span>sd0
+
+<span class="c1"># /dev/rsd0c:</span>
+type:<span class="w"> </span>SCSI
+disk:<span class="w"> </span>SCSI<span class="w"> </span>disk
+label:<span class="w"> </span>WDC<span class="w"> </span>WD40EFRX-68N
+duid:<span class="w"> </span>4307e41acc9a8f74
+flags:
+bytes/sector:<span class="w"> </span><span class="m">512</span>
+sectors/track:<span class="w"> </span><span class="m">255</span>
+tracks/cylinder:<span class="w"> </span><span class="m">511</span>
+sectors/cylinder:<span class="w"> </span><span class="m">130305</span>
+cylinders:<span class="w"> </span><span class="m">59967</span>
+total<span class="w"> </span>sectors:<span class="w"> </span><span class="m">7814037168</span><span class="w"> </span><span class="c1"># total bytes: 3.6T</span>
+boundstart:<span class="w"> </span><span class="m">64</span>
+boundend:<span class="w"> </span><span class="m">7814037135</span>
+
+<span class="m">16</span><span class="w"> </span>partitions:
+<span class="c1">#                size           offset  fstype [fsize bsize   cpg]</span>
+<span class="w">  </span>a:<span class="w">             </span><span class="m">3</span>.6T<span class="w">               </span><span class="m">64</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">8192</span><span class="w"> </span><span class="m">65536</span><span class="w">     </span><span class="m">1</span>
+<span class="w">  </span>c:<span class="w">             </span><span class="m">3</span>.6T<span class="w">                </span><span class="m">0</span><span class="w">  </span>unused
+</pre></div>
+</div>
+</section>
+<section id="creating-partitions">
+<h2>Creating partitions<a class="headerlink" href="#creating-partitions" title="Link to this heading">¶</a></h2>
+<p>We will use disklabel -E to edit the partition table.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>disklabel<span class="w"> </span>-E<span class="w"> </span>sd0
+
+Label<span class="w"> </span>editor<span class="w"> </span><span class="o">(</span>enter<span class="w"> </span><span class="s1">&#39;?&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">help</span><span class="w"> </span>at<span class="w"> </span>any<span class="w"> </span>prompt<span class="o">)</span>
+sd0&gt;<span class="w"> </span>p<span class="w"> </span>g
+OpenBSD<span class="w"> </span>area:<span class="w"> </span><span class="m">64</span>-7814037135<span class="p">;</span><span class="w"> </span>size:<span class="w"> </span><span class="m">3726</span>.0G<span class="p">;</span><span class="w"> </span>free:<span class="w"> </span><span class="m">0</span>.0G
+<span class="c1">#                size           offset  fstype [fsize bsize   cpg]</span>
+<span class="w">  </span>a:<span class="w">          </span><span class="m">3726</span>.0G<span class="w">               </span><span class="m">64</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">8192</span><span class="w"> </span><span class="m">65536</span><span class="w">     </span><span class="m">1</span>
+<span class="w">  </span>c:<span class="w">          </span><span class="m">3726</span>.0G<span class="w">                </span><span class="m">0</span><span class="w">  </span>unused
+sd0&gt;<span class="w"> </span>d
+partition<span class="w"> </span>to<span class="w"> </span>delete:<span class="w"> </span><span class="o">[]</span><span class="w"> </span>a
+sd0*&gt;<span class="w"> </span>p
+OpenBSD<span class="w"> </span>area:<span class="w"> </span><span class="m">64</span>-7814037135<span class="p">;</span><span class="w"> </span>size:<span class="w"> </span><span class="m">7814037071</span><span class="p">;</span><span class="w"> </span>free:<span class="w"> </span><span class="m">7814037071</span>
+<span class="c1">#                size           offset  fstype [fsize bsize   cpg]</span>
+<span class="w">  </span>c:<span class="w">       </span><span class="m">7814037168</span><span class="w">                </span><span class="m">0</span><span class="w">  </span>unused
+sd0*&gt;<span class="w"> </span>a
+partition<span class="w"> </span>to<span class="w"> </span>add:<span class="w"> </span><span class="o">[</span>a<span class="o">]</span>
+offset:<span class="w"> </span><span class="o">[</span><span class="m">64</span><span class="o">]</span>
+size:<span class="w"> </span><span class="o">[</span><span class="m">7814037071</span><span class="o">]</span><span class="w"> </span>2g
+FS<span class="w"> </span>type:<span class="w"> </span><span class="o">[</span><span class="m">4</span>.2BSD<span class="o">]</span>
+sd0*&gt;<span class="w"> </span>p
+OpenBSD<span class="w"> </span>area:<span class="w"> </span><span class="m">64</span>-7814037135<span class="p">;</span><span class="w"> </span>size:<span class="w"> </span><span class="m">7814037071</span><span class="p">;</span><span class="w"> </span>free:<span class="w"> </span><span class="m">7809737071</span>
+<span class="c1">#                size           offset  fstype [fsize bsize   cpg]</span>
+<span class="w">  </span>a:<span class="w">          </span><span class="m">4300000</span><span class="w">               </span><span class="m">64</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">2048</span><span class="w"> </span><span class="m">16384</span><span class="w">     </span><span class="m">1</span>
+<span class="w">  </span>c:<span class="w">       </span><span class="m">7814037168</span><span class="w">                </span><span class="m">0</span><span class="w">  </span>unused
+sd0*&gt;<span class="w"> </span>a
+partition<span class="w"> </span>to<span class="w"> </span>add:<span class="w"> </span><span class="o">[</span>b<span class="o">]</span><span class="w"> </span>d
+offset:<span class="w"> </span><span class="o">[</span><span class="m">4300064</span><span class="o">]</span>
+size:<span class="w"> </span><span class="o">[</span><span class="m">7809737071</span><span class="o">]</span>
+FS<span class="w"> </span>type:<span class="w"> </span><span class="o">[</span><span class="m">4</span>.2BSD<span class="o">]</span>
+sd0*&gt;<span class="w"> </span>p
+OpenBSD<span class="w"> </span>area:<span class="w"> </span><span class="m">64</span>-7814037135<span class="p">;</span><span class="w"> </span>size:<span class="w"> </span><span class="m">7814037071</span><span class="p">;</span><span class="w"> </span>free:<span class="w"> </span><span class="m">111</span>
+<span class="c1">#                size           offset  fstype [fsize bsize   cpg]</span>
+<span class="w">  </span>a:<span class="w">          </span><span class="m">4300000</span><span class="w">               </span><span class="m">64</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">2048</span><span class="w"> </span><span class="m">16384</span><span class="w">     </span><span class="m">1</span>
+<span class="w">  </span>c:<span class="w">       </span><span class="m">7814037168</span><span class="w">                </span><span class="m">0</span><span class="w">  </span>unused
+<span class="w">  </span>d:<span class="w">       </span><span class="m">7809736960</span><span class="w">          </span><span class="m">4300160</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">8192</span><span class="w"> </span><span class="m">65536</span><span class="w">     </span><span class="m">1</span>
+sd0*&gt;<span class="w"> </span>p<span class="w"> </span>g
+OpenBSD<span class="w"> </span>area:<span class="w"> </span><span class="m">64</span>-7814037135<span class="p">;</span><span class="w"> </span>size:<span class="w"> </span><span class="m">3726</span>.0G<span class="p">;</span><span class="w"> </span>free:<span class="w"> </span><span class="m">0</span>.0G
+<span class="c1">#                size           offset  fstype [fsize bsize   cpg]</span>
+<span class="w">  </span>a:<span class="w">             </span><span class="m">2</span>.1G<span class="w">               </span><span class="m">64</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">2048</span><span class="w"> </span><span class="m">16384</span><span class="w">     </span><span class="m">1</span>
+<span class="w">  </span>c:<span class="w">          </span><span class="m">3726</span>.0G<span class="w">                </span><span class="m">0</span><span class="w">  </span>unused
+<span class="w">  </span>d:<span class="w">          </span><span class="m">3724</span>.0G<span class="w">          </span><span class="m">4300160</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">8192</span><span class="w"> </span><span class="m">65536</span><span class="w">     </span><span class="m">1</span>
+sd0*&gt;<span class="w"> </span>p<span class="w"> </span>t
+OpenBSD<span class="w"> </span>area:<span class="w"> </span><span class="m">64</span>-7814037135<span class="p">;</span><span class="w"> </span>size:<span class="w"> </span><span class="m">3</span>.6T<span class="p">;</span><span class="w"> </span>free:<span class="w"> </span><span class="m">0</span>.0T
+<span class="c1">#                size           offset  fstype [fsize bsize   cpg]</span>
+<span class="w">  </span>a:<span class="w">             </span><span class="m">0</span>.0T<span class="w">               </span><span class="m">64</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">2048</span><span class="w"> </span><span class="m">16384</span><span class="w">     </span><span class="m">1</span>
+<span class="w">  </span>c:<span class="w">             </span><span class="m">3</span>.6T<span class="w">                </span><span class="m">0</span><span class="w">  </span>unused
+<span class="w">  </span>d:<span class="w">             </span><span class="m">3</span>.6T<span class="w">          </span><span class="m">4300160</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">8192</span><span class="w"> </span><span class="m">65536</span><span class="w">     </span><span class="m">1</span>
+sd0*&gt;<span class="w"> </span>?
+Available<span class="w"> </span>commands:
+<span class="w"> </span>?<span class="w"> </span><span class="p">|</span><span class="w"> </span>h<span class="w">    </span>-<span class="w"> </span>show<span class="w"> </span><span class="nb">help</span><span class="w">                 </span>n<span class="w"> </span><span class="o">[</span>part<span class="o">]</span><span class="w"> </span>-<span class="w"> </span><span class="nb">set</span><span class="w"> </span>mount<span class="w"> </span>point
+<span class="w"> </span>A<span class="w">        </span>-<span class="w"> </span>auto<span class="w"> </span>partition<span class="w"> </span>all<span class="w"> </span>space<span class="w">  </span>p<span class="w"> </span><span class="o">[</span>unit<span class="o">]</span><span class="w"> </span>-<span class="w"> </span>print<span class="w"> </span>partitions
+<span class="w"> </span>a<span class="w"> </span><span class="o">[</span>part<span class="o">]</span><span class="w"> </span>-<span class="w"> </span>add<span class="w"> </span>partition<span class="w">             </span>q<span class="w">        </span>-<span class="w"> </span>quit<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>save<span class="w"> </span>changes
+<span class="w"> </span>b<span class="w">        </span>-<span class="w"> </span><span class="nb">set</span><span class="w"> </span>OpenBSD<span class="w"> </span>boundaries<span class="w">    </span>R<span class="w"> </span><span class="o">[</span>part<span class="o">]</span><span class="w"> </span>-<span class="w"> </span>resize<span class="w"> </span>auto<span class="w"> </span>allocated<span class="w"> </span>partition
+<span class="w"> </span>c<span class="w"> </span><span class="o">[</span>part<span class="o">]</span><span class="w"> </span>-<span class="w"> </span>change<span class="w"> </span>partition<span class="w"> </span>size<span class="w">     </span>r<span class="w">        </span>-<span class="w"> </span>display<span class="w"> </span>free<span class="w"> </span>space
+<span class="w"> </span>D<span class="w">        </span>-<span class="w"> </span>reset<span class="w"> </span>label<span class="w"> </span>to<span class="w"> </span>default<span class="w">    </span>s<span class="w"> </span><span class="o">[</span>path<span class="o">]</span><span class="w"> </span>-<span class="w"> </span>save<span class="w"> </span>label<span class="w"> </span>to<span class="w"> </span>file
+<span class="w"> </span>d<span class="w"> </span><span class="o">[</span>part<span class="o">]</span><span class="w"> </span>-<span class="w"> </span>delete<span class="w"> </span>partition<span class="w">          </span>U<span class="w">        </span>-<span class="w"> </span>undo<span class="w"> </span>all<span class="w"> </span>changes
+<span class="w"> </span>e<span class="w">        </span>-<span class="w"> </span>edit<span class="w"> </span>label<span class="w"> </span>description<span class="w">    </span>u<span class="w">        </span>-<span class="w"> </span>undo<span class="w"> </span>last<span class="w"> </span>change
+<span class="w"> </span>i<span class="w">        </span>-<span class="w"> </span>modify<span class="w"> </span>disklabel<span class="w"> </span>UID<span class="w">      </span>w<span class="w">        </span>-<span class="w"> </span>write<span class="w"> </span>label<span class="w"> </span>to<span class="w"> </span>disk
+<span class="w"> </span>l<span class="w"> </span><span class="o">[</span>unit<span class="o">]</span><span class="w"> </span>-<span class="w"> </span>print<span class="w"> </span>disk<span class="w"> </span>label<span class="w"> </span>header<span class="w">   </span>x<span class="w">        </span>-<span class="w"> </span><span class="nb">exit</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>lose<span class="w"> </span>changes
+<span class="w"> </span>M<span class="w">        </span>-<span class="w"> </span>disklabel<span class="o">(</span><span class="m">8</span><span class="o">)</span><span class="w"> </span>man<span class="w"> </span>page<span class="w">     </span>z<span class="w">        </span>-<span class="w"> </span>delete<span class="w"> </span>all<span class="w"> </span>partitions
+<span class="w"> </span>m<span class="w"> </span><span class="o">[</span>part<span class="o">]</span><span class="w"> </span>-<span class="w"> </span>modify<span class="w"> </span>partition
+
+Suffixes<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>used<span class="w"> </span>to<span class="w"> </span>indicate<span class="w"> </span>units<span class="w"> </span>other<span class="w"> </span>than<span class="w"> </span>sectors:
+<span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;k&#39;</span><span class="w"> </span><span class="o">(</span>kilobytes<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="w"> </span><span class="o">(</span>megabytes<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;g&#39;</span><span class="w"> </span><span class="o">(</span>gigabytes<span class="o">)</span><span class="w"> </span><span class="s1">&#39;t&#39;</span><span class="w"> </span><span class="o">(</span>terabytes<span class="o">)</span>
+<span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="w"> </span><span class="o">(</span>cylinders<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="o">(</span>%<span class="w"> </span>of<span class="w"> </span>total<span class="w"> </span>disk<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;&amp;&#39;</span><span class="w"> </span><span class="o">(</span>%<span class="w"> </span>of<span class="w"> </span>free<span class="w"> </span>space<span class="o">)</span>.
+Values<span class="w"> </span><span class="k">in</span><span class="w"> </span>non-sector<span class="w"> </span>units<span class="w"> </span>are<span class="w"> </span>truncated<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>nearest<span class="w"> </span>cylinder<span class="w"> </span>boundary.
+
+sd0*&gt;<span class="w"> </span>w
+sd0&gt;<span class="w"> </span>p
+OpenBSD<span class="w"> </span>area:<span class="w"> </span><span class="m">64</span>-7814037135<span class="p">;</span><span class="w"> </span>size:<span class="w"> </span><span class="m">7814037071</span><span class="p">;</span><span class="w"> </span>free:<span class="w"> </span><span class="m">111</span>
+<span class="c1">#                size           offset  fstype [fsize bsize   cpg]</span>
+<span class="w">  </span>a:<span class="w">          </span><span class="m">4300000</span><span class="w">               </span><span class="m">64</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">2048</span><span class="w"> </span><span class="m">16384</span><span class="w">     </span><span class="m">1</span>
+<span class="w">  </span>c:<span class="w">       </span><span class="m">7814037168</span><span class="w">                </span><span class="m">0</span><span class="w">  </span>unused
+<span class="w">  </span>d:<span class="w">       </span><span class="m">7809736960</span><span class="w">          </span><span class="m">4300160</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">8192</span><span class="w"> </span><span class="m">65536</span><span class="w">     </span><span class="m">1</span>
+sd0&gt;<span class="w"> </span>p<span class="w"> </span>g
+OpenBSD<span class="w"> </span>area:<span class="w"> </span><span class="m">64</span>-7814037135<span class="p">;</span><span class="w"> </span>size:<span class="w"> </span><span class="m">3726</span>.0G<span class="p">;</span><span class="w"> </span>free:<span class="w"> </span><span class="m">0</span>.0G
+<span class="c1">#                size           offset  fstype [fsize bsize   cpg]</span>
+<span class="w">  </span>a:<span class="w">             </span><span class="m">2</span>.1G<span class="w">               </span><span class="m">64</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">2048</span><span class="w"> </span><span class="m">16384</span><span class="w">     </span><span class="m">1</span>
+<span class="w">  </span>c:<span class="w">          </span><span class="m">3726</span>.0G<span class="w">                </span><span class="m">0</span><span class="w">  </span>unused
+<span class="w">  </span>d:<span class="w">          </span><span class="m">3724</span>.0G<span class="w">          </span><span class="m">4300160</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">8192</span><span class="w"> </span><span class="m">65536</span><span class="w">     </span><span class="m">1</span>
+sd0&gt;<span class="w"> </span>q
+No<span class="w"> </span>label<span class="w"> </span>changes.
+</pre></div>
+</div>
+</section>
+<section id="new-disk-layout">
+<h2>New disk layout<a class="headerlink" href="#new-disk-layout" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>disklabel<span class="w"> </span>sd0
+<span class="c1"># /dev/rsd0c:</span>
+type:<span class="w"> </span>SCSI
+disk:<span class="w"> </span>SCSI<span class="w"> </span>disk
+label:<span class="w"> </span>WDC<span class="w"> </span>WD40EFRX-68N
+duid:<span class="w"> </span>4307e41acc9a8f74
+flags:
+bytes/sector:<span class="w"> </span><span class="m">512</span>
+sectors/track:<span class="w"> </span><span class="m">255</span>
+tracks/cylinder:<span class="w"> </span><span class="m">511</span>
+sectors/cylinder:<span class="w"> </span><span class="m">130305</span>
+cylinders:<span class="w"> </span><span class="m">59967</span>
+total<span class="w"> </span>sectors:<span class="w"> </span><span class="m">7814037168</span>
+boundstart:<span class="w"> </span><span class="m">64</span>
+boundend:<span class="w"> </span><span class="m">7814037135</span>
+
+<span class="m">16</span><span class="w"> </span>partitions:
+<span class="c1">#                size           offset  fstype [fsize bsize   cpg]</span>
+<span class="w">  </span>a:<span class="w">          </span><span class="m">4300000</span><span class="w">               </span><span class="m">64</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">2048</span><span class="w"> </span><span class="m">16384</span><span class="w">     </span><span class="m">1</span>
+<span class="w">  </span>c:<span class="w">       </span><span class="m">7814037168</span><span class="w">                </span><span class="m">0</span><span class="w">  </span>unused
+<span class="w">  </span>d:<span class="w">       </span><span class="m">7809736960</span><span class="w">          </span><span class="m">4300160</span><span class="w">  </span><span class="m">4</span>.2BSD<span class="w">   </span><span class="m">8192</span><span class="w"> </span><span class="m">65536</span><span class="w">     </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="new-file-system">
+<h2>New file system<a class="headerlink" href="#new-file-system" title="Link to this heading">¶</a></h2>
+<p>Now I’ll “format” the new partitions. Note: using the -q flag will suppress the output.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>newfs<span class="w"> </span>/dev/rsd0a
+
+/dev/rsd0a:<span class="w"> </span><span class="m">2099</span>.6MB<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">4300000</span><span class="w"> </span>sectors<span class="w"> </span>of<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes
+<span class="m">11</span><span class="w"> </span>cylinder<span class="w"> </span>groups<span class="w"> </span>of<span class="w"> </span><span class="m">202</span>.50MB,<span class="w"> </span><span class="m">12960</span><span class="w"> </span>blocks,<span class="w"> </span><span class="m">25920</span><span class="w"> </span>inodes<span class="w"> </span>each
+super-block<span class="w"> </span>backups<span class="w"> </span><span class="o">(</span><span class="k">for</span><span class="w"> </span>fsck<span class="w"> </span>-b<span class="w"> </span><span class="c1">#) at:</span>
+<span class="w"> </span><span class="m">160</span>,<span class="w"> </span><span class="m">414880</span>,<span class="w"> </span><span class="m">829600</span>,<span class="w"> </span><span class="m">1244320</span>,<span class="w"> </span><span class="m">1659040</span>,<span class="w"> </span><span class="m">2073760</span>,<span class="w"> </span><span class="m">2488480</span>,<span class="w"> </span><span class="m">2903200</span>,<span class="w"> </span><span class="m">3317920</span>,<span class="w"> </span><span class="m">3732640</span>,<span class="w"> </span><span class="m">4147360</span>,
+
+rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>newfs<span class="w"> </span>/dev/rsd0d
+/dev/rsd0d:<span class="w"> </span><span class="m">3813348</span>.0MB<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">7809736960</span><span class="w"> </span>sectors<span class="w"> </span>of<span class="w"> </span><span class="m">512</span><span class="w"> </span>bytes
+<span class="m">1168</span><span class="w"> </span>cylinder<span class="w"> </span>groups<span class="w"> </span>of<span class="w"> </span><span class="m">3266</span>.88MB,<span class="w"> </span><span class="m">52270</span><span class="w"> </span>blocks,<span class="w"> </span><span class="m">104704</span><span class="w"> </span>inodes<span class="w"> </span>each
+super-block<span class="w"> </span>backups<span class="w"> </span><span class="o">(</span><span class="k">for</span><span class="w"> </span>fsck<span class="w"> </span>-b<span class="w"> </span><span class="c1">#) at:</span>
+<span class="w"> </span><span class="m">256</span>,<span class="w"> </span><span class="m">6690816</span>,<span class="w"> </span><span class="m">13381376</span>,<span class="w"> </span><span class="m">20071936</span>,<span class="w"> </span><span class="m">26762496</span>,<span class="w"> </span><span class="m">33453056</span>,<span class="w"> </span><span class="m">40143616</span>,<span class="w"> </span><span class="m">46834176</span>,<span class="w"> </span><span class="m">53524736</span>,<span class="w"> </span><span class="m">60215296</span>,<span class="w"> </span><span class="m">66905856</span>,<span class="w"> </span><span class="m">73596416</span>,<span class="w"> </span><span class="m">80286976</span>,86977536,<span class="w"> </span><span class="m">93668096</span>,<span class="w"> </span><span class="m">100358656</span>,<span class="w"> </span><span class="m">107049216</span>,<span class="w"> </span>&lt;snip&gt;<span class="w"> </span><span class="m">7781121536</span>,<span class="w"> </span><span class="m">7787812096</span>,<span class="w"> </span><span class="m">7794502656</span>,<span class="w"> </span><span class="m">7801193216</span>,<span class="w"> </span><span class="m">7807883776</span>,
+</pre></div>
+</div>
+</section>
+<section id="finding-duid">
+<h2>Finding DUID<a class="headerlink" href="#finding-duid" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p><a class="reference external" href="mailto:rgeorgia&#37;&#52;&#48;openHammerPOC11">rgeorgia<span>&#64;</span>openHammerPOC11</a>:~$ doas disklabel sd0 | grep duid
+duid: 4307e41acc9a8f74</p>
+</section>
+<section id="update-fstab">
+<h2>Update fstab<a class="headerlink" href="#update-fstab" title="Link to this heading">¶</a></h2>
+<p>We have the DUID, let’s update the <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> to include our new partitions</p>
+<p><a class="reference external" href="mailto:rgeorgia&#37;&#52;&#48;openHammerPOC11">rgeorgia<span>&#64;</span>openHammerPOC11</a>:~$ cat /etc/fstab</p>
+<p>ddfd33f24fa82897.b none swap sw
+ddfd33f24fa82897.a / ffs rw 1 1
+ddfd33f24fa82897.n /home ffs rw,nodev,nosuid 1 2
+ddfd33f24fa82897.d /tmp ffs rw,nodev,nosuid 1 2
+ddfd33f24fa82897.f /usr ffs rw,nodev 1 2
+ddfd33f24fa82897.g /usr/X11R6 ffs rw,nodev 1 2
+ddfd33f24fa82897.h /usr/local ffs rw,wxallowed,nodev 1 2
+ddfd33f24fa82897.k /usr/obj ffs rw,nodev,nosuid 1 2
+ddfd33f24fa82897.j /usr/src ffs rw,nodev,nosuid 1 2
+ddfd33f24fa82897.e /var ffs rw,nodev,nosuid 1 2
+ddfd33f24fa82897.m /var/postgresql ffs rw,nodev,nosuid 1 2
+ddfd33f24fa82897.l /var/www ffs rw,nodev,nosuid 1 2
+4307e41acc9a8f74.a /var/hammer/hmeta ffs rw,nodev,nosuid 1 2
+4307e41acc9a8f74.d /var/hammer/martel ffs rw,nodev,nosuid 1 2</p>
+</section>
+<section id="mount-all">
+<h2>Mount all<a class="headerlink" href="#mount-all" title="Link to this heading">¶</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">mount</span> <span class="pre">-a</span></code> to mount everything listed in <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code>. Then check your work.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>doas<span class="w"> </span>mount<span class="w"> </span>-a
+
+rgeorgia@openHammerPOC11:~$<span class="w"> </span>mount
+
+/dev/sd1a<span class="w"> </span>on<span class="w"> </span>/<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span><span class="nb">local</span><span class="o">)</span>
+/dev/sd1n<span class="w"> </span>on<span class="w"> </span>/home<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev,<span class="w"> </span>nosuid<span class="o">)</span>
+/dev/sd1d<span class="w"> </span>on<span class="w"> </span>/tmp<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev,<span class="w"> </span>nosuid<span class="o">)</span>
+/dev/sd1f<span class="w"> </span>on<span class="w"> </span>/usr<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev<span class="o">)</span>
+/dev/sd1g<span class="w"> </span>on<span class="w"> </span>/usr/X11R6<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev<span class="o">)</span>
+/dev/sd1h<span class="w"> </span>on<span class="w"> </span>/usr/local<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev,<span class="w"> </span>wxallowed<span class="o">)</span>
+/dev/sd1k<span class="w"> </span>on<span class="w"> </span>/usr/obj<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev,<span class="w"> </span>nosuid<span class="o">)</span>
+/dev/sd1j<span class="w"> </span>on<span class="w"> </span>/usr/src<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev,<span class="w"> </span>nosuid<span class="o">)</span>
+/dev/sd1e<span class="w"> </span>on<span class="w"> </span>/var<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev,<span class="w"> </span>nosuid<span class="o">)</span>
+/dev/sd1m<span class="w"> </span>on<span class="w"> </span>/var/postgresql<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev,<span class="w"> </span>nosuid<span class="o">)</span>
+/dev/sd1l<span class="w"> </span>on<span class="w"> </span>/var/www<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev,<span class="w"> </span>nosuid<span class="o">)</span>
+/dev/sd0a<span class="w"> </span>on<span class="w"> </span>/var/hammer/hmeta<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev,<span class="w"> </span>nosuid<span class="o">)</span>
+/dev/sd0d<span class="w"> </span>on<span class="w"> </span>/var/hammer/martel<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ffs<span class="w"> </span><span class="o">(</span>local,<span class="w"> </span>nodev,<span class="w"> </span>nosuid<span class="o">)</span>
+
+rgeorgia@openHammerPOC11:~$<span class="w"> </span>df<span class="w"> </span>-h
+
+Filesystem<span class="w">     </span>Size<span class="w">    </span>Used<span class="w">   </span>Avail<span class="w"> </span>Capacity<span class="w">  </span>Mounted<span class="w"> </span>on
+/dev/sd1a<span class="w">      </span><span class="m">7</span>.7G<span class="w">    </span>151M<span class="w">    </span><span class="m">7</span>.2G<span class="w">     </span><span class="m">3</span>%<span class="w">    </span>/
+/dev/sd1n<span class="w">     </span><span class="m">87</span>.2G<span class="w">   </span><span class="m">11</span>.9M<span class="w">   </span><span class="m">82</span>.9G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/home
+/dev/sd1d<span class="w">      </span><span class="m">7</span>.8G<span class="w">   </span><span class="m">10</span>.0K<span class="w">    </span><span class="m">7</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/tmp
+/dev/sd1f<span class="w">     </span><span class="m">33</span>.9G<span class="w">    </span><span class="m">1</span>.6G<span class="w">   </span><span class="m">30</span>.6G<span class="w">     </span><span class="m">6</span>%<span class="w">    </span>/usr
+/dev/sd1g<span class="w">      </span><span class="m">1</span>.9G<span class="w">    </span>322M<span class="w">    </span><span class="m">1</span>.5G<span class="w">    </span><span class="m">18</span>%<span class="w">    </span>/usr/X11R6
+/dev/sd1h<span class="w">     </span><span class="m">24</span>.2G<span class="w">    </span><span class="m">2</span>.3G<span class="w">   </span><span class="m">20</span>.7G<span class="w">    </span><span class="m">10</span>%<span class="w">    </span>/usr/local
+/dev/sd1k<span class="w">      </span><span class="m">6</span>.8G<span class="w">    </span><span class="m">2</span>.0K<span class="w">    </span><span class="m">6</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/usr/obj
+/dev/sd1j<span class="w">      </span><span class="m">6</span>.8G<span class="w">    </span><span class="m">2</span>.0K<span class="w">    </span><span class="m">6</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/usr/src
+/dev/sd1e<span class="w">     </span><span class="m">29</span>.1G<span class="w">   </span><span class="m">45</span>.1M<span class="w">   </span><span class="m">27</span>.6G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/var
+/dev/sd1m<span class="w">      </span><span class="m">9</span>.7G<span class="w">    </span><span class="m">2</span>.0K<span class="w">    </span><span class="m">9</span>.2G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/var/postgresql
+/dev/sd1l<span class="w">      </span><span class="m">7</span>.8G<span class="w">    </span><span class="m">1</span>.4M<span class="w">    </span><span class="m">7</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/var/www
+</pre></div>
+</div>
+</section>
+<section id="reboot">
+<h2>Reboot<a class="headerlink" href="#reboot" title="Link to this heading">¶</a></h2>
+<p>Of course we need to reboot to verify it is all put together correctly.
+After the reboot…</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rgeorgia@openHammerPOC11:~$<span class="w"> </span>df<span class="w"> </span>-h
+
+Filesystem<span class="w">     </span>Size<span class="w">    </span>Used<span class="w">   </span>Avail<span class="w"> </span>Capacity<span class="w">  </span>Mounted<span class="w"> </span>on
+/dev/sd1a<span class="w">      </span><span class="m">7</span>.7G<span class="w">    </span>120M<span class="w">    </span><span class="m">7</span>.2G<span class="w">     </span><span class="m">2</span>%<span class="w">    </span>/
+/dev/sd1n<span class="w">     </span><span class="m">87</span>.2G<span class="w">   </span><span class="m">11</span>.9M<span class="w">   </span><span class="m">82</span>.9G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/home
+/dev/sd1d<span class="w">      </span><span class="m">7</span>.8G<span class="w">   </span><span class="m">10</span>.0K<span class="w">    </span><span class="m">7</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/tmp
+/dev/sd1f<span class="w">     </span><span class="m">33</span>.9G<span class="w">    </span><span class="m">1</span>.6G<span class="w">   </span><span class="m">30</span>.6G<span class="w">     </span><span class="m">6</span>%<span class="w">    </span>/usr
+/dev/sd1g<span class="w">      </span><span class="m">1</span>.9G<span class="w">    </span>322M<span class="w">    </span><span class="m">1</span>.5G<span class="w">    </span><span class="m">18</span>%<span class="w">    </span>/usr/X11R6
+/dev/sd1h<span class="w">     </span><span class="m">24</span>.2G<span class="w">    </span><span class="m">2</span>.3G<span class="w">   </span><span class="m">20</span>.7G<span class="w">    </span><span class="m">10</span>%<span class="w">    </span>/usr/local
+/dev/sd1k<span class="w">      </span><span class="m">6</span>.8G<span class="w">    </span><span class="m">2</span>.0K<span class="w">    </span><span class="m">6</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/usr/obj
+/dev/sd1j<span class="w">      </span><span class="m">6</span>.8G<span class="w">    </span><span class="m">2</span>.0K<span class="w">    </span><span class="m">6</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/usr/src
+/dev/sd1e<span class="w">     </span><span class="m">29</span>.1G<span class="w">   </span><span class="m">45</span>.1M<span class="w">   </span><span class="m">27</span>.6G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/var
+/dev/sd1m<span class="w">      </span><span class="m">9</span>.7G<span class="w">    </span><span class="m">2</span>.0K<span class="w">    </span><span class="m">9</span>.2G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/var/postgresql
+/dev/sd1l<span class="w">      </span><span class="m">7</span>.8G<span class="w">    </span><span class="m">1</span>.4M<span class="w">    </span><span class="m">7</span>.4G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/var/www
+/dev/sd0a<span class="w">      </span><span class="m">2</span>.0G<span class="w">    </span><span class="m">2</span>.0K<span class="w">    </span><span class="m">1</span>.9G<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/var/hammer/hmeta
+/dev/sd0d<span class="w">      </span><span class="m">3</span>.6T<span class="w">    </span><span class="m">8</span>.0K<span class="w">    </span><span class="m">3</span>.4T<span class="w">     </span><span class="m">1</span>%<span class="w">    </span>/var/hammer/martel
+</pre></div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="oh_samba.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Setting Up Samba</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="types_of_hammers.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Famous Hammers in Myths and History</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Ronverbs, LLC
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Setting Up External Drive</a><ul>
+<li><a class="reference internal" href="#dmesg-grep-sd">dmesg | grep sd*</a></li>
+<li><a class="reference internal" href="#df-h">df -h</a></li>
+<li><a class="reference internal" href="#creating-a-gpt">Creating a GPT</a></li>
+<li><a class="reference internal" href="#disklabel">disklabel</a></li>
+<li><a class="reference internal" href="#creating-partitions">Creating partitions</a></li>
+<li><a class="reference internal" href="#new-disk-layout">New disk layout</a></li>
+<li><a class="reference internal" href="#new-file-system">New file system</a></li>
+<li><a class="reference internal" href="#finding-duid">Finding DUID</a></li>
+<li><a class="reference internal" href="#update-fstab">Update fstab</a></li>
+<li><a class="reference internal" href="#mount-all">Mount all</a></li>
+<li><a class="reference internal" href="#reboot">Reboot</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    </body>
+</html>

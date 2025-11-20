@@ -231,8 +231,9 @@
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Hammer/index.html">Hammer File Share</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Hammer File Share</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Hammer/hammer_notes.html">Notes on creating a Hammer File Share</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Hammer/types_of_hammers.html">Famous Hammers in Myths and History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Hammer/oh_external_drv.html">Setting Up External Drive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Hammer/oh_samba.html">Setting Up Samba</a></li>
 </ul>
 </li>
 </ul>
@@ -281,10 +282,14 @@
 <p>I’ve tried for a week to install Gentoo on this laptop. All attempts have failed. :(</p>
 <section id="general-prep">
 <h2>General Prep<a class="headerlink" href="#general-prep" title="Link to this heading">¶</a></h2>
-<p>lsblk</p>
-<p>ping www.gentoo.org</p>
-<p>ifconfig to get interfaces</p>
-<p>Interfaces:</p>
+<ul class="simple">
+<li><p>lsblk</p></li>
+<li><p>ping www.gentoo.org</p></li>
+<li><p>ifconfig to get interfaces</p></li>
+</ul>
+</section>
+<section id="interfaces">
+<h2>Interfaces:<a class="headerlink" href="#interfaces" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>enp0s31f6</p></li>
 <li><p>wlp2s0</p></li>
@@ -293,7 +298,7 @@
 </section>
 <section id="prepare-disks">
 <h2>Prepare Disks<a class="headerlink" href="#prepare-disks" title="Link to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>livecd<span class="w"> </span>~<span class="w"> </span><span class="c1"># wipefs -a /dev/nvme0n1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wipefs<span class="w"> </span>-a<span class="w"> </span>/dev/nvme0n1
 /dev/nvme0n1:<span class="w"> </span><span class="m">8</span><span class="w"> </span>bytes<span class="w"> </span>were<span class="w"> </span>erased<span class="w"> </span>at<span class="w"> </span>offset<span class="w"> </span>0x00000200<span class="w"> </span><span class="o">(</span>gpt<span class="o">)</span>:<span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="m">46</span><span class="w"> </span><span class="m">49</span><span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">50</span><span class="w"> </span><span class="m">41</span><span class="w"> </span><span class="m">52</span><span class="w"> </span><span class="m">54</span>
 /dev/nvme0n1:<span class="w"> </span><span class="m">8</span><span class="w"> </span>bytes<span class="w"> </span>were<span class="w"> </span>erased<span class="w"> </span>at<span class="w"> </span>offset<span class="w"> </span>0x773c255e00<span class="w"> </span><span class="o">(</span>gpt<span class="o">)</span>:<span class="w"> </span><span class="m">45</span><span class="w"> </span><span class="m">46</span><span class="w"> </span><span class="m">49</span><span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">50</span><span class="w"> </span><span class="m">41</span><span class="w"> </span><span class="m">52</span><span class="w"> </span><span class="m">54</span>
 /dev/nvme0n1:<span class="w"> </span><span class="m">2</span><span class="w"> </span>bytes<span class="w"> </span>were<span class="w"> </span>erased<span class="w"> </span>at<span class="w"> </span>offset<span class="w"> </span>0x000001fe<span class="w"> </span><span class="o">(</span>PMBR<span class="o">)</span>:<span class="w"> </span><span class="m">55</span><span class="w"> </span>aa
@@ -315,7 +320,7 @@ mkfs.xfs<span class="w">       </span>/dev/nvme0n1p3
 <h2>Mount Drives<a class="headerlink" href="#mount-drives" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount<span class="w"> </span>/dev/nvme0n1p3<span class="w"> </span>/mnt/gentoo
 swapon<span class="w"> </span>/dev/nvme0n1p2
-mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/gentoo/boot/efi
+mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/gentoo/efi
 </pre></div>
 </div>
 </section>
@@ -328,19 +333,18 @@ date<span class="w"> </span>MMDDhhmmCCYY
 
 links<span class="w"> </span>https://www.gentoo.org/downloads/mirrors/
 
-tar<span class="w"> </span>xpvf<span class="w"> </span>&lt;stage&gt;<span class="w"> </span>--xattrs-include<span class="o">=</span><span class="s1">&#39;*.*&#39;</span><span class="w"> </span>--numeric-owner
+tar<span class="w"> </span>xpvf<span class="w"> </span>&lt;stage&gt;<span class="w"> </span>--xattrs-include<span class="o">=</span><span class="s1">&#39;*.*&#39;</span><span class="w"> </span>--numeric-owner<span class="w"> </span>-C<span class="w"> </span>/mnt/gentoo
 </pre></div>
 </div>
 </section>
 <section id="update-make-conf">
 <h2>Update make.conf<a class="headerlink" href="#update-make-conf" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">COMMON_FLAGS</span><span class="o">=</span><span class="s2">&quot;-march=native -O2 -pipe&quot;</span>
-<span class="nv">MAKEOPTS</span><span class="o">=</span><span class="s2">&quot;-j8&quot;</span>
+<span class="nv">MAKEOPTS</span><span class="o">=</span><span class="s2">&quot;-j8 -l9&quot;</span>
 <span class="nv">USE</span><span class="o">=</span><span class="s2">&quot;-systemd -KDE X gtk gnome&quot;</span>
-
-cp<span class="w"> </span>--dereference<span class="w"> </span>/etc/resolv.conf<span class="w"> </span>/mnt/gentoo/etc
 </pre></div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">--dereference</span> <span class="pre">/etc/resolv.conf</span> <span class="pre">/mnt/gentoo/etc</span></code></p>
 </section>
 <section id="mount-stuff">
 <h2>Mount Stuff<a class="headerlink" href="#mount-stuff" title="Link to this heading">¶</a></h2>
@@ -356,12 +360,14 @@ chroot<span class="w"> </span>/mnt/gentoo<span class="w"> </span>/bin/bash
 <span class="nb">source</span><span class="w"> </span>/etc/profile
 <span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;(chroot) </span><span class="nv">$PS1</span><span class="s2">&quot;</span>
 
-mount<span class="w"> </span>/dev/nvme0n1p1<span class="w"> </span>/boot/efi
+mount<span class="w"> </span>/dev/nvme0n1p1<span class="w"> </span>/efi
 
 emerge-webrsync
 
 eselect<span class="w"> </span>profile<span class="w"> </span>list
-eselect<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">23</span>
+eselect<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">5</span>
+
+emerge<span class="w"> </span>--oneshot<span class="w"> </span>sys-apps/portage
 emerge<span class="w"> </span>--sync
 
 eselect<span class="w"> </span>news<span class="w"> </span>list
@@ -372,7 +378,9 @@ eselect<span class="w"> </span>news<span class="w"> </span><span class="nb">read
 </div>
 <p>Note: set portage env var ACCEPT_LICENSE</p>
 <p>Note: /var/db/repos/gentoo/profiles/use.desc describes all USE flags</p>
-<p>Note: What about video card in /etc/portage/package.use/00video_cards?</p>
+<p><strong>Note</strong>: What about video card in /etc/portage/package.use/00video_cards?</p>
+<p>Some instructions have adding VIDEO_CARDS to make.conf</p>
+<p><code class="docutils literal notranslate"><span class="pre">VIDEO_CARDS=&quot;intel&quot;</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>--ask<span class="w"> </span>sys-apps/nvme-cli<span class="w">  </span><span class="c1"># for nvme drivers. [NVMe](https://wiki.gentoo.org/wiki/NVMe#Installation)</span>
 emerge<span class="w"> </span>--ask<span class="w"> </span>app-editors/vim
 emerge<span class="w"> </span>--ask<span class="w"> </span>--verbose<span class="w"> </span>--update<span class="w"> </span>--deep<span class="w"> </span>--changed-use<span class="w"> </span>@world
@@ -430,7 +438,7 @@ emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/gentoo-ker
 <h3>fstab dev<a class="headerlink" href="#fstab-dev" title="Link to this heading">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>/etc/fstab
 
-/dev/nvme0n1p1<span class="w">   </span>/boot/efi<span class="w">   </span>vfat<span class="w">    </span>defaults<span class="w">            </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>
+/dev/nvme0n1p1<span class="w">   </span>/efi<span class="w">   </span>vfat<span class="w">    </span>defaults<span class="w">            </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>
 /dev/nvme0n1p2<span class="w">   </span>none<span class="w">        </span>swap<span class="w">    </span>sw<span class="w">                  </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
 /dev/nvme0n1p3<span class="w">   </span>/<span class="w">           </span>xfs<span class="w">    </span>defaults,noatime<span class="w">    </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
 </pre></div>
@@ -443,7 +451,7 @@ emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/gentoo-ker
 vim<span class="w"> </span>/etc/fstab
 
 <span class="nv">UUID</span><span class="o">=</span>a21029c4-160e-4c85-b285-5ff23e109495<span class="w">    </span>/<span class="w">           </span>xfs<span class="w">     </span>defaults,noatime<span class="w">    </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
-<span class="nv">UUID</span><span class="o">=</span>6A8B-A612<span class="w">                               </span>/boot/efi<span class="w">   </span>vfat<span class="w">    </span>defaults<span class="w">            </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>
+<span class="nv">UUID</span><span class="o">=</span>6A8B-A612<span class="w">                               </span>/efi<span class="w">   </span>vfat<span class="w">    </span>defaults<span class="w">            </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>
 <span class="nv">UUID</span><span class="o">=</span>8afc8f4a-fd82-4fa1-a52f-328227bea259<span class="w">    </span>none<span class="w">        </span>swap<span class="w">    </span>sw<span class="w">                  </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
 </pre></div>
 </div>
@@ -480,9 +488,9 @@ rc-service<span class="w"> </span>dhcpcd<span class="w"> </span>start
 <p>Change root password</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>passwd<span class="w"> </span>root
 
-emerge<span class="w"> </span>--ask<span class="w"> </span>app-shells/fish<span class="w"> </span>bash
+emerge<span class="w"> </span>--ask<span class="w"> </span>app-shells/zsh<span class="w"> </span>bash
 
-useradd<span class="w"> </span>-m<span class="w"> </span>-G<span class="w"> </span>wheel,video,audio,kvm,plugdev<span class="w"> </span>-s<span class="w"> </span>/usr/bin/fish<span class="w"> </span>rgeorgia
+useradd<span class="w"> </span>-m<span class="w"> </span>-G<span class="w"> </span>wheel,video,audio,kvm,plugdev<span class="w"> </span>-s<span class="w"> </span>/usr/bin/zsh<span class="w"> </span>rgeorgia
 passwd<span class="w"> </span>rgeorgia
 
 emerge<span class="w"> </span>--ask<span class="w"> </span>app-admin/sysklogd
@@ -503,9 +511,9 @@ rc-update<span class="w"> </span>add<span class="w"> </span>sshd<span class="w">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;GRUB_PLATFORMS=&quot;efi-64&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/portage/make.conf
 
 emerge<span class="w"> </span>--ask<span class="w"> </span>sys-boot/grub<span class="w"> </span>efibootmgr
-<span class="c1"># grub-install --efi-directory /boot/efi</span>
-grub-install<span class="w"> </span>--target<span class="o">=</span>x86_64-efi<span class="w"> </span>--efi-directory<span class="o">=</span>/boot/efi
-grub-mkconfig<span class="w"> </span>-o<span class="w"> </span>/boot/grub/grub.cfg
+<span class="c1"># grub-install --efi-directory /efi</span>
+grub-install<span class="w"> </span>--target<span class="o">=</span>x86_64-efi<span class="w"> </span>--efi-directory<span class="o">=</span>/efi
+grub-mkconfig<span class="w"> </span>-o<span class="w"> </span>/efi/EFI
 </pre></div>
 </div>
 </section>
@@ -617,6 +625,7 @@ sudo<span class="w"> </span>rc-update<span class="w"> </span>add<span class="w">
             <ul>
 <li><a class="reference internal" href="#">Gentoo Install NVME</a><ul>
 <li><a class="reference internal" href="#general-prep">General Prep</a></li>
+<li><a class="reference internal" href="#interfaces">Interfaces:</a></li>
 <li><a class="reference internal" href="#prepare-disks">Prepare Disks</a></li>
 <li><a class="reference internal" href="#mount-drives">Mount Drives</a></li>
 <li><a class="reference internal" href="#grab-stage">Grab Stage</a></li>
