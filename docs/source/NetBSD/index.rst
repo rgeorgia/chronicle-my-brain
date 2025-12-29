@@ -15,3 +15,4 @@ NetBSD Notes
    addnewdisk
    printing
    nginx
+   bozohttpd

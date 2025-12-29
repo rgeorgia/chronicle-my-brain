@@ -1,2 +1,1 @@
-
-source ~/.local/share/myenv/cmb/bin/activate.fish
+source $HOME/.local/share/myenv/cmb/bin/activate.fish

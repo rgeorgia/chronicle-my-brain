@@ -14,3 +14,4 @@ Hammer File Share
    types_of_hammers 
    oh_external_drv
    oh_samba
+   hammer_notes
