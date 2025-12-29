@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-FreeBSD Notes
+PROJECTS
 =============
 
 
@@ -12,6 +12,4 @@ FreeBSD Notes
    :maxdepth: 2
    :caption: FreeBSD
    
-   freebsd-infosec
-   freebsd-thru-handbook
-   mongodb
+   projects
