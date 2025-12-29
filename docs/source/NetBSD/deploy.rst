@@ -23,7 +23,7 @@ Client Side deploy.sh
         tar czvf /tmp/cmb.tar.gz /var/vroot
         scp /tmp/cmb.tar.gz $TARGET:lz/.
 
-Client Side deploy.sh
+Server Side deploy.sh
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
