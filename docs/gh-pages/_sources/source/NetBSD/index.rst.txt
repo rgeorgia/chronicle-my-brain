@@ -15,4 +15,5 @@ NetBSD Notes
    addnewdisk
    printing
    nginx
+   deploy
    bozohttpd

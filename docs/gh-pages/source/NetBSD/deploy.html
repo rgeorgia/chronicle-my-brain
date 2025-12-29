@@ -3,10 +3,10 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="OpenBSD Notes" href="../OpenBSD/index.html"><link rel="prev" title="Deploy Sphinx to RPI3" href="deploy.html">
+<link rel="index" title="Index" href="../../genindex.html"><link rel="search" title="Search" href="../../search.html"><link rel="next" title="Setting up bozohttpd" href="bozohttpd.html"><link rel="prev" title="NetBSD and Nginx" href="nginx.html">
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2025.09.25 -->
-        <title>Setting up bozohttpd - Chronicles of Hope documentation</title>
+        <title>Deploy Sphinx to RPI3 - Chronicles of Hope documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=580074bf" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
@@ -181,7 +181,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -214,8 +214,8 @@
 <li class="toctree-l2"><a class="reference internal" href="addnewdisk.html">Add a New Drive</a></li>
 <li class="toctree-l2"><a class="reference internal" href="printing.html">Setting Up my Printer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nginx.html">NetBSD and Nginx</a></li>
-<li class="toctree-l2"><a class="reference internal" href="deploy.html">Deploy Sphinx to RPI3</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Setting up bozohttpd</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Deploy Sphinx to RPI3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bozohttpd.html">Setting up bozohttpd</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../OpenBSD/index.html">OpenBSD Notes</a><input aria-label="Toggle navigation of OpenBSD Notes" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -270,14 +270,66 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="setting-up-bozohttpd">
-<h1>Setting up bozohttpd<a class="headerlink" href="#setting-up-bozohttpd" title="Link to this heading">¶</a></h1>
-<p>I need to setup a web server so I can provide an interface for the user to setup the samba share or look at files or something… Sounds complicated. I’ll simple setup a website for either Rocket, Axiom or Django.</p>
+          <section id="deploy-sphinx-to-rpi3">
+<h1>Deploy Sphinx to RPI3<a class="headerlink" href="#deploy-sphinx-to-rpi3" title="Link to this heading">¶</a></h1>
+<p>I need to be able to drop the new files from the <cite>Chronicle My Brain</cite> project on to the RPI3 NetBSD box.</p>
+<ul class="simple">
+<li><p>I could use rsync, but that requires elevated privileges or creating a “login” to push the files.</p></li>
+<li><p>I decided to be <em>creative</em> but maybe over complicated; however, it works.</p>
+<ul>
+<li><p>Create a deploy.sh on the workstation that tars the <code class="docutils literal notranslate"><span class="pre">/var/vroot</span></code> directory to <code class="docutils literal notranslate"><span class="pre">/tmp/cmb.tar.gz</span></code>.</p></li>
+<li><p>Transfer that file to the web server via scp using the local $USER. Make sure you have ssh keys copied so you do not need to input user name and login.</p></li>
+<li><p>Create a deploy.sh script on the server. It will live in $HOME/bin/deploy.sh</p></li>
+<li><p>That script looks in <code class="docutils literal notranslate"><span class="pre">$HOME/lz</span></code> for the <code class="docutils literal notranslate"><span class="pre">cmb.tar.gz</span></code> file. If it’s there we untar to root, then remove the file from <code class="docutils literal notranslate"><span class="pre">$HOME/lz</span></code></p></li>
+<li><p>Added crontab to run <code class="docutils literal notranslate"><span class="pre">$HOME/deploy.sh</span></code> every minute. Log to <code class="docutils literal notranslate"><span class="pre">$HOME/log/cmb.log</span></code>. If the file is not there, do not log anything.</p></li>
+</ul>
+</li>
+</ul>
+<p>Clunky… but it works.</p>
+<section id="client-side-deploy-sh">
+<h2>Client Side deploy.sh<a class="headerlink" href="#client-side-deploy-sh" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">TARGET</span><span class="o">=</span><span class="m">192</span>.168.6.176
+tar<span class="w"> </span>czvf<span class="w"> </span>/tmp/cmb.tar.gz<span class="w"> </span>/var/vroot
+scp<span class="w"> </span>/tmp/cmb.tar.gz<span class="w"> </span><span class="nv">$TARGET</span>:lz/.
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h2>Client Side deploy.sh<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nv">FILE</span><span class="o">=</span><span class="s2">&quot;/home/rgeorgia/lz/cmb.tar.gz&quot;</span>
+<span class="nv">LOG</span><span class="o">=</span><span class="s2">&quot;/home/rgeorgia/logs/cmb.log&quot;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="k">$(</span>date<span class="w"> </span>+<span class="s1">&#39;%y-%m-%d %H:%M&#39;</span><span class="k">)</span><span class="s2">] </span><span class="si">${</span><span class="nv">FILE</span><span class="si">}</span><span class="s2"> found&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$LOG</span>
+<span class="w">    </span>doas<span class="w"> </span>tar<span class="w"> </span>xzvf<span class="w"> </span><span class="nv">$FILE</span><span class="w"> </span>-C<span class="w"> </span>/<span class="w">  </span>&gt;/dev/null
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="k">$(</span>date<span class="w"> </span>+<span class="s1">&#39;%y-%m-%d %H:%M&#39;</span><span class="k">)</span><span class="s2">] Operation Failed, Exit Code: </span><span class="nv">$?</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$LOG</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="k">$(</span>date<span class="w"> </span>+<span class="s1">&#39;%y-%m-%d %H:%M&#39;</span><span class="k">)</span><span class="s2">] SUCCESS. Exit Code: </span><span class="nv">$?</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$LOG</span>
+<span class="w">        </span>rm<span class="w"> </span><span class="nv">$FILE</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="k">$(</span>date<span class="w"> </span>+<span class="s1">&#39;%y-%m-%d %H:%M&#39;</span><span class="k">)</span><span class="s2">] </span><span class="nv">$FILE</span><span class="s2"> not removed: </span><span class="nv">$?</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$LOG</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="k">$(</span>date<span class="w"> </span>+<span class="s1">&#39;%y-%m-%d %H:%M&#39;</span><span class="k">)</span><span class="s2">] </span><span class="nv">$FILE</span><span class="s2"> removed: </span><span class="nv">$?</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$LOG</span>
+<span class="w">        </span><span class="k">fi</span>
+
+<span class="w">    </span><span class="k">fi</span>
+<span class="k">fi</span>
+</pre></div>
+</div>
+</section>
+<section id="local-users-crontab">
+<h2>Local Users crontab<a class="headerlink" href="#local-users-crontab" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>*/1<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/home/rgeorgia/bin/deploy.sh
+</pre></div>
+</div>
+</section>
 </section>
 
         </article>
@@ -285,23 +337,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="../OpenBSD/index.html">
+          <a class="next-page" href="bozohttpd.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">OpenBSD Notes</div>
+                <div class="title">Setting up bozohttpd</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="deploy.html">
+          <a class="prev-page" href="nginx.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Deploy Sphinx to RPI3</div>
+                <div class="title">NetBSD and Nginx</div>
                 
               </div>
             </a>
@@ -323,8 +375,29 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Deploy Sphinx to RPI3</a><ul>
+<li><a class="reference internal" href="#client-side-deploy-sh">Client Side deploy.sh</a></li>
+<li><a class="reference internal" href="#id1">Client Side deploy.sh</a></li>
+<li><a class="reference internal" href="#local-users-crontab">Local Users crontab</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
