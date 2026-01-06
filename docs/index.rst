@@ -6,20 +6,20 @@ The Lost Art of being Lost
 
 This repository is a marker that reminds me where I need to go. I am tired of the continuous re-googling for information. Instead of trying to remember the exact search phrase to bring up that helpful article, I want to create an organized space to hold "stuff" I continually search for.
 
-.. grid:: 2
+Also, this is a journal for various projects. Projects that I've started, stopped, revamped, started again, along with projects I am actively working on.
 
-    .. grid-item-card:: Schedule
+.. dropdown:: Schedule
 
-        1. Morning Prayer
-        2. Bible Reading
-        3. Bible Study (M,W,F)
-        4. Hobbies / Projects
-        5. Walk / Gym
-        6. Wife prayer / devotion / stretch
+        .. grid:: 2
 
-    .. grid-item-card:: Bible Study
+            .. grid-item-card:: 
 
-        *The Apocalypse of St. John. A Revelation of Love and Power* Lawrence Farley
+                1. Morning Prayer/Meditation
+                2. Bible Reading
+                3. Bible Study (M,W,F)
+                4. Hobbies / Projects
+                5. Walk / Gym
+                6. Wife prayer / devotion / stretch
 
 -------------------------------
 
@@ -31,6 +31,7 @@ This repository is a marker that reminds me where I need to go. I am tired of th
       :caption: How Great is the darkness
 
       source/Projects/index
+      source/HBSD/index
       source/FreeBSD/index
       source/NetBSD/index
       source/OpenBSD/index

@@ -9,7 +9,7 @@ PROJECTS
 
 
 .. toctree::
-   :maxdepth: 2
-   :caption: FreeBSD
+   :maxdepth: 4
+   :caption: Projects / Hobbies
    
    projects

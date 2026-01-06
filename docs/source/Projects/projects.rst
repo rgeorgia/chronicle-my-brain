@@ -19,7 +19,12 @@ Hammer
 
   + FreeBSD
 
-    + Pro: familiar, upgrade path easy, native zfs
+    + Pro: familiar, upgrade path easy, native zfs, supports pf
+    + Con: nfs/samba support seems harder, unfamiliar with ipfw
+
+  + HardendedBSD
+
+    + Pro: familiar, upgrade path easy, native zfs, security focused, supports pf
     + Con: nfs/samba support seems harder, unfamiliar with ipfw
 
   + Alpine

@@ -30,7 +30,8 @@ pygments_dark_style = "monokai"
 
 # Consider using alabaster
 # html_theme = "alabaster"
-html_theme = "furo"
+# html_theme = "furo"
+html_theme = "sphinx_rtd_theme"
 
 match html_theme:
     case "alabaster":

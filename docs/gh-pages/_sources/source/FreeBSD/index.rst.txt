@@ -9,7 +9,7 @@ FreeBSD Notes
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: FreeBSD
    
    freebsd-infosec
