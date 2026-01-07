@@ -52,12 +52,14 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">HardenedBSD Notes</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Rewrite hbsd-upgrade</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#first-attempt-flua">First attempt: flua</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flua-description">flua DESCRIPTION</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#included-modules">INCLUDED MODULES</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#step-one">Step One:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#current-script-structure">Current Script Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-one-transfer-functionality">Step One: Transfer Functionality</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#current-script-structure">Current Script Structure</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -99,9 +101,9 @@
 <p>Project Link: <a class="reference external" href="https://hardenedbsd.org/article/shawn-webb/2015-12-31/introducing-hardenedbsds-new-binary-updater">New Binary Updater</a></p>
 <section id="first-attempt-flua">
 <h2>First attempt: flua<a class="headerlink" href="#first-attempt-flua" title="Link to this heading"></a></h2>
-<section id="description">
-<h3>DESCRIPTION<a class="headerlink" href="#description" title="Link to this heading"></a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">flua</span></code> is a minimal Lua interpreter integrated into the FreeBSD base
+<section id="flua-description">
+<h3>flua DESCRIPTION<a class="headerlink" href="#flua-description" title="Link to this heading"></a></h3>
+<p><strong>flua</strong> is a minimal Lua interpreter integrated into the FreeBSD base
 system.  It is derived from Lua 5.4 with modifications to suit the needs
 of FreeBSD build infrastructure and system tooling.  flua is intended for
 internal use within the base system and is not designed for general-
@@ -124,12 +126,11 @@ system environments such as the bootloader.</p>
 </section>
 </section>
 <hr class="docutils" />
-<section id="step-one">
-<h2>Step One:<a class="headerlink" href="#step-one" title="Link to this heading"></a></h2>
+<section id="step-one-transfer-functionality">
+<h2>Step One: Transfer Functionality<a class="headerlink" href="#step-one-transfer-functionality" title="Link to this heading"></a></h2>
 <p>Transfer the same functionality of the hbsd-update and hbsd-update-build from shell to flua.</p>
-</section>
 <section id="current-script-structure">
-<h2>Current Script Structure<a class="headerlink" href="#current-script-structure" title="Link to this heading"></a></h2>
+<h3>Current Script Structure<a class="headerlink" href="#current-script-structure" title="Link to this heading"></a></h3>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">hbsd-update functions</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
@@ -343,6 +344,7 @@ system environments such as the bootloader.</p>
 </table>
 </div>
 </details></section>
+</section>
 </section>
 
 

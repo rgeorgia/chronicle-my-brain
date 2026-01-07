@@ -6,10 +6,10 @@ Project Link: `New Binary Updater <https://hardenedbsd.org/article/shawn-webb/20
 First attempt: flua
 -----------------------
 
-DESCRIPTION
-~~~~~~~~~~~~~
+flua DESCRIPTION
+~~~~~~~~~~~~~~~~~
 
-``flua`` is a minimal Lua interpreter integrated into the FreeBSD base
+**flua** is a minimal Lua interpreter integrated into the FreeBSD base
 system.  It is derived from Lua 5.4 with modifications to suit the needs
 of FreeBSD build infrastructure and system tooling.  flua is intended for
 internal use within the base system and is not designed for general-
@@ -33,13 +33,13 @@ Lua modules as well as bespoke modules necessary for the base system:
 
 -------------------------------------------------------------------------
 
-Step One:
----------
+Step One: Transfer Functionality
+---------------------------------
 
 Transfer the same functionality of the hbsd-update and hbsd-update-build from shell to flua.
 
 Current Script Structure
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. dropdown:: hbsd-update functions
    
