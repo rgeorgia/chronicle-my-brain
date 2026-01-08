@@ -13,3 +13,4 @@ HardenedBSD Notes
    :caption: HardenedBSD
    
    hbsd-update
+   hbsd-update-build-fn

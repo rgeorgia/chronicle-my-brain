@@ -1,11 +1,11 @@
 debug_print(),echo parameter `${1}` to stderr
 usage(),print script usage.
 setup_environment(),set various environment variables. Like 28 of them.
-cleanup_chroot(),remove contents from a chrooted directory
+cleanup_chroot(),remove contents from a chrooted directory. If CHROOTDIR exists return a 0; if it's mounted then unmount it. If FULLCLEAN is 'no' then chflags to ``noschg`` and delete the directory.
 setup_directories(),Make 3 directories. ``STAGEDIR="/builds/updater/stage"``; ``OUTPUTDIR="/builds/updater/output"``; and ``LOGDIR="/builds/updater/logs"``
-setup_chroot(),
-clone_source(),
-build_source(),
+setup_chroot(), Mounts required device support optionally builds the system installs it into a chroot and ensures required directories exist. 
+clone_source(), Ensures a Git source tree exists and is up to date under a given destination directory. It clones the source tree if missing; switches to the desired branch; or pulls updates if it already exists.
+build_source(), 
 create_src_conf(),
 install_binutils(),
 prep_release(),
