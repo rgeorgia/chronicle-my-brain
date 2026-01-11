@@ -48,6 +48,8 @@ Current Script Structure
         :widths: auto
         :header: "Function Name", "Description"
 
+.. dropdown:: hbsd-update-build functions
+
     .. csv-table:: 
         :file: ./hbsd-update-build-fn.csv
         :widths: auto
