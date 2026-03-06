@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gentoo Install &mdash; Chronicles of Hope  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=dace8524" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Gentoo Install NVME" href="gentoo_install_nvme.html" />
+    <link rel="prev" title="Gentoo ZFS Install" href="zfs_install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Chronicles of Hope
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">How Great is the darkness</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Projects/index.html">PROJECTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HBSD/index.html">HardenedBSD Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FreeBSD/index.html">FreeBSD Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NetBSD/index.html">NetBSD Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OpenBSD/index.html">OpenBSD Notes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Gentoo Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="zfs_install.html">Gentoo ZFS Install</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Gentoo Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-prep">General Prep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-disks">Prepare Disks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mount-drives">Mount Drives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grab-stage">Grab Stage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-make-conf">Update make.conf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mount-stuff">Mount Stuff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#locale">Locale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-env">Update env</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-kernel">Configure Kernel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grub">GRUB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-system">Configure System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#network">Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#edit-etc-hosts">Edit /etc/hosts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#edit-etc-conf-d-hostname">Edit /etc/conf.d/hostname</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-users">Adding Users:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#boot-loader">Boot Loader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reboot">REBOOT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-install">POST INSTALL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#display-manager">Display Manager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-for-video-card-to-package-use">Add for video card to package.use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gentoo_install_nvme.html">Gentoo Install NVME</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../Hammer/index.html">Hammer File Share</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chronicles of Hope</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Gentoo Notes</a></li>
+      <li class="breadcrumb-item active">Gentoo Install</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/Gentoo/gentoo_install.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gentoo-install">
+<h1>Gentoo Install<a class="headerlink" href="#gentoo-install" title="Link to this heading"></a></h1>
+<section id="general-prep">
+<h2>General Prep<a class="headerlink" href="#general-prep" title="Link to this heading"></a></h2>
+<p>lsblk</p>
+<p>ping www.gentoo.org</p>
+<p>ifconfig to get interfaces</p>
+<p>If you want to remotely install start sshd and set the root password</p>
+</section>
+<section id="prepare-disks">
+<h2>Prepare Disks<a class="headerlink" href="#prepare-disks" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cfdisk<span class="w"> </span>/dev/sda
+
+sda1<span class="w">    </span>1G<span class="w">  </span>fat32<span class="w">   </span>efi<span class="w"> </span>partion
+sda2<span class="w">    </span>8G<span class="w">  </span>swap<span class="w">    </span><span class="m">2</span><span class="w"> </span><span class="nb">times</span><span class="w"> </span>ram
+sda3<span class="w">    </span>*<span class="w">   </span>ext4<span class="w">    </span>root
+
+mkfs.vfat<span class="w"> </span>-F<span class="w"> </span><span class="m">32</span><span class="w"> </span>/dev/sda1
+mkswap<span class="w">          </span>/dev/sda2
+mkfs.ext4<span class="w">       </span>/dev/sda3
+</pre></div>
+</div>
+</section>
+<section id="mount-drives">
+<h2>Mount Drives<a class="headerlink" href="#mount-drives" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount<span class="w"> </span>/dev/sda3<span class="w"> </span>/mnt/gentoo
+swapon<span class="w"> </span>/dev/sda2
+mkdir<span class="w"> </span>-p<span class="w"> </span>/mnt/gentoo/boot/efi
+</pre></div>
+</div>
+</section>
+<section id="grab-stage">
+<h2>Grab Stage<a class="headerlink" href="#grab-stage" title="Link to this heading"></a></h2>
+<p>Make sure you are in the proper directory</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/mnt/gentoo
+
+date<span class="w"> </span>MMDDhhmmCCYY
+
+links<span class="w"> </span>https://www.gentoo.org/downloads/mirrors/
+
+tar<span class="w"> </span>xpvf<span class="w"> </span>&lt;stage&gt;<span class="w"> </span>--xattrs-include<span class="o">=</span><span class="s1">&#39;*.*&#39;</span><span class="w"> </span>--numeric-owner
+</pre></div>
+</div>
+</section>
+<section id="update-make-conf">
+<h2>Update make.conf<a class="headerlink" href="#update-make-conf" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">COMMON_FLAGS</span><span class="o">=</span><span class="s2">&quot;-march=native -O2 -pipe&quot;</span>
+<span class="nv">MAKEOPTS</span><span class="o">=</span><span class="s2">&quot;-j8&quot;</span>
+<span class="nv">USE</span><span class="o">=</span><span class="s2">&quot;-systemd -KDE X gtk gnome&quot;</span>
+
+cp<span class="w"> </span>--dereference<span class="w"> </span>/etc/resolv.conf<span class="w"> </span>/mnt/gentoo/etc
+</pre></div>
+</div>
+</section>
+<section id="mount-stuff">
+<h2>Mount Stuff<a class="headerlink" href="#mount-stuff" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount<span class="w"> </span>--types<span class="w"> </span>proc<span class="w">  </span>/proc<span class="w">   </span>/mnt/gentoo/proc
+mount<span class="w"> </span>--rbind<span class="w">       </span>/sys<span class="w">    </span>/mnt/gentoo/sys
+mount<span class="w"> </span>--make-rslave<span class="w">         </span>/mnt/gentoo/sys
+mount<span class="w"> </span>--rbind<span class="w">       </span>/dev<span class="w">    </span>/mnt/gentoo/dev
+mount<span class="w"> </span>--make-rslave<span class="w">         </span>/mnt/gentoo/dev
+mount<span class="w"> </span>--bind<span class="w">        </span>/run<span class="w">    </span>/mnt/gentoo/run
+mount<span class="w"> </span>--make-slave<span class="w">          </span>/mnt/gentoo/run
+
+chroot<span class="w"> </span>/mnt/gentoo<span class="w"> </span>/bin/bash
+<span class="nb">source</span><span class="w"> </span>/etc/profile
+<span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;(chroot) </span><span class="nv">$PS1</span><span class="s2">&quot;</span>
+
+mount<span class="w"> </span>/dev/sda1<span class="w"> </span>/boot/efi
+
+emerge-webrsync
+
+eselect<span class="w"> </span>profile<span class="w"> </span>list
+eselect<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">23</span>
+emerge<span class="w"> </span>--sync
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.license
+</pre></div>
+</div>
+<p>Note: set portage env var ACCEPT_LICENSE</p>
+<p>Note: /var/db/repos/gentoo/profiles/use.desc describes all USE flags</p>
+<p>Note: What about video card in /etc/portage/package.use/00video_cards?</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>--ask<span class="w"> </span>app-editors/vim
+emerge<span class="w"> </span>--ask<span class="w"> </span>--verbose<span class="w"> </span>--update<span class="w"> </span>--deep<span class="w"> </span>--changed-use<span class="w"> </span>@world
+</pre></div>
+</div>
+</section>
+<section id="locale">
+<h2>Locale<a class="headerlink" href="#locale" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln<span class="w"> </span>-sf<span class="w"> </span>/usr/share/zoneinfo/America/New_York<span class="w"> </span>/etc/localtime
+
+vim<span class="w"> </span>/etc/locale.gen
+locale-gen
+eselect<span class="w"> </span>locale<span class="w"> </span>list
+eselect<span class="w"> </span>locale<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+</section>
+<section id="update-env">
+<h2>Update env<a class="headerlink" href="#update-env" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>env-update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>/etc/profile<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;(chroot) </span><span class="nv">$PS1</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="configure-kernel">
+<h2>Configure Kernel<a class="headerlink" href="#configure-kernel" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/linux-firmware
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-firmware/sof-firmware
+</pre></div>
+</div>
+</section>
+<section id="grub">
+<h2>GRUB<a class="headerlink" href="#grub" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;sys-kernel/installkernel dracut grub&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/portage/package.use/installkernel
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/installkernel
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-kernel/gentoo-kernel-bin
+</pre></div>
+</div>
+</section>
+<section id="configure-system">
+<h2>Configure System<a class="headerlink" href="#configure-system" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>/etc/fstab
+
+/dev/sda1<span class="w">   </span>/boot/efi<span class="w">   </span>vfat<span class="w">    </span>defaults<span class="w">            </span><span class="m">0</span><span class="w"> </span><span class="m">2</span>
+/dev/sda2<span class="w">   </span>none<span class="w">        </span>swap<span class="w">    </span>sw<span class="w">                  </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+/dev/sda3<span class="w">   </span>/<span class="w">           </span>ext4<span class="w">    </span>defaults,noatime<span class="w">    </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="network">
+<h2>Network<a class="headerlink" href="#network" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;YOURHOSTNAME&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/hostname
+</pre></div>
+</div>
+</section>
+<section id="edit-etc-hosts">
+<h2>Edit /etc/hosts<a class="headerlink" href="#edit-etc-hosts" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">127</span>.0.0.1<span class="w">   </span>YOURHOSTNAME<span class="w"> </span>localhost
+</pre></div>
+</div>
+</section>
+<section id="edit-etc-conf-d-hostname">
+<h2>Edit /etc/conf.d/hostname<a class="headerlink" href="#edit-etc-conf-d-hostname" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>emerge<span class="w"> </span>--ask<span class="w"> </span>net-misc/dhcpcd
+emerge<span class="w"> </span>--ask<span class="w"> </span>net-misc/networkmanager
+
+rc-update<span class="w"> </span>add<span class="w"> </span>NetworkManager<span class="w"> </span>default
+rc-update<span class="w"> </span>add<span class="w"> </span>dhcpcd<span class="w"> </span>default
+
+rc-service<span class="w"> </span>NetworkManager<span class="w"> </span>start
+rc-service<span class="w"> </span>dhcpcd<span class="w"> </span>start
+</pre></div>
+</div>
+</section>
+<section id="adding-users">
+<h2>Adding Users:<a class="headerlink" href="#adding-users" title="Link to this heading"></a></h2>
+<p>Note: before adding users, add the shells you want</p>
+<p>Change root password</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>passwd<span class="w"> </span>root
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>app-shells/fish<span class="w"> </span>bash
+
+useradd<span class="w"> </span>-m<span class="w"> </span>-G<span class="w"> </span>wheel,video,audio,kvm,plugdev<span class="w"> </span>-s<span class="w"> </span>/usr/bin/fish<span class="w"> </span>rgeorgia
+passwd<span class="w"> </span>rgeorgia
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>app-admin/sysklogd
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-apps/mlocate
+emerge<span class="w"> </span>--ask<span class="w"> </span>net-misc/chrony
+emerge<span class="w"> </span>--ask<span class="w"> </span>app-admin/sudo
+
+rc-update<span class="w"> </span>add<span class="w"> </span>sysklogd<span class="w"> </span>default
+rc-update<span class="w"> </span>add<span class="w"> </span>chronyd<span class="w"> </span>default
+rc-update<span class="w"> </span>add<span class="w"> </span>sshd<span class="w"> </span>default
+
+<span class="nv">EDITOR</span><span class="o">=</span>vim<span class="w"> </span>visudo
+</pre></div>
+</div>
+</section>
+<section id="boot-loader">
+<h2>Boot Loader<a class="headerlink" href="#boot-loader" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;GRUB_PLATFORMS=&quot;efi-64&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/portage/make.conf
+
+emerge<span class="w"> </span>--ask<span class="w"> </span>sys-boot/grub<span class="w"> </span>efibootmgr
+grub-install<span class="w"> </span>--efi-directory<span class="w"> </span>/boot/efi
+grub-mkconfig<span class="w"> </span>-o<span class="w"> </span>/boot/grub/grub.cfg
+</pre></div>
+</div>
+</section>
+<section id="reboot">
+<h2>REBOOT<a class="headerlink" href="#reboot" title="Link to this heading"></a></h2>
+<p>Exit chroot</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">exit</span>
+
+<span class="nb">cd</span><span class="w"> </span>to<span class="w"> </span>home<span class="w"> </span>or<span class="w"> </span>/root
+
+umount<span class="w"> </span>-l<span class="w"> </span>/mnt/gentoo/<span class="o">{</span>shm,pts<span class="o">}</span>
+umount<span class="w"> </span>-R<span class="w"> </span>/mnt/gentoo
+
+reboot
+</pre></div>
+</div>
+</section>
+<section id="post-install">
+<h2>POST INSTALL<a class="headerlink" href="#post-install" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>touch<span class="w"> </span>/etc/portage/package.use/xorg
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;sys-auth/pambase elogind&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.use/xorg
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;media-libs/libglvd x&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.use/xorg
+<span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;sys-apps/dbus&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/portage/package.use/xorg
+
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>sys-apps/dbus
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>dev-vcs/git
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-base/xorg-server
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-drivers/xf86-video-intel
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-apps/xinit
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>x11-apps/xrandr
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>gnome-base/gdm
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>gnome-base/gnome
+sudo<span class="w"> </span>emerge<span class="w"> </span>--ask<span class="w"> </span>--noreplace<span class="w"> </span>gui-libs/display-manager
+</pre></div>
+</div>
+</section>
+<section id="display-manager">
+<h2>Display Manager<a class="headerlink" href="#display-manager" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vim<span class="w"> </span>/etc/conf.d/display-manager
+<span class="nv">DISPLAYMANAGER</span><span class="o">=</span><span class="s2">&quot;gdm&quot;</span>
+sudo<span class="w"> </span>rc-update<span class="w"> </span>add<span class="w"> </span>display-manager<span class="w"> </span>default
+</pre></div>
+</div>
+</section>
+<section id="add-for-video-card-to-package-use">
+<h2>Add for video card to package.use<a class="headerlink" href="#add-for-video-card-to-package-use" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;*/* VIDEO_CARDS: -* intel&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/portage/package.use/00video-cards
+</pre></div>
+</div>
+<p><strong>Note</strong>: add binary package</p>
+<p>Note: if you want .xinitrc add <code class="docutils literal notranslate"><span class="pre">exec</span> <span class="pre">sway</span></code></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="zfs_install.html" class="btn btn-neutral float-left" title="Gentoo ZFS Install" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gentoo_install_nvme.html" class="btn btn-neutral float-right" title="Gentoo Install NVME" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ronverbs, LLC.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

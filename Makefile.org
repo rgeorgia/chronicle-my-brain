@@ -1,0 +1,8 @@
+.PHONY: gh-pages
+
+gh-pages:
+	@sphinx-build ./docs ./docs/gh-pages
+
+prod-pages:
+	doas rm -rf /var/vroot/
+	doas /home/rgeorgia/.local/share/vcmb/bin/sphinx-build ./docs /var/www/htdocs/chronicle-my-brain

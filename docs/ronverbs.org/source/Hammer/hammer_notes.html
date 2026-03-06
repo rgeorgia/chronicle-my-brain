@@ -1,0 +1,283 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notes on creating a Hammer File Share &mdash; Chronicles of Hope  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=dace8524" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Setting Up Samba" href="hammer_samba.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Chronicles of Hope
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">How Great is the darkness</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Projects/index.html">PROJECTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HBSD/index.html">HardenedBSD Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FreeBSD/index.html">FreeBSD Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../NetBSD/index.html">NetBSD Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../OpenBSD/index.html">OpenBSD Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Gentoo/index.html">Gentoo Notes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Hammer File Share</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="types_of_hammers.html">Famous Hammers in Myths and History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hammer_samba.html">Setting Up Samba</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Notes on creating a Hammer File Share</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#first-response">First Response</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#why-separate-services">Why Separate Services?</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#more-secure-options">More Secure Options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chronicles of Hope</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Hammer File Share</a></li>
+      <li class="breadcrumb-item active">Notes on creating a Hammer File Share</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/Hammer/hammer_notes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="notes-on-creating-a-hammer-file-share">
+<h1>Notes on creating a Hammer File Share<a class="headerlink" href="#notes-on-creating-a-hammer-file-share" title="Link to this heading"></a></h1>
+<p>I asked Copilot to help me create a samba file share on a VoidLinux system with a  two 8TB drives in a mirrored zpool. I want to set up a samba share that a windows machine, Mac and Linux can mount.</p>
+<section id="first-response">
+<h2>First Response<a class="headerlink" href="#first-response" title="Link to this heading"></a></h2>
+<p>Setting up a Samba share on your Void Linux workstation with a mirrored ZFS pool for cross-platform access is a solid choice. Here’s a step-by-step guide:</p>
+<ol class="arabic simple">
+<li><p>Install Samba</p></li>
+</ol>
+<p>First I updated the package list and installed Samba:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>xbps-install<span class="w"> </span>-Syu
+sudo<span class="w"> </span>xbps-install<span class="w"> </span>-S<span class="w"> </span>samba
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Enable and Start the Samba Service</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/sv/smbd<span class="w"> </span>/var/service/
+sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/sv/nmbd<span class="w"> </span>/var/service/
+</pre></div>
+</div>
+<p>To verify it’s running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>sv<span class="w"> </span>status<span class="w"> </span>smbd
+sudo<span class="w"> </span>sv<span class="w"> </span>status<span class="w"> </span>nmbd
+</pre></div>
+</div>
+<section id="why-separate-services">
+<h3>Why Separate Services?<a class="headerlink" href="#why-separate-services" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>smbd handles actual file sharing.</p></li>
+<li><p>nmbd broadcasts the share name for discovery on Windows and macOS networks.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Configure Your Samba Share</p></li>
+</ol>
+<p>Edit /etc/samba/smb.conf to define your shared folder:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>sv<span class="w"> </span>status<span class="w"> </span>smbd
+sudo<span class="w"> </span>sv<span class="w"> </span>status<span class="w"> </span>nmbd
+</pre></div>
+</div>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[global]</span>
+<span class="na">workgroup</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">WORKGROUP</span>
+<span class="na">server string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Void Samba Server</span>
+<span class="na">security</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">user</span>
+<span class="na">map to guest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">Bad User</span>
+
+<span class="k">[shared]</span>
+<span class="na">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">/mnt/zpool/share</span>
+<span class="na">browseable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">writable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">read only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">no</span>
+<span class="na">guest ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">yes</span>
+<span class="na">force user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your_user</span>
+<span class="na">valid users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">your_user</span>
+</pre></div>
+</div>
+<p>My zfs dataset  is mounted at <code class="docutils literal notranslate"><span class="pre">/zhammer</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hammerVoid<span class="w"> </span>~<span class="w">  </span>zfs<span class="w"> </span>list<span class="w">                                                                   </span>Sun<span class="w"> </span><span class="m">08</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">01</span>:32:15<span class="w"> </span>PM<span class="w"> </span>EDT
+NAME<span class="w">                           </span>USED<span class="w">  </span>AVAIL<span class="w">  </span>REFER<span class="w">  </span>MOUNTPOINT
+tank<span class="w">                          </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/tank
+tank/home<span class="w">                     </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/export/home
+tank/home/rgeorgia<span class="w">            </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/export/home/rgeorgia
+tank/home/rgeorgia/workspace<span class="w">  </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">  </span><span class="m">12</span>.5G<span class="w">  </span>/export/home/rgeorgia/workspace
+zhammer<span class="w">                       </span><span class="m">1</span>.52M<span class="w">  </span><span class="m">14</span>.4T<span class="w">    </span>96K<span class="w">  </span>/zhammer
+hammerVoid<span class="w"> </span>~<span class="w">  </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>/zhammer/martel<span class="w">                                                 </span>Sun<span class="w"> </span><span class="m">08</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">01</span>:49:08<span class="w"> </span>PM<span class="w"> </span>EDT
+Password:
+hammerVoid<span class="w"> </span>~<span class="w">  </span>sudo<span class="w"> </span>zfs<span class="w"> </span>create<span class="w"> </span>zhammer/martel<span class="w">                                      </span><span class="m">5</span>.3s<span class="w"> </span><span class="w"> </span>Sun<span class="w"> </span><span class="m">08</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">01</span>:52:14<span class="w"> </span>PM<span class="w"> </span>EDT
+hammerVoid<span class="w"> </span>~<span class="w">  </span>zfs<span class="w"> </span>list<span class="w">                                                           </span>333ms<span class="w"> </span><span class="w"> </span>Sun<span class="w"> </span><span class="m">08</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">01</span>:52:25<span class="w"> </span>PM<span class="w"> </span>EDT
+NAME<span class="w">                           </span>USED<span class="w">  </span>AVAIL<span class="w">  </span>REFER<span class="w">  </span>MOUNTPOINT
+tank<span class="w">                          </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/tank
+tank/home<span class="w">                     </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/export/home
+tank/home/rgeorgia<span class="w">            </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">    </span>24K<span class="w">  </span>/export/home/rgeorgia
+tank/home/rgeorgia/workspace<span class="w">  </span><span class="m">12</span>.5G<span class="w">   </span>887G<span class="w">  </span><span class="m">12</span>.5G<span class="w">  </span>/export/home/rgeorgia/workspace
+zhammer<span class="w">                       </span><span class="m">1</span>.66M<span class="w">  </span><span class="m">14</span>.4T<span class="w">    </span>96K<span class="w">  </span>/zhammer
+zhammer/martel<span class="w">                  </span>96K<span class="w">  </span><span class="m">14</span>.4T<span class="w">    </span>96K<span class="w">  </span>/zhammer/martel
+hammerVoid<span class="w"> </span>~<span class="w">  </span>sudo<span class="w"> </span>zfs<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">mountpoint</span><span class="o">=</span>/zhammer/martel<span class="w"> </span>zhammer/martel
+</pre></div>
+</div>
+<p>Make sure /mnt/zpool/share exists:
+.. code-block:: bash</p>
+<blockquote>
+<div><p>mkdir -p /mnt/zpool/share
+chmod 777 /mnt/zpool/share</p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Set Up User Authentication</p></li>
+</ol>
+<p>Create a Samba user:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>smbpasswd<span class="w"> </span>-a<span class="w"> </span>your_user
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Adjust Firewall Settings (if applicable)</p></li>
+</ol>
+<p>Allow Samba traffic:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">445</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">137</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>udp<span class="w"> </span>--dport<span class="w"> </span><span class="m">138</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">80</span>/tcp<span class="w">     </span><span class="c1"># HTTP</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">443</span>/tcp<span class="w">    </span><span class="c1"># HTTPS</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">22</span>/tcp<span class="w">     </span><span class="c1"># SSH</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">445</span>/tcp<span class="w">    </span><span class="c1"># SMB over TCP</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">137</span>/udp<span class="w">    </span><span class="c1"># NetBIOS Name Service</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">138</span>/udp<span class="w">    </span><span class="c1"># NetBIOS Datagram Service</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">139</span>/tcp<span class="w">    </span><span class="c1"># NetBIOS Session Service (optional, for legacy support)</span>
+sudo<span class="w"> </span>ufw<span class="w"> </span>app<span class="w"> </span>list
+sudo<span class="w"> </span>ufw<span class="w"> </span>app<span class="w"> </span>info<span class="w"> </span>Samba
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span>Samba
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Restart Samba</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>sv<span class="w"> </span>restart<span class="w"> </span>samba
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>Mount the Share on Other Machines</p></li>
+</ol>
+<ul class="simple">
+<li><p>Windows: Open Explorer, type \your_void_ipshared, and map the drive.</p></li>
+<li><p>Mac: Use Finder -&gt; Go -&gt; Connect to Server, then <a class="reference external" href="smb://your_void_ip/shared">smb://your_void_ip/shared</a></p></li>
+<li><p>Linux: Mount manually:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>cifs<span class="w"> </span>//your_void_ip/shared<span class="w"> </span>/mnt<span class="w"> </span>-o<span class="w"> </span><span class="nv">username</span><span class="o">=</span>your_user,password<span class="o">=</span>your_password
+</pre></div>
+</div>
+<p>Let me know if you run into any issues, especially with ZFS permissions or network access!</p>
+</section>
+</section>
+<section id="more-secure-options">
+<h2>More Secure Options<a class="headerlink" href="#more-secure-options" title="Link to this heading"></a></h2>
+<p>Instead of 777, consider:
+- User Group-Based Control: Create a Samba-specific group:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>groupadd<span class="w"> </span>smbshare
+sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>smbshare<span class="w"> </span>your_user
+sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>your_user:smbshare<span class="w"> </span>/mnt/zpool/share
+sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">770</span><span class="w"> </span>/mnt/zpool/share
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This allows only your_user and members of smbshare to access the folder.</p></li>
+<li><p>Force Specific Ownership in Samba: Modify your smb.conf:</p></li>
+</ul>
+<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">force group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">smbshare</span>
+<span class="na">create mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0660</span>
+<span class="na">directory mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0770</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This ensures new files are created with proper permissions.</p></li>
+</ul>
+<p>If you’re the only one using the share and security isn’t a major concern, 777 is fine for quick access. But if you prefer more control, these adjustments are better long-term solutions.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hammer_samba.html" class="btn btn-neutral float-left" title="Setting Up Samba" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ronverbs, LLC.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add a New Drive &mdash; Chronicles of Hope  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx_collapse.css?v=226d88b4" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=dace8524" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Setting Up my Printer" href="printing.html" />
+    <link rel="prev" title="NetBSD Notes" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Chronicles of Hope
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">How Great is the darkness</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Projects/index.html">PROJECTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HBSD/index.html">HardenedBSD Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FreeBSD/index.html">FreeBSD Notes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">NetBSD Notes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Add a New Drive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#current-drive-stats">Current Drive Stats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#show-some-drive-stats-with-gpt-not-gptchat">Show some drive stats with gpt, not gptchat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-the-wedges">List the wedges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-the-new-drive">Adding the new drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-new-gpt-partition">Create a new gpt partition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#new-file-system">New File System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#zfs">ZFS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#what-the">What the… ?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="printing.html">Setting Up my Printer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nginx.html">NetBSD and Nginx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy.html">Deploy Sphinx to RPI3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bozohttpd.html">Setting up bozohttpd</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../OpenBSD/index.html">OpenBSD Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Gentoo/index.html">Gentoo Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Hammer/index.html">Hammer File Share</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: white" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chronicles of Hope</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">NetBSD Notes</a></li>
+      <li class="breadcrumb-item active">Add a New Drive</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/NetBSD/addnewdisk.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="add-a-new-drive">
+<h1>Add a New Drive<a class="headerlink" href="#add-a-new-drive" title="Link to this heading"></a></h1>
+<section id="current-drive-stats">
+<h2>Current Drive Stats<a class="headerlink" href="#current-drive-stats" title="Link to this heading"></a></h2>
+<p>To find out which drives have been discovered use the sysctl tool.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sysctl<span class="w"> </span>hw.disknames
+hw.disknames<span class="w"> </span><span class="o">=</span><span class="w"> </span>wd0<span class="w"> </span>dk0<span class="w"> </span>dk1<span class="w"> </span>dk2<span class="w"> </span>wd1<span class="w"> </span>wd2
+</pre></div>
+</div>
+</section>
+<section id="show-some-drive-stats-with-gpt-not-gptchat">
+<h2>Show some drive stats with gpt, not gptchat<a class="headerlink" href="#show-some-drive-stats-with-gpt-not-gptchat" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>*gpt*<span class="w"> </span>show<span class="w"> </span>wd0
+<span class="w">       </span>start<span class="w">        </span>size<span class="w">  </span>index<span class="w">  </span>contents
+<span class="w">           </span><span class="m">0</span><span class="w">           </span><span class="m">1</span><span class="w">         </span>PMBR
+<span class="w">           </span><span class="m">1</span><span class="w">           </span><span class="m">1</span><span class="w">         </span>Pri<span class="w"> </span>GPT<span class="w"> </span>header
+<span class="w">           </span><span class="m">2</span><span class="w">          </span><span class="m">32</span><span class="w">         </span>Pri<span class="w"> </span>GPT<span class="w"> </span>table
+<span class="w">          </span><span class="m">34</span><span class="w">        </span><span class="m">2014</span><span class="w">         </span>Unused
+<span class="w">        </span><span class="m">2048</span><span class="w">  </span><span class="m">1936911725</span><span class="w">      </span><span class="m">1</span><span class="w">  </span>GPT<span class="w"> </span>part<span class="w"> </span>-<span class="w"> </span>NetBSD<span class="w"> </span>FFSv1/FFSv2
+<span class="w">  </span><span class="m">1936913773</span><span class="w">         </span><span class="m">659</span><span class="w">         </span>Unused
+<span class="w">  </span><span class="m">1936914432</span><span class="w">    </span><span class="m">16610703</span><span class="w">      </span><span class="m">2</span><span class="w">  </span>GPT<span class="w"> </span>part<span class="w"> </span>-<span class="w"> </span>NetBSD<span class="w"> </span>swap
+<span class="w">  </span><span class="m">1953525135</span><span class="w">          </span><span class="m">32</span><span class="w">         </span>Sec<span class="w"> </span>GPT<span class="w"> </span>table
+</pre></div>
+</div>
+</section>
+<section id="list-the-wedges">
+<h2>List the wedges<a class="headerlink" href="#list-the-wedges" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>dkctl<span class="w"> </span>wd0<span class="w"> </span>listwedges
+/dev/rwd0:<span class="w"> </span><span class="m">2</span><span class="w"> </span>wedges:
+dk0:<span class="w"> </span>aefb383d-5c26-4d11-bbaa-735447bcafcb,<span class="w"> </span><span class="m">1936911725</span><span class="w"> </span>blocks<span class="w"> </span>at<span class="w"> </span><span class="m">2048</span>,<span class="w"> </span>type:<span class="w"> </span>ffs
+dk1:<span class="w"> </span>5721838e-34ee-4255-bc34-6eb569e5fce8,<span class="w"> </span><span class="m">16610703</span><span class="w"> </span>blocks<span class="w"> </span>at<span class="w"> </span><span class="m">1936914432</span>,<span class="w"> </span>type:<span class="w"> </span>swap
+</pre></div>
+</div>
+</section>
+<section id="adding-the-new-drive">
+<h2>Adding the new drive<a class="headerlink" href="#adding-the-new-drive" title="Link to this heading"></a></h2>
+<p>The two drives I have are from a previous system. Their data looks like this. Both disk look the same, but only one is depicted.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>gpt<span class="w"> </span>show<span class="w"> </span>wd1
+GPT<span class="w"> </span>not<span class="w"> </span>found,<span class="w"> </span>displaying<span class="w"> </span>data<span class="w"> </span>from<span class="w"> </span>MBR.
+
+start<span class="w">        </span>size<span class="w">  </span>index<span class="w">  </span>contents
+<span class="m">0</span><span class="w">  </span><span class="m">1953525135</span><span class="w">         </span>Unused
+<span class="m">1953525135</span><span class="w">          </span><span class="m">32</span><span class="w">         </span>Sec<span class="w"> </span>GPT<span class="w"> </span>table
+<span class="m">1953525167</span><span class="w">           </span><span class="m">1</span><span class="w">         </span>Sec<span class="w"> </span>GPT<span class="w"> </span>header
+</pre></div>
+</div>
+<p>I really don’t care what was on the disk, so I destroy the gpt partion on both disks.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>gpt<span class="w"> </span>destroy<span class="w"> </span>wd1
+$<span class="w"> </span>sudo<span class="w"> </span>gpt<span class="w"> </span>destroy<span class="w"> </span>wd2
+$<span class="w"> </span>sudo<span class="w"> </span>gpt<span class="w"> </span>show<span class="w"> </span>wd1
+GPT<span class="w"> </span>not<span class="w"> </span>found,<span class="w"> </span>displaying<span class="w"> </span>data<span class="w"> </span>from<span class="w"> </span>MBR.
+
+start<span class="w">        </span>size<span class="w">       </span>index<span class="w">  </span>contents
+<span class="m">0</span><span class="w">           </span><span class="m">1953525168</span><span class="w">         </span>Unused
+</pre></div>
+</div>
+</section>
+<section id="create-a-new-gpt-partition">
+<h2>Create a new gpt partition<a class="headerlink" href="#create-a-new-gpt-partition" title="Link to this heading"></a></h2>
+<p>This is done with the <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">gpt</span> <span class="pre">create</span></code> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>gpt<span class="w"> </span>create<span class="w"> </span>wd1
+
+$<span class="w"> </span>sudo<span class="w"> </span>gpt<span class="w"> </span>show<span class="w"> </span>wd1
+
+<span class="w">       </span>start<span class="w">        </span>size<span class="w">  </span>index<span class="w">  </span>contents
+<span class="w">           </span><span class="m">0</span><span class="w">            </span><span class="m">1</span><span class="w">         </span>PMBR
+<span class="w">           </span><span class="m">1</span><span class="w">            </span><span class="m">1</span><span class="w">         </span>Pri<span class="w"> </span>GPT<span class="w"> </span>header
+<span class="w">           </span><span class="m">2</span><span class="w">           </span><span class="m">32</span><span class="w">         </span>Pri<span class="w"> </span>GPT<span class="w"> </span>table
+<span class="w">           </span><span class="m">34</span><span class="w">  </span><span class="m">1953525101</span><span class="w">         </span>Unused
+<span class="w">    </span><span class="m">1953525135</span><span class="w">         </span><span class="m">32</span><span class="w">         </span>Sec<span class="w"> </span>GPT<span class="w"> </span>table
+<span class="w">    </span><span class="m">1953525167</span><span class="w">          </span><span class="m">1</span><span class="w">         </span>Sec<span class="w"> </span>GPT<span class="w"> </span>header
+
+
+$<span class="w"> </span>sudo<span class="w"> </span>gpt<span class="w"> </span>add<span class="w"> </span>-a<span class="w"> </span>512k<span class="w"> </span>-l<span class="w"> </span>Packages<span class="w"> </span>-t<span class="w"> </span>ffs<span class="w"> </span>wd1
+/dev/rwd1:<span class="w"> </span>Partition<span class="w"> </span><span class="m">1</span><span class="w"> </span>added:<span class="w"> </span>49f48d5a-b10e-11dc-b99b-0019d1879648<span class="w"> </span><span class="m">1024</span><span class="w"> </span><span class="m">1953523712</span>
+$<span class="w"> </span>sudo<span class="w"> </span>gpt<span class="w"> </span>show<span class="w"> </span>wd1
+<span class="w">       </span>start<span class="w">        </span>size<span class="w">  </span>index<span class="w">  </span>contents
+<span class="w">           </span><span class="m">0</span><span class="w">           </span><span class="m">1</span><span class="w">         </span>PMBR
+<span class="w">           </span><span class="m">1</span><span class="w">           </span><span class="m">1</span><span class="w">         </span>Pri<span class="w"> </span>GPT<span class="w"> </span>header
+<span class="w">           </span><span class="m">2</span><span class="w">          </span><span class="m">32</span><span class="w">         </span>Pri<span class="w"> </span>GPT<span class="w"> </span>table
+<span class="w">          </span><span class="m">34</span><span class="w">         </span><span class="m">990</span><span class="w">         </span>Unused
+<span class="w">        </span><span class="m">1024</span><span class="w">  </span><span class="m">1953523712</span><span class="w">      </span><span class="m">1</span><span class="w">  </span>GPT<span class="w"> </span>part<span class="w"> </span>-<span class="w"> </span>NetBSD<span class="w"> </span>FFSv1/FFSv2
+<span class="w">  </span><span class="m">1953524736</span><span class="w">         </span><span class="m">399</span><span class="w">         </span>Unused
+<span class="w">  </span><span class="m">1953525135</span><span class="w">          </span><span class="m">32</span><span class="w">         </span>Sec<span class="w"> </span>GPT<span class="w"> </span>table
+<span class="w">  </span><span class="m">1953525167</span><span class="w">           </span><span class="m">1</span><span class="w">         </span>Sec<span class="w"> </span>GPT<span class="w"> </span>header
+</pre></div>
+</div>
+<p>Now list out the wedges to verify you will mount the correct portion of your new disk.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>dkctl<span class="w"> </span>wd1<span class="w"> </span>listwedges
+/dev/rwd1:<span class="w"> </span><span class="m">1</span><span class="w"> </span>wedge:
+dk2:<span class="w"> </span>Packages,<span class="w"> </span><span class="m">1953523712</span><span class="w"> </span>blocks<span class="w"> </span>at<span class="w"> </span><span class="m">1024</span>,<span class="w"> </span>type:<span class="w"> </span>ffs
+</pre></div>
+</div>
+<section id="new-file-system">
+<h3>New File System<a class="headerlink" href="#new-file-system" title="Link to this heading"></a></h3>
+<p>Now create a new file system for your “partition”</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>newfs<span class="w"> </span>-O2<span class="w"> </span>dk2
+/dev/rdk2:<span class="w"> </span><span class="m">953869</span>.0MB<span class="w"> </span><span class="o">(</span><span class="m">1953523712</span><span class="w"> </span>sectors<span class="o">)</span><span class="w"> </span>block<span class="w"> </span>size<span class="w"> </span><span class="m">32768</span>,<span class="w"> </span>fragment<span class="w"> </span>size<span class="w"> </span><span class="m">4096</span>
+<span class="w">        </span>using<span class="w"> </span><span class="m">1285</span><span class="w"> </span>cylinder<span class="w"> </span>groups<span class="w"> </span>of<span class="w"> </span><span class="m">742</span>.31MB,<span class="w"> </span><span class="m">23754</span><span class="w"> </span>blks,<span class="w"> </span><span class="m">46848</span><span class="w"> </span>inodes.
+super-block<span class="w"> </span>backups<span class="w"> </span><span class="o">(</span><span class="k">for</span><span class="w"> </span>fsck_ffs<span class="w"> </span>-b<span class="w"> </span><span class="c1">#) at:</span>
+<span class="m">192</span>,<span class="w"> </span><span class="m">1520448</span>,<span class="w"> </span><span class="m">3040704</span>,<span class="w"> </span><span class="m">4560960</span>,<span class="w"> </span><span class="m">6081216</span>,<span class="w"> </span><span class="m">7601472</span>,<span class="w"> </span><span class="m">9121728</span>,<span class="w"> </span><span class="m">10641984</span>,<span class="w"> </span><span class="m">12162240</span>,<span class="w"> </span><span class="m">13682496</span>,
+.................................................................................................
+
+$<span class="w"> </span>sudo<span class="w"> </span>dkctl<span class="w"> </span>wd1<span class="w"> </span>listwedges
+/dev/rwd1:<span class="w"> </span><span class="m">1</span><span class="w"> </span>wedge:
+dk2:<span class="w"> </span>Packages,<span class="w"> </span><span class="m">1953523712</span><span class="w"> </span>blocks<span class="w"> </span>at<span class="w"> </span><span class="m">1024</span>,<span class="w"> </span>type:<span class="w"> </span>ffs
+</pre></div>
+</div>
+</section>
+<section id="zfs">
+<h3>ZFS<a class="headerlink" href="#zfs" title="Link to this heading"></a></h3>
+<p>Now let’s create a zfs pool.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>zpool<span class="w"> </span>create<span class="w"> </span>storage<span class="w"> </span>mirror<span class="w"> </span>dk3<span class="w"> </span>dk4
+internal<span class="w"> </span>error:<span class="w"> </span>failed<span class="w"> </span>to<span class="w"> </span>initialize<span class="w"> </span>ZFS<span class="w"> </span>library
+$<span class="w"> </span>sudo<span class="w"> </span>zpool<span class="w"> </span>create<span class="w"> </span>storage<span class="w"> </span>dk3
+$<span class="w"> </span>zpool<span class="w"> </span>list
+internal<span class="w"> </span>error:<span class="w"> </span>failed<span class="w"> </span>to<span class="w"> </span>initialize<span class="w"> </span>ZFS<span class="w"> </span>library
+</pre></div>
+</div>
+</section>
+<section id="what-the">
+<h3>What the… ?<a class="headerlink" href="#what-the" title="Link to this heading"></a></h3>
+<p>Oh man! I forgot, you need to perform zfs stuff as root. Make sure you are in the visudo file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>-s
+Welcome<span class="w"> </span>to<span class="w"> </span>fish,<span class="w"> </span>the<span class="w"> </span>friendly<span class="w"> </span>interactive<span class="w"> </span>shell
+Type<span class="w"> </span><span class="sb">`</span><span class="nb">help</span><span class="sb">`</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>instructions<span class="w"> </span>on<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>use<span class="w"> </span>fish
+<span class="c1"># zpool list</span>
+NAME<span class="w">      </span>SIZE<span class="w">  </span>ALLOC<span class="w">   </span>FREE<span class="w">  </span>EXPANDSZ<span class="w">   </span>FRAG<span class="w">    </span>CAP<span class="w">  </span>DEDUP<span class="w">  </span>HEALTH<span class="w">  </span>ALTROOT
+storage<span class="w">   </span>928G<span class="w">   </span>336K<span class="w">   </span>928G<span class="w">         </span>-<span class="w">     </span><span class="m">0</span>%<span class="w">     </span><span class="m">0</span>%<span class="w">  </span><span class="m">1</span>.00x<span class="w">  </span>ONLINE<span class="w">  </span>-
+
+sudo<span class="w"> </span>zpool<span class="w"> </span>status<span class="w">                                                </span>Fri<span class="w"> </span>Aug<span class="w">  </span><span class="m">9</span><span class="w"> </span><span class="m">20</span>:29:24<span class="w"> </span><span class="m">2024</span>
+<span class="w">  </span>pool:<span class="w"> </span>storage
+<span class="w"> </span>state:<span class="w"> </span>ONLINE
+<span class="w">  </span>scan:<span class="w"> </span>none<span class="w"> </span>requested
+config:
+
+<span class="w">    </span>NAME<span class="w">        </span>STATE<span class="w">     </span>READ<span class="w"> </span>WRITE<span class="w"> </span>CKSUM
+<span class="w">    </span>storage<span class="w">     </span>ONLINE<span class="w">       </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">     </span><span class="m">0</span>
+<span class="w">      </span>mirror-0<span class="w">  </span>ONLINE<span class="w">       </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">     </span><span class="m">0</span>
+<span class="w">        </span>dk3<span class="w">     </span>ONLINE<span class="w">       </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">     </span><span class="m">0</span>
+<span class="w">        </span>dk4<span class="w">     </span>ONLINE<span class="w">       </span><span class="m">0</span><span class="w">     </span><span class="m">0</span><span class="w">     </span><span class="m">0</span>
+
+errors:<span class="w"> </span>No<span class="w"> </span>known<span class="w"> </span>data<span class="w"> </span>errors
+
+<span class="c1"># zfs list</span>
+NAME<span class="w">      </span>USED<span class="w">  </span>AVAIL<span class="w">  </span>REFER<span class="w">  </span>MOUNTPOINT
+storage<span class="w">   </span>244K<span class="w">   </span>899G<span class="w">    </span>88K<span class="w">  </span>/storage
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="NetBSD Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="printing.html" class="btn btn-neutral float-right" title="Setting Up my Printer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ronverbs, LLC.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

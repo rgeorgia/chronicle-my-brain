@@ -15,3 +15,4 @@ OpenBSD Notes
    openbsd-firefox
    openbsd-httpd
    openbsd-print
+   obsd_external_drive
